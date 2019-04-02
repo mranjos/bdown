@@ -14,7 +14,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "/about/"
 [[menu.main]]
     name = "TCC"
-    url = "/TG2_Michelangelo.pdf"
+    url = "https://statmra.netlify.com/TG2_Michelangelo.pdf"
 [[menu.main]]
     name = "GitHub"
     url = "https://github.com/mranjos/"
