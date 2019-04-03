@@ -17,7 +17,7 @@ Abaixo deixo meu contato caso queiram enviar e-mail, tirar dúvidas e espero que
 
 E-mail: mranjos91@gmail.com
 
-[LinkedIn](https://www.linkedin.com/in/michelangelo-redondo-dos-anjos-2a817551/){target="_blank"}
+[LinkedIn](https://www.linkedin.com/in/michelangelo-redondo-dos-anjos-2a817551/)
 
-[Facebook](https://www.facebook.com/michelangelo.r.a?ref=bookmarks){target="_blank"}
+[Facebook](https://www.facebook.com/michelangelo.r.a?ref=bookmarks)
 
