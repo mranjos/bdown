@@ -13,14 +13,8 @@ tags:
   - Tutorial
 editor_options: 
   chunk_output_type: console
-output: 
-  html_document:
-    toc: true # table of content true
-    number_sections: yes
-    toc_depth: 3
-    theme: united
-    highlight: tango
-    toc_float: true
+blogdown::html_page:
+    toc: true
 ---
 
 Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.
