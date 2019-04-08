@@ -33,23 +33,8 @@ plot(density(cars$speed))
 
 ```
 
-```{r results="asis",tidy=FALSE,eval=TRUE}
-cat("click here: [link1](#test1)")
-```
-
-click here: [link2](#test1)
-
-\pagebreak
-
-# test 3 {#test3}
-
-\pagebreak
-
-# test 2 {#test2}
-
-\pagebreak
-
-# test 1 {#test1}
+[Índice 2](#abcd)
 
 <a href="#Índice"> Volte para o início </a>
 
+<a name="abcd">Índice 2</a>
