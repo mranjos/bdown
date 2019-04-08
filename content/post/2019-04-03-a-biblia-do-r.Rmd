@@ -18,14 +18,17 @@ output:
     toc: true # table of content true
     number_sections: yes
     toc_depth: 3
-    #theme: united
-    #highlight: tango
+    theme: united
+    highlight: tango
+    toc_float: true
 ---
 
 Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.
 
-# Índice
-[Índice 2](#abcd)
+```{r}
+#[Índice 2](#abcd)
+```
+
 
 ```{r}
 2-2
@@ -34,7 +37,7 @@ plot(density(cars$speed))
 
 ```
 
-Header 1
+# Header 1
 ---------------
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -55,6 +58,6 @@ plot(cars)
 ### Header 3
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-<a href="#Índice"> Volte para o início </a>
-
-<a name="abcd">Índice 2</a>
+```{r}
+#<a name="abcd">Índice 2</a>
+```
