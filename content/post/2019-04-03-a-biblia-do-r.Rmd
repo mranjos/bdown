@@ -24,7 +24,7 @@ output:
 
 Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.
 
-# top
+# Índice
 
 ```{r}
 2-2
@@ -33,6 +33,23 @@ plot(density(cars$speed))
 
 ```
 
+```{r results="asis",tidy=FALSE,eval=TRUE}
+cat("click here: [link1](#test1)")
+```
 
-<a href="#top"> Back To Top </a>
+click here: [link2](#test1)
+
+\pagebreak
+
+# test 3 {#test3}
+
+\pagebreak
+
+#test 2 {#test2}
+
+\pagebreak
+
+#test 1 {#test1}
+
+<a href="#top"> Volte para o início </a>
 
