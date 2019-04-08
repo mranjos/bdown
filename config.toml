@@ -1,4 +1,5 @@
 baseurl = "/"
+enableEmoji = "true"
 languageCode = "en-us"
 title = "μK - Website"
 theme = "hugo-lithium"
