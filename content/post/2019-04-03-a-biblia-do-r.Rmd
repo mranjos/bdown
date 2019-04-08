@@ -24,7 +24,8 @@ output:
 
 Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.
 
-# Índice
+# top
+[Índice 2](#abcd)
 
 ```{r}
 2-2
@@ -33,8 +34,8 @@ plot(density(cars$speed))
 
 ```
 
-[Índice 2](#abcd)
 
-<a href="#Índice"> Volte para o início </a>
+
+<a href="#top"> Volte para o início </a>
 
 <a name="abcd">Índice 2</a>
