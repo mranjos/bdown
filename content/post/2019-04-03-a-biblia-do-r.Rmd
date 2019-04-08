@@ -45,11 +45,11 @@ click here: [link2](#test1)
 
 \pagebreak
 
-#test 2 {#test2}
+# test 2 {#test2}
 
 \pagebreak
 
-#test 1 {#test1}
+# test 1 {#test1}
 
 <a href="#Índice"> Volte para o início </a>
 
