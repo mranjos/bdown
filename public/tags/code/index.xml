@@ -6,19 +6,18 @@
     <description>Recent content in Code on μK - Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A Bíblia do R</title>
-      <link>/2019/04/03/a-biblia-do-r/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      <link>/2019/04/07/a-biblia-do-r/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/03/a-biblia-do-r/</guid>
-      <description>Olá mundo! Primeiro post do Blog.
-2-2## [1] 0plot(density(cars$speed))</description>
+      <guid>/2019/04/07/a-biblia-do-r/</guid>
+      <description>Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.</description>
     </item>
     
   </channel>

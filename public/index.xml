@@ -6,19 +6,18 @@
     <description>Recent content on μK - Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A Bíblia do R</title>
-      <link>/2019/04/03/a-biblia-do-r/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      <link>/2019/04/07/a-biblia-do-r/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/03/a-biblia-do-r/</guid>
-      <description>Olá mundo! Primeiro post do Blog.
-2-2## [1] 0plot(density(cars$speed))</description>
+      <guid>/2019/04/07/a-biblia-do-r/</guid>
+      <description>Esse post é o que eu considero o principal e mais importante do Blog. Devido a essa importância ele estará em constante atualização, pois sempre a algo novo para aprender e ensinar e esse post foi construído exatamente dessa forma, conforme as necessidades iam surgindo ao longo de todo esse tempo que utilizo o R, fui construindo um backup para ter um acesso e consultar os códigos sempre que necessário.</description>
     </item>
     
     <item>
@@ -27,8 +26,8 @@
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
       <guid>/about/</guid>
-      <description>Meu nome é Michelangelo (Mika), sou de São Carlos-SP, formado em Estatística pela UFSCar. Me formei depois de 7 anos na graduação, mas não me arrependo de um ano a mais que tenha ficado além do tempo, alguns foram árduos, alguns colonia de férias, mas cada um deles me agregou com alguma experiência e me ajudou a me tornar quem eu sou hoje.
-Participei de diversos programas de extensão, tais como Empresa Júnior, Centro Acadêmico, Atlética e levo um pouco de cada uma delas pra sempre comigo, cada projeto com sua característica ímpar de ser.</description>
+      <description>Meu nome é Michelangelo, mais conhecido como Mika, sou de São Carlos-SP, formado em Estatística pela UFSCar. Me formei depois de 7 anos na graduação mas não me arrependo de um ano a mais que tenha ficado além do tempo regular. Alguns anos foram árduos, alguns colonia de férias, mas cada um deles me agregou alguma experiência e me ajudou a me tornar quem eu sou hoje.
+Participei de diversos programas de extensão, tais como, Empresa Júnior, Centro Acadêmico, Atlética e levo um pouco de cada um deles pra sempre comigo, cada projeto com sua característica ímpar de ser.</description>
     </item>
     
   </channel>
