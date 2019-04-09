@@ -17,9 +17,6 @@ output:
   blogdown::html_page:
     -toc: true
     -number_sections: true
-    -theme: united
-    -highlight: tango
-    -toc_float: true
 ---
 
 <a name="abcd">Índice</a>
