@@ -15,8 +15,7 @@ editor_options:
   chunk_output_type: console
 output:
   blogdown::html_page:
-    -toc: true
-    -number_sections: true
+    toc: true
 ---
 
 <a name="abcd">Índice</a>
