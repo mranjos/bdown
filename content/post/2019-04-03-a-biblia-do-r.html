@@ -22,6 +22,11 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#introducao">1. Introdução</a></li>
+<li><a href="#funcoes-de-configuracao-e-ajuda.">3. Funções de configuração e ajuda.</a><ul>
+<li><a href="#alterando-o-formato-que-as-saidas-sao-exibidas.">Alterando o formato que as saídas são exibidas.</a></li>
+<li><a href="#funcoes-de-ajuda.">Funções de ajuda.</a></li>
+</ul></li>
+<li><a href="#atalhos-uteis">2. Atalhos úteis</a></li>
 <li><a href="#estruturas-basicas-de-acesso">2. Estruturas básicas de acesso</a></li>
 </ul>
 </div>
@@ -31,6 +36,51 @@ output:
 <p><a name="abcd"> Esse </a> é o primeiro post e o que eu considero o principal e mais importante, pois a ideia de criação do site surgiu por causa de um backup de códigos que eu criei conforme as necessidades iam aparecendo e carregava ele comigo para todo lado para consultar quando precisava. Dessa forma, decidi organizá-lo melhor, upar na internet para facilitar o acesso e compartilhar com mais pessoas que tenham interesse e espero que possa ser útil para mais alguém como é muito importante para mim (já que minha memória não é das melhores :laughing:).</p>
 <p>O post estará em constante atualização, pois sempre surge algo novo para aprendermos e a ideia é passar a linguagem R para frente sempre de maneira simples e didática, talvez a organização não fique a das melhores, mas vou procurar me esforçar ao máximo, caso o sumário não fique muito claro, recomendo utilizar o <strong>“Ctrl F”</strong> que sempre me salvou e pode ajudar vocês também.</p>
 <p>Por último, antes de começar realmente os códigos, vocês encontraram meio misturado códigos <strong>dplyr</strong> com o <strong>R raiz</strong>, mas será em momentos na qual os códigos possuem a mesma função mas simplesmente podem ser escritos em estruturas diferentes. Acho muito importante saber as diversas maneiras de programar pois existem horas que uma será mais fácil que a outra. Por exemplo, na minha opinião, o <strong>R raiz</strong> é mais fácil para programar rotinas, loop, for, if, while, etc. Já o <strong>dplyr</strong> é mais fácil para acessar, consultar, agrupar, exibir resultados de uma tabela.</p>
+<p><a href="#abcd">Volte ao topo</a></p>
+<hr />
+</div>
+<div id="funcoes-de-configuracao-e-ajuda." class="section level2">
+<h2>3. Funções de configuração e ajuda.</h2>
+<p>Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções de configuração e ajuda no R que também são muito importantes e costumo utilizar bastante no dia a dia.</p>
+<div id="alterando-o-formato-que-as-saidas-sao-exibidas." class="section level3">
+<h3>Alterando o formato que as saídas são exibidas.</h3>
+<p><em>Parametros:</em></p>
+<ul>
+<li>1 - scipen (Especifica qual saída queremos exibir, se a ciêntifica <span class="math inline">\(e^{10}\)</span> ou a inteira)</li>
+</ul>
+<p>Negativo é linguagem ciêntifica (O número dentro não importa).</p>
+<pre class="r"><code>options(scipen = -9999)</code></pre>
+<pre><code>## Saída exibida:  5.757576e+07</code></pre>
+<p>Positivo o número é exibido inteiro.</p>
+<pre class="r"><code>options(scipen = 1111)</code></pre>
+<pre><code>## Saída exibida:  57575757</code></pre>
+<ul>
+<li>2 - digits (Número de digitos que é exibido)</li>
+</ul>
+<pre class="r"><code>options(digits = 2)</code></pre>
+<pre><code>## Saída exibida:  2.5</code></pre>
+<pre class="r"><code>options(digits = 4)</code></pre>
+<pre><code>## Saída exibida:  2.545</code></pre>
+</div>
+<div id="funcoes-de-ajuda." class="section level3">
+<h3>Funções de ajuda.</h3>
+<p>Quando queremos saber informações sobre determinada função no R, podemos utilizar o comando <strong>help</strong> ou a abreviação <strong>?</strong>.</p>
+<pre class="r"><code>help(mean)
+?mean</code></pre>
+<p>Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte, ao utilizar o comando <strong>apropos</strong> o <strong>R</strong> lista funções que tem a parte especificada no nome, mas convenhamos que é mais fácil esquecer o comando do que o nome da função.</p>
+<pre class="r"><code>apropos(&#39;mea&#39;)</code></pre>
+<pre><code>##  [1] &quot;.colMeans&quot;          &quot;.rowMeans&quot;          &quot;colMeans&quot;          
+##  [4] &quot;influence.measures&quot; &quot;kmeans&quot;             &quot;mean&quot;              
+##  [7] &quot;mean.Date&quot;          &quot;mean.default&quot;       &quot;mean.difftime&quot;     
+## [10] &quot;mean.POSIXct&quot;       &quot;mean.POSIXlt&quot;       &quot;rowMeans&quot;          
+## [13] &quot;weighted.mean&quot;</code></pre>
+<p>Por último mas de muita utilidade, podemos verificar os símbolos operacionais matemático que o <strong>R</strong> utiliza apenas com o comando abaixo.</p>
+<pre class="r"><code>help(&#39;*&#39;)</code></pre>
+<p><a href="#abcd">Volte ao topo</a></p>
+</div>
+</div>
+<div id="atalhos-uteis" class="section level2">
+<h2>2. Atalhos úteis</h2>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 <div id="estruturas-basicas-de-acesso" class="section level2">
