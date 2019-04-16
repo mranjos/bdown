@@ -30,7 +30,7 @@ Por último, antes de começar realmente os códigos, vocês encontraram meio mi
 
 ***
 
-## 3. Funções de configuração e ajuda.
+## 2. Funções de configuração e ajuda.
 
 Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções de configuração e ajuda no R que também são muito importantes e costumo utilizar bastante no dia a dia.
 
@@ -39,8 +39,9 @@ Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções 
 *Parametros:*
 
 * 1 - scipen (Especifica qual saída queremos exibir, se a ciêntifica $e^{10}$ ou a inteira)
+OBS: O número no parâmetro não importa, apenas o sinal.
 
-Negativo é linguagem ciêntifica (O número dentro não importa).
+Negativo: Linguagem ciêntifica é exibida.
 
 ```{r}
 options(scipen = -9999)
@@ -50,7 +51,7 @@ options(scipen = -9999)
 cat("Saída exibida: ",57575757)
 ```
 
-Positivo o número é exibido inteiro.
+Positivo: O número é exibido inteiro.
 
 ```{r}
 options(scipen = 1111)
@@ -60,7 +61,7 @@ options(scipen = 1111)
 cat("Saída exibida: ",57575757)
 ```
 
-* 2 - digits (Número de digitos que é exibido)
+* 2 - digits (Quantidade de digitos que será mostrada)
 
 ```{r}
 options(digits = 2)
@@ -80,20 +81,20 @@ cat("Saída exibida: ",2.5454646)
 
 ### Funções de ajuda.
 
-Quando queremos saber informações sobre determinada função no R, podemos utilizar o comando **help** ou a abreviação **?**.
+Quando queremos saber informações sobre determinada função no R podemos utilizar o comando **help** ou a abreviação **?**.
 
 ```{r, eval=FALSE}
 help(mean)
 ?mean
 ```
 
-Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte, ao utilizar o comando **apropos** o **R** lista funções que tem a parte especificada no nome, mas convenhamos que é mais fácil esquecer o comando do que o nome da função.
+Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte. Ao utilizar o comando **apropos** o **R** lista funções que tem a parte especificada no nome, mas convenhamos que é mais fácil esquecer o comando do que o nome da função.
 
 ```{r}
 apropos('mea')
 ```
 
-Por último mas de muita utilidade, podemos verificar os símbolos operacionais matemático que o **R** utiliza apenas com o comando abaixo.
+Por último e de muita utilidade, conseguimos verificar os símbolos operacionais matemáticos que o **R** utiliza apenas com o comando abaixo.
 
 ```{r, eval=FALSE}
 help('*')
@@ -102,11 +103,11 @@ help('*')
 
 [Volte ao topo](#abcd)
 
-## 2. Atalhos úteis
+## 3. Atalhos úteis
 
 [Volte ao topo](#abcd)
 
-## 2. Estruturas básicas de acesso
+## 4. Estruturas básicas de acesso
 
 [Volte ao topo](#abcd)
 
