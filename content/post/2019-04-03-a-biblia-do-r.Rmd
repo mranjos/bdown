@@ -38,45 +38,37 @@ Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções 
 
 *Parametros:*
 
-* 1 - scipen (Especifica qual saída queremos exibir, se a ciêntifica $e^{10}$ ou a inteira)
-OBS: O número no parâmetro não importa, apenas o sinal.
+* scipen e digits.
 
-Negativo: Linguagem ciêntifica é exibida.
+Esses dois parâmetros são os que mais utilizo nas configurações do R, antes mesmo de começar a programar. 
 
+  + O primeiro **scipen** especifica qual saída queremos exibir para os números, se a ciêntifica $e^{10}$ ou os números completos.
+  + O segundo **digits** especifica a quantidade de digitos que queremos exibir.
+  
+OBS: O número no parâmetro não importa para o **scipen**, apenas o sinal.
+
+* scipen.
+  + Negativo: Linguagem ciêntifica é exibida.
+  + Positivo: O número é exibido inteiro.
+
+* digits.
+  + Número de digitos.
+  
 ```{r}
-options(scipen = -9999)
+options(scipen = -9999, digits = 3)
 ```
 
 ```{r,echo=FALSE}
-cat("Saída exibida: ",57575757)
+cat("Saída exibida: ",2.575757575757)
 ```
 
-Positivo: O número é exibido inteiro.
 
 ```{r}
-options(scipen = 1111)
+options(scipen = 1111, digits = 6)
 ```
 
 ```{r,echo=FALSE}
-cat("Saída exibida: ",57575757)
-```
-
-* 2 - digits (Quantidade de digitos que será mostrada)
-
-```{r}
-options(digits = 2)
-```
-
-```{r,echo=FALSE}
-cat("Saída exibida: ",2.5454646)
-```
-
-```{r}
-options(digits = 4)
-```
-
-```{r,echo=FALSE}
-cat("Saída exibida: ",2.5454646)
+cat("Saída exibida: ",2.575757575757)
 ```
 
 ### Funções de ajuda.
@@ -88,7 +80,7 @@ help(mean)
 ?mean
 ```
 
-Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte. Ao utilizar o comando **apropos** o **R** lista funções que tem a parte especificada no nome, mas convenhamos que é mais fácil esquecer o comando do que o nome da função.
+Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte. Ao utilizar o comando **apropos** o **R** lista funções que tem a parte especificada no nome.
 
 ```{r}
 apropos('mea')
@@ -100,14 +92,148 @@ Por último e de muita utilidade, conseguimos verificar os símbolos operacionai
 help('*')
 ```
 
+```{r,echo=FALSE}
+cat("Saída exibida no Help:
++ x
+- x
+x + y
+x - y
+x * y
+x / y
+x ^ y
+x %% y
+x %/% y")
+```
+
 
 [Volte ao topo](#abcd)
 
 ## 3. Atalhos úteis
 
+* Seleção vertical.
+  + Para realizar esse tipo de seleção segure **alt** apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.
+  + Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o **alt**, apertando **shift + end** o cursor vai para o fim de todas as linhas selecionadas, ou **shift + home** para o cursor ir para o início da linha.
+  
+* Substituindo palavras no R.
+  + Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez
+
+*Parametros:*
+
+1 - **In selection:** substitui apenas no local selecionado
+
+2 - **Match case:** diferencia maiuscula de minuscula
+
+3 - **Regex:** entende o comando **|** como se fosse **ou**, ou seja operador lógico.
+
+* Refazendo uma ação.
+  + Muitos sabem que o **ctrl + z** desfaz uma ação no R, mas em alguns casos acabamos desfazendo mais do que queriamos, para **refazer** algo desfeito existe o comando **ctrl + shift + z** que você pode alterar em **Tools - Modify Keyboard Shortcuts**, o mais utilizado em geral para refazer caso queira alterar é o **ctrl + i**. Outros atalhos também podem ser configurados nessa janela.
+
 [Volte ao topo](#abcd)
 
-## 4. Estruturas básicas de acesso
+## 4. Comandos base úteis.
+
+* Limpando a memória do R.
+  + Quando trabalhamos com **loop** ou um código muito grande que vai gerando bases temporrárias pesadas, isso vai sobrecarregando a memória do R, tempos alguns comandos que podem nos ajudar nisso, são eles: **objects**, **ls** e **rm**, .
+
+O comando **objects** e **ls** lista os objetos criados até o momento no R.
+
+```{r,eval=FALSE}
+objects()
+ls()
+```
+
+Já o comando **rm** limpa os objetos criados no R. É possível remover *TODOS* os objetos criados, combiando o comando **rm** com **ls** como vemos abaixo.
+
+```{r,eval=FALSE}
+rm(list = ls())
+```
+
+Ou podemos excluir apenas alguns objetos de interesse, por exemplo.
+
+```{r,eval=FALSE}
+objeto1 = c()
+objeto2 = c()
+rm(objeto1, objeto2)
+```
+
+* Verificando e alterando diretórios.
+  + Para verificiar o diretório que estamos trabalhando no R, onde serão salvos os arquivos, as bases entre outras coisas, utilizamos o comando **getwd**. 
+  + Para alterar o caminho de um diretório para uma pasta de um projeto específico por exemplo, utilizamos o **setwd**. Outro detalhe é que para especificarmos um caminho no R não utilizamos as barras padrão do windows **C:\\** mas sim as barras duplas, como mostra o exemplo abaixo, ou até mesmo a barra invertida **C:/**
+
+```{r, eval=FALSE}
+getwd()
+setwd("C:\\Users")
+```
+
+* Salvando e carregando arquivos do tipo RData.
+  + Os objetos no R podem ser salvos utilizando o comando **save** e carregados utilizando o comando **load**. 
+  + **save** - O primeiro parâmetro é o nome do objeto a ser salvo (pode ser mais do que um) e o segundo o diretório que ele será salvo (se não especificar salvará no que já esta configurado) seguido do nome do objeto e sua extenção do r **RData**.
+  + **load** - O parâmetro necessário é o diretório que o objeto está salvo seguido do seu nome e sua extenção **RData**.
+
+```{r, eval=FALSE}
+objeto1 = c()
+objeto2 = c()
+
+save(objeto1,objeto2, file = "C:\\Users\\objeto1.RData")
+load(file = "C:\\Users\\objeto1.RData")
+```
+
+
+* Instalando, carregando e descarregando pacotes
+  + Para instalar um pacote usamos o **install.packages**
+  + Para carregar um pacote usamos o **library**. 
+  + Para descarregar um pacote usamos o **detach** ele apenas descarrega o pacote caso o mesmo tenha sido carregado com o **library**.
+
+```{r,eval=FALSE}
+install.packages("pacote")
+library(pacote)
+detach(package:pacote)
+```
+
+  
+Não precisamos necessariamente carregar um pacote, basta chamá-lo pelo nome, seguido de **::** e em seguida a função que desejamos utilizar dele, por exemplo:
+  
+```{r, eval=FALSE}
+dplyr::select()
+```
+
+
+* Verificando os pacotes instalados
+
+Pode não parecer útil, mas em algum momento pode se tornar. O comando abaixo lista todos os pacotes instalados na versão do R que você está utilizando.
+
+```{r,eval=FALSE}
+rownames(installed.packages())
+```
+
+É muito útil quando criamos funções na qual possui pacotes depententes, nesse caso, verificamos se o pacote está instalado, caso não esteja, instalamos.
+
+```{r,eval=FALSE}
+if("pacote" %in% rownames(installed.packages()) == FALSE){
+  install.packages("pacote")
+  }
+```
+
+
+Outra utilidade é quando vamos atualizar o R ou mudar de computador e acabamos perdendo todos os pacotes. Antes de fazer essa alteração de versão ou de computador, podemos rodar o seguinte comando no computador/versão antiga:
+
+```{r,eval=FALSE}
+packages = c("gdata",rownames(installed.packages()))
+save(packages, file="C:/Temp/Rpackages")
+```
+
+Na qual criamos a pasta **temp** anteriormente no nosso computador, salvamos todos os pacotes salvos no objeto **packages** e salvamos esse objeto em nossa pasta **temp**.
+
+Ao trocar de computador/versão, carregamos essa pasta com a gente e usamos o comando para instalar todos os pacotes que estavam instalados para nós.
+
+```{r, eval=FALSE}
+load(file = "C:/Temp/Rpackages")
+for (p in setdiff(packages, rownames(installed.packages()))){
+  install.packages(p)
+}
+```
+
+## 4. Estruturas básicas de acesso.
 
 [Volte ao topo](#abcd)
 

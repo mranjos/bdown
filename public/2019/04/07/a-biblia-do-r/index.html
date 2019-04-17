@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">3 min read</span>
+    <span class="article-duration">7 min read</span>
     
 
     <h1 class="article-title">A Bíblia do R</h1>
@@ -84,7 +84,8 @@
 <li><a href="#funcoes-de-ajuda.">Funções de ajuda.</a></li>
 </ul></li>
 <li><a href="#atalhos-uteis">3. Atalhos úteis</a></li>
-<li><a href="#estruturas-basicas-de-acesso">4. Estruturas básicas de acesso</a></li>
+<li><a href="#comandos-base-uteis.">4. Comandos base úteis.</a></li>
+<li><a href="#estruturas-basicas-de-acesso.">4. Estruturas básicas de acesso.</a></li>
 </ul>
 </div>
 
@@ -103,29 +104,36 @@
 <h3>Alterando o formato que as saídas são exibidas.</h3>
 <p><em>Parametros:</em></p>
 <ul>
-<li>1 - scipen (Especifica qual saída queremos exibir, se a ciêntifica <span class="math inline">\(e^{10}\)</span> ou a inteira)
-OBS: O número no parâmetro não importa, apenas o sinal.</li>
+<li>scipen e digits.</li>
 </ul>
-<p>Negativo: Linguagem ciêntifica é exibida.</p>
-<pre class="r"><code>options(scipen = -9999)</code></pre>
-<pre><code>## Saída exibida:  5.757576e+07</code></pre>
-<p>Positivo: O número é exibido inteiro.</p>
-<pre class="r"><code>options(scipen = 1111)</code></pre>
-<pre><code>## Saída exibida:  57575757</code></pre>
+<p>Esses dois parâmetros são os que mais utilizo nas configurações do R, antes mesmo de começar a programar.</p>
 <ul>
-<li>2 - digits (Quantidade de digitos que será mostrada)</li>
+<li>O primeiro <strong>scipen</strong> especifica qual saída queremos exibir para os números, se a ciêntifica <span class="math inline">\(e^{10}\)</span> ou os números completos.</li>
+<li>O segundo <strong>digits</strong> especifica a quantidade de digitos que queremos exibir.</li>
 </ul>
-<pre class="r"><code>options(digits = 2)</code></pre>
-<pre><code>## Saída exibida:  2.5</code></pre>
-<pre class="r"><code>options(digits = 4)</code></pre>
-<pre><code>## Saída exibida:  2.545</code></pre>
+<p>OBS: O número no parâmetro não importa para o <strong>scipen</strong>, apenas o sinal.</p>
+<ul>
+<li>scipen.
+<ul>
+<li>Negativo: Linguagem ciêntifica é exibida.</li>
+<li>Positivo: O número é exibido inteiro.</li>
+</ul></li>
+<li>digits.
+<ul>
+<li>Número de digitos.</li>
+</ul></li>
+</ul>
+<pre class="r"><code>options(scipen = -9999, digits = 3)</code></pre>
+<pre><code>## Saída exibida:  2.58e+00</code></pre>
+<pre class="r"><code>options(scipen = 1111, digits = 6)</code></pre>
+<pre><code>## Saída exibida:  2.57576</code></pre>
 </div>
 <div id="funcoes-de-ajuda." class="section level3">
 <h3>Funções de ajuda.</h3>
 <p>Quando queremos saber informações sobre determinada função no R podemos utilizar o comando <strong>help</strong> ou a abreviação <strong>?</strong>.</p>
 <pre class="r"><code>help(mean)
 ?mean</code></pre>
-<p>Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte. Ao utilizar o comando <strong>apropos</strong> o <strong>R</strong> lista funções que tem a parte especificada no nome, mas convenhamos que é mais fácil esquecer o comando do que o nome da função.</p>
+<p>Em algumas ocasiões não lembramos o nome da função inteira, apenas uma parte. Ao utilizar o comando <strong>apropos</strong> o <strong>R</strong> lista funções que tem a parte especificada no nome.</p>
 <pre class="r"><code>apropos(&#39;mea&#39;)</code></pre>
 <pre><code>##  [1] &quot;.colMeans&quot;          &quot;.rowMeans&quot;          &quot;colMeans&quot;          
 ##  [4] &quot;influence.measures&quot; &quot;kmeans&quot;             &quot;mean&quot;              
@@ -134,15 +142,117 @@ OBS: O número no parâmetro não importa, apenas o sinal.</li>
 ## [13] &quot;weighted.mean&quot;</code></pre>
 <p>Por último e de muita utilidade, conseguimos verificar os símbolos operacionais matemáticos que o <strong>R</strong> utiliza apenas com o comando abaixo.</p>
 <pre class="r"><code>help(&#39;*&#39;)</code></pre>
+<pre><code>## Saída exibida no Help:
+## + x
+## - x
+## x + y
+## x - y
+## x * y
+## x / y
+## x ^ y
+## x %% y
+## x %/% y</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
 <div id="atalhos-uteis" class="section level2">
 <h2>3. Atalhos úteis</h2>
+<ul>
+<li>Seleção vertical.
+<ul>
+<li>Para realizar esse tipo de seleção segure <strong>alt</strong> apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.</li>
+<li>Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o <strong>alt</strong>, apertando <strong>shift + end</strong> o cursor vai para o fim de todas as linhas selecionadas, ou <strong>shift + home</strong> para o cursor ir para o início da linha.</li>
+</ul></li>
+<li>Substituindo palavras no R.
+<ul>
+<li>Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez</li>
+</ul></li>
+</ul>
+<p><em>Parametros:</em></p>
+<p>1 - <strong>In selection:</strong> substitui apenas no local selecionado</p>
+<p>2 - <strong>Match case:</strong> diferencia maiuscula de minuscula</p>
+<p>3 - <strong>Regex:</strong> entende o comando <strong>|</strong> como se fosse <strong>ou</strong>, ou seja operador lógico.</p>
+<ul>
+<li>Refazendo uma ação.
+<ul>
+<li>Muitos sabem que o <strong>ctrl + z</strong> desfaz uma ação no R, mas em alguns casos acabamos desfazendo mais do que queriamos, para <strong>refazer</strong> algo desfeito existe o comando <strong>ctrl + shift + z</strong> que você pode alterar em <strong>Tools - Modify Keyboard Shortcuts</strong>, o mais utilizado em geral para refazer caso queira alterar é o <strong>ctrl + i</strong>. Outros atalhos também podem ser configurados nessa janela.</li>
+</ul></li>
+</ul>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
-<div id="estruturas-basicas-de-acesso" class="section level2">
-<h2>4. Estruturas básicas de acesso</h2>
+<div id="comandos-base-uteis." class="section level2">
+<h2>4. Comandos base úteis.</h2>
+<ul>
+<li>Limpando a memória do R.
+<ul>
+<li>Quando trabalhamos com <strong>loop</strong> ou um código muito grande que vai gerando bases temporrárias pesadas, isso vai sobrecarregando a memória do R, tempos alguns comandos que podem nos ajudar nisso, são eles: <strong>objects</strong>, <strong>ls</strong> e <strong>rm</strong>, .</li>
+</ul></li>
+</ul>
+<p>O comando <strong>objects</strong> e <strong>ls</strong> lista os objetos criados até o momento no R.</p>
+<pre class="r"><code>objects()
+ls()</code></pre>
+<p>Já o comando <strong>rm</strong> limpa os objetos criados no R. É possível remover <em>TODOS</em> os objetos criados, combiando o comando <strong>rm</strong> com <strong>ls</strong> como vemos abaixo.</p>
+<pre class="r"><code>rm(list = ls())</code></pre>
+<p>Ou podemos excluir apenas alguns objetos de interesse, por exemplo.</p>
+<pre class="r"><code>objeto1 = c()
+objeto2 = c()
+rm(objeto1, objeto2)</code></pre>
+<ul>
+<li>Verificando e alterando diretórios.
+<ul>
+<li>Para verificiar o diretório que estamos trabalhando no R, onde serão salvos os arquivos, as bases entre outras coisas, utilizamos o comando <strong>getwd</strong>.</li>
+<li>Para alterar o caminho de um diretório para uma pasta de um projeto específico por exemplo, utilizamos o <strong>setwd</strong>. Outro detalhe é que para especificarmos um caminho no R não utilizamos as barras padrão do windows <strong>C:\</strong> mas sim as barras duplas, como mostra o exemplo abaixo, ou até mesmo a barra invertida <strong>C:/</strong></li>
+</ul></li>
+</ul>
+<pre class="r"><code>getwd()
+setwd(&quot;C:\\Users&quot;)</code></pre>
+<ul>
+<li>Salvando e carregando arquivos do tipo RData.
+<ul>
+<li>Os objetos no R podem ser salvos utilizando o comando <strong>save</strong> e carregados utilizando o comando <strong>load</strong>.</li>
+<li><strong>save</strong> - O primeiro parâmetro é o nome do objeto a ser salvo (pode ser mais do que um) e o segundo o diretório que ele será salvo (se não especificar salvará no que já esta configurado) seguido do nome do objeto e sua extenção do r <strong>RData</strong>.</li>
+<li><strong>load</strong> - O parâmetro necessário é o diretório que o objeto está salvo seguido do seu nome e sua extenção <strong>RData</strong>.</li>
+</ul></li>
+</ul>
+<pre class="r"><code>objeto1 = c()
+objeto2 = c()
+
+save(objeto1,objeto2, file = &quot;C:\\Users\\objeto1.RData&quot;)
+load(file = &quot;C:\\Users\\objeto1.RData&quot;)</code></pre>
+<ul>
+<li>Instalando, carregando e descarregando pacotes
+<ul>
+<li>Para instalar um pacote usamos o <strong>install.packages</strong></li>
+<li>Para carregar um pacote usamos o <strong>library</strong>.</li>
+<li>Para descarregar um pacote usamos o <strong>detach</strong> ele apenas descarrega o pacote caso o mesmo tenha sido carregado com o <strong>library</strong>.</li>
+</ul></li>
+</ul>
+<pre class="r"><code>install.packages(&quot;pacote&quot;)
+library(pacote)
+detach(package:pacote)</code></pre>
+<p>Não precisamos necessariamente carregar um pacote, basta chamá-lo pelo nome, seguido de <strong>::</strong> e em seguida a função que desejamos utilizar dele, por exemplo:</p>
+<pre class="r"><code>dplyr::select()</code></pre>
+<ul>
+<li>Verificando os pacotes instalados</li>
+</ul>
+<p>Pode não parecer útil, mas em algum momento pode se tornar. O comando abaixo lista todos os pacotes instalados na versão do R que você está utilizando.</p>
+<pre class="r"><code>rownames(installed.packages())</code></pre>
+<p>É muito útil quando criamos funções na qual possui pacotes depententes, nesse caso, verificamos se o pacote está instalado, caso não esteja, instalamos.</p>
+<pre class="r"><code>if(&quot;pacote&quot; %in% rownames(installed.packages()) == FALSE){
+  install.packages(&quot;pacote&quot;)
+  }</code></pre>
+<p>Outra utilidade é quando vamos atualizar o R ou mudar de computador e acabamos perdendo todos os pacotes. Antes de fazer essa alteração de versão ou de computador, podemos rodar o seguinte comando no computador/versão antiga:</p>
+<pre class="r"><code>packages = c(&quot;gdata&quot;,rownames(installed.packages()))
+save(packages, file=&quot;C:/Temp/Rpackages&quot;)</code></pre>
+<p>Na qual criamos a pasta <strong>temp</strong> anteriormente no nosso computador, salvamos todos os pacotes salvos no objeto <strong>packages</strong> e salvamos esse objeto em nossa pasta <strong>temp</strong>.</p>
+<p>Ao trocar de computador/versão, carregamos essa pasta com a gente e usamos o comando para instalar todos os pacotes que estavam instalados para nós.</p>
+<pre class="r"><code>load(file = &quot;C:/Temp/Rpackages&quot;)
+for (p in setdiff(packages, rownames(installed.packages()))){
+  install.packages(p)
+}</code></pre>
+</div>
+<div id="estruturas-basicas-de-acesso." class="section level2">
+<h2>4. Estruturas básicas de acesso.</h2>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 
