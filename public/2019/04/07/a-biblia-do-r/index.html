@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">7 min read</span>
+    <span class="article-duration">9 min read</span>
     
 
     <h1 class="article-title">A Bíblia do R</h1>
@@ -80,12 +80,17 @@
 <ul>
 <li><a href="#introducao">1. Introdução</a></li>
 <li><a href="#funcoes-de-configuracao-e-ajuda.">2. Funções de configuração e ajuda.</a><ul>
-<li><a href="#alterando-o-formato-que-as-saidas-sao-exibidas.">Alterando o formato que as saídas são exibidas.</a></li>
-<li><a href="#funcoes-de-ajuda.">Funções de ajuda.</a></li>
+<li><a href="#alterando-o-formato-que-as-saidas-sao-exibidas.">2.1. Alterando o formato que as saídas são exibidas.</a></li>
+<li><a href="#funcoes-de-ajuda.">2.2. Funções de ajuda.</a></li>
 </ul></li>
 <li><a href="#atalhos-uteis">3. Atalhos úteis</a></li>
 <li><a href="#comandos-base-uteis.">4. Comandos base úteis.</a></li>
-<li><a href="#estruturas-basicas-de-acesso.">4. Estruturas básicas de acesso.</a></li>
+<li><a href="#estrutura-e-criacao-de-objetos.">5. Estrutura e criação de objetos.</a><ul>
+<li><a href="#vetores">5.1. Vetores</a></li>
+<li><a href="#matrizes">5.2. Matrizes</a></li>
+<li><a href="#data-frames">5.3. Data Frames</a></li>
+<li><a href="#listas">5.4. Listas</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -101,7 +106,7 @@
 <h2>2. Funções de configuração e ajuda.</h2>
 <p>Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções de configuração e ajuda no R que também são muito importantes e costumo utilizar bastante no dia a dia.</p>
 <div id="alterando-o-formato-que-as-saidas-sao-exibidas." class="section level3">
-<h3>Alterando o formato que as saídas são exibidas.</h3>
+<h3>2.1. Alterando o formato que as saídas são exibidas.</h3>
 <p><em>Parametros:</em></p>
 <ul>
 <li>scipen e digits.</li>
@@ -129,7 +134,7 @@
 <pre><code>## Saída exibida:  2.57576</code></pre>
 </div>
 <div id="funcoes-de-ajuda." class="section level3">
-<h3>Funções de ajuda.</h3>
+<h3>2.2. Funções de ajuda.</h3>
 <p>Quando queremos saber informações sobre determinada função no R podemos utilizar o comando <strong>help</strong> ou a abreviação <strong>?</strong>.</p>
 <pre class="r"><code>help(mean)
 ?mean</code></pre>
@@ -161,7 +166,7 @@
 <li>Seleção vertical.
 <ul>
 <li>Para realizar esse tipo de seleção segure <strong>alt</strong> apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.</li>
-<li>Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o <strong>alt</strong>, apertando <strong>shift + end</strong> o cursor vai para o fim de todas as linhas selecionadas, ou <strong>shift + home</strong> para o cursor ir para o início da linha.</li>
+<li>Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o <strong>alt</strong>, apertando <strong>shift + end</strong> o cursor vai para o fim de todas as linhas selecionadas, ou <strong>shift + home</strong> para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo <strong>shift + -&gt; ou &lt;- </strong>.</li>
 </ul></li>
 <li>Substituindo palavras no R.
 <ul>
@@ -250,10 +255,76 @@ save(packages, file=&quot;C:/Temp/Rpackages&quot;)</code></pre>
 for (p in setdiff(packages, rownames(installed.packages()))){
   install.packages(p)
 }</code></pre>
+<ul>
+<li><a name="condicionais">Condicionais no R.</a>
+<ul>
+<li><strong>=</strong> (recebe)</li>
+<li><strong>==</strong> (igual)</li>
+<li><strong>!=</strong> (diferente)</li>
+<li><strong>&gt;</strong> (maior)</li>
+<li><strong>&lt;</strong> (menor)</li>
+<li><strong>&gt;=</strong> (maior igual)</li>
+<li><strong>&lt;=</strong> (menor igual)</li>
+</ul></li>
+</ul>
 </div>
-<div id="estruturas-basicas-de-acesso." class="section level2">
-<h2>4. Estruturas básicas de acesso.</h2>
+<div id="estrutura-e-criacao-de-objetos." class="section level2">
+<h2>5. Estrutura e criação de objetos.</h2>
+<p>Os objetos mais utilizados no R por mim pelo menos são vetores, matrizes, data frames e listas, irei mostrar a estrutura de cada um deles e como acessar seus elementos. Para atribuir uma variável a um objeto utilizamos as teclas <strong>&lt;-</strong> ou <strong>=</strong> fica a sua escolha.</p>
+<div id="vetores" class="section level3">
+<h3>5.1. Vetores</h3>
+<p>Para criar um vetor utilizamos a função <strong>c()</strong>:</p>
+<pre class="r"><code>vet_1 = c(7,2,5,9,7)
+vet_2 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
+vet_3 = c(1,&quot;a&quot;,5)</code></pre>
+<p>Para acessar os elementos de um vetor é simples, basta utilizar o comando <strong>[]</strong> sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 <strong>vet_1</strong>, fazemos <strong>vet_1[2]</strong>.</p>
+<p>Eu leio esse comando como se fosse <strong>onde</strong>, isso me ajuda muito na parte de filtragem e seleção de dados que veremos mais para frente. Meu conselho então é sempre que ver o símbolo <strong>[]</strong> ler <strong>onde</strong>. Por exemplo <strong>vet_1[2]</strong> leia <strong>vet_1 onde a posição é 2</strong>.</p>
+<pre class="r"><code>vet_1[2]</code></pre>
+<pre><code>## Saída exibida:  2</code></pre>
+<p>Em alguns casos é útil nomear os elementos de um vetor, por exemplo</p>
+<pre class="r"><code>names(vet_1) = c(&#39;um&#39;,&#39;dois&#39;, &#39;tres&#39;,&#39;quatro&#39;,&#39;cinco&#39;)</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>##     um   dois   tres quatro  cinco 
+##      7      2      5      9      7</code></pre>
+<p>Dessa forma, podemos acessar os elementos dos vetores através do seu nome e começamos introduzir outro conceito que é o de camadas, muito utilizados em listas que iremos ver mais para frente. Temos duas camadas agora então, o título com o conteúdo de cada elemento na primeira camada e o somente o conteúdo daquele elemento na segunda camada.</p>
+<p>A primeira camada já vimos como acessar, que é utilizando o comando <strong>[]</strong>, para a segunda camada, basta utilizarmos duas vezes esse comando <strong>[[]]</strong> pronto.</p>
+<p>Acesso a primeira camada do primeiro elemento com o título e conteúdo:</p>
+<pre class="r"><code>vet_1[1]</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>## um 
+##  7</code></pre>
+<p>Acesso a segunda camada do primeiro elemento com o conteúdo:</p>
+<pre class="r"><code>vet_1[[1]]</code></pre>
+<pre><code>## Saída exibida:  7</code></pre>
+<p>Para filtrar valores dentro de um vetor utilizamos as condicionais exemplificadas <a href="#condicionais">AQUI</a>, ou até mesmo para comparar e fazer verificações se um vetor é igual ao outro.</p>
+<ul>
+<li>Retornando valores dentro do vetor que são iguais a 7</li>
+</ul>
+<pre class="r"><code>vet_1[vet_1 == 7]</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>##    um cinco 
+##     7     7</code></pre>
+<ul>
+<li>Retornando valores dentro do vetor que são menores do que 7</li>
+</ul>
+<pre class="r"><code>vet_1[vet_1 &lt; 7]</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>## dois tres 
+##    2    5</code></pre>
+<p>Outra verificação que podemos fazer é o tamanho do vetor, através da função <strong>length</strong>, ou seja, quantos elementos tem dentro daquele objeto vetor.</p>
+<pre class="r"><code>length(vet_1)</code></pre>
+<pre><code>## Saída exibida:  5</code></pre>
+</div>
+<div id="matrizes" class="section level3">
+<h3>5.2. Matrizes</h3>
+</div>
+<div id="data-frames" class="section level3">
+<h3>5.3. Data Frames</h3>
+</div>
+<div id="listas" class="section level3">
+<h3>5.4. Listas</h3>
 <p><a href="#abcd">Volte ao topo</a></p>
+</div>
 </div>
 
     </div>

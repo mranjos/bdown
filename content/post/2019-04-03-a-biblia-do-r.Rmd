@@ -34,7 +34,7 @@ Por último, antes de começar realmente os códigos, vocês encontraram meio mi
 
 Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções de configuração e ajuda no R que também são muito importantes e costumo utilizar bastante no dia a dia.
 
-### Alterando o formato que as saídas são exibidas.
+### 2.1. Alterando o formato que as saídas são exibidas.
 
 *Parametros:*
 
@@ -71,7 +71,7 @@ options(scipen = 1111, digits = 6)
 cat("Saída exibida: ",2.575757575757)
 ```
 
-### Funções de ajuda.
+### 2.2. Funções de ajuda.
 
 Quando queremos saber informações sobre determinada função no R podemos utilizar o comando **help** ou a abreviação **?**.
 
@@ -112,7 +112,7 @@ x %/% y")
 
 * Seleção vertical.
   + Para realizar esse tipo de seleção segure **alt** apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.
-  + Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o **alt**, apertando **shift + end** o cursor vai para o fim de todas as linhas selecionadas, ou **shift + home** para o cursor ir para o início da linha.
+  + Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o **alt**, apertando **shift + end** o cursor vai para o fim de todas as linhas selecionadas, ou **shift + home** para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo **shift + -> ou <- **.
   
 * Substituindo palavras no R.
   + Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez
@@ -197,7 +197,6 @@ Não precisamos necessariamente carregar um pacote, basta chamá-lo pelo nome, s
 dplyr::select()
 ```
 
-
 * Verificando os pacotes instalados
 
 Pode não parecer útil, mas em algum momento pode se tornar. O comando abaixo lista todos os pacotes instalados na versão do R que você está utilizando.
@@ -213,7 +212,6 @@ if("pacote" %in% rownames(installed.packages()) == FALSE){
   install.packages("pacote")
   }
 ```
-
 
 Outra utilidade é quando vamos atualizar o R ou mudar de computador e acabamos perdendo todos os pacotes. Antes de fazer essa alteração de versão ou de computador, podemos rodar o seguinte comando no computador/versão antiga:
 
@@ -233,7 +231,116 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 }
 ```
 
-## 4. Estruturas básicas de acesso.
+* <a name="condicionais">Condicionais no R.</a>
+  + **=**  (recebe)
+  + **==** (igual)
+  + **!=** (diferente)
+  + **>**  (maior)
+  + **<**  (menor)
+  + **>=** (maior igual)
+  + **<=** (menor igual)
+
+## 5. Estrutura e criação de objetos.
+
+Os objetos mais utilizados no R por mim pelo menos são vetores, matrizes, data frames e listas, irei mostrar a estrutura de cada um deles e como acessar seus elementos. Para atribuir uma variável a um objeto utilizamos as teclas **<-** ou **=** fica a sua escolha.
+
+### 5.1. Vetores
+
+Para criar um vetor utilizamos a função **c()**:
+
+```{r}
+vet_1 = c(7,2,5,9,7)
+vet_2 = c("a","b","c")
+vet_3 = c(1,"a",5)
+```
+
+Para acessar os elementos de um vetor é simples, basta utilizar o comando **[]** sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 **vet_1**, fazemos **vet_1[2]**.
+
+Eu leio esse comando como se fosse **onde**, isso me ajuda muito na parte de filtragem e seleção de dados que veremos mais para frente. Meu conselho então é sempre que ver o símbolo **[]** ler **onde**. Por exemplo **vet_1[2]** leia **vet_1 onde a posição é 2**.
+
+```{r,eval=FALSE}
+vet_1[2]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ",vet_1[2])
+```
+
+Em alguns casos é útil nomear os elementos de um vetor, por exemplo
+
+```{r}
+names(vet_1) = c('um','dois', 'tres','quatro','cinco')
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+vet_1
+```
+
+Dessa forma, podemos acessar os elementos dos vetores através do seu nome e começamos introduzir outro conceito que é o de camadas, muito utilizados em listas que iremos ver mais para frente. Temos duas camadas agora então, o título com o conteúdo de cada elemento na primeira camada e o somente o conteúdo daquele elemento na segunda camada.
+
+A primeira camada já vimos como acessar, que é utilizando o comando **[]**, para a segunda camada, basta utilizarmos duas vezes esse comando **[[]]** pronto.
+
+Acesso a primeira camada do primeiro elemento com o título e conteúdo:
+
+```{r,eval=FALSE}
+vet_1[1]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+vet_1[1]
+```
+
+Acesso a segunda camada do primeiro elemento com o conteúdo:
+
+```{r, eval=FALSE}
+vet_1[[1]]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ",vet_1[[1]])
+```
+
+Para filtrar valores dentro de um vetor utilizamos as condicionais exemplificadas [AQUI](#condicionais), ou até mesmo para comparar e fazer verificações se um vetor é igual ao outro.
+
+* Retornando valores dentro do vetor que são iguais a 7
+
+```{r,eval=FALSE}
+vet_1[vet_1 == 7]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+vet_1[vet_1 == 7]
+```
+
+* Retornando valores dentro do vetor que são menores do que 7
+
+```{r,eval=FALSE}
+vet_1[vet_1 < 7]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+vet_1[vet_1 < 7]
+```
+
+Outra verificação que podemos fazer é o tamanho do vetor, através da função **length**, ou seja, quantos elementos tem dentro daquele objeto vetor.
+
+```{r, eval=FALSE}
+length(vet_1)
+```
+
+```{r, echo=FALSE}
+cat("Saída exibida: ", length(vet_1))
+```
+
+### 5.2. Matrizes
+
+### 5.3. Data Frames
+
+### 5.4. Listas
 
 [Volte ao topo](#abcd)
 
