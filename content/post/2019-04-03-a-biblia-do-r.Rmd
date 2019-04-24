@@ -252,6 +252,7 @@ Para criar um vetor utilizamos a função **c()**:
 vet_1 = c(7,2,5,9,7)
 vet_2 = c("a","b","c")
 vet_3 = c(1,"a",5)
+vet_4 = c(17,12,15,19,17)
 ```
 
 Para acessar os elementos de um vetor é simples, basta utilizar o comando **[]** sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 **vet_1**, fazemos **vet_1[2]**.
@@ -336,11 +337,312 @@ length(vet_1)
 cat("Saída exibida: ", length(vet_1))
 ```
 
+Algumas funções facilitam bastante nossa vida na hora de criar vetores, por exemplo, **vetores de repetição**, **aleatórios** e **sequenciais**
+
+* Vetores de repetição
+
+Repetindo a sequencia de 1 a 5 duas vezes
+
+```{r,eval=FALSE}
+rep(1:5, 2)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", rep(1:5, 2))
+```
+
+Repetindo os números de 1 a 5 duas vezes
+
+```{r,eval=FALSE}
+rep(1:5, each=2)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", rep(1:5, each=2))
+```
+
+* Gerando números aleatorios de acordo com algumas distribuições.
+
+10 números aleatórios normais com média 0 e desvio padrão 1.
+
+```{r}
+rnorm(10, mean = 0, sd = 1)
+```
+
+10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.
+
+```{r}
+rpois(10,3) #poisson
+```
+
+Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:
+
+```{r,eval=FALSE}
+rbinom(400, 10, 0.5)
+```
+
+```{r}
+mean(rbinom(400, 10, 0.5))
+```
+
+Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.
+
+```{r,eval=FALSE}
+rbinom(1, 10, 0.5)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", rbinom(1, 10, 0.5))
+```
+
+```{r,eval=FALSE}
+sum(rbinom(10, 1, 0.5))
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", sum(rbinom(10, 1, 0.5)))
+```
+
+Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.
+
+```{r}
+runif(10,min = 1, max = 10) #uniforme 
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", runif(10,min = 1, max = 10))
+```
+
+A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.
+
+```{r,eval=FALSE}
+sample(-10:10, 10)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", sample(-10:10, 10))
+```
+
+Além disso, utilizando o parâmetro **replace** podemos repetir números
+
+```{r,eval=FALSE}
+sample(0:10, 10,replace = T)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", sample(0:10, 10,replace = T))
+```
+
+Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.
+
+```{r,eval=FALSE}
+sample(c("João","Maria","José","Pedro","Julieta"), 2)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", sample(c("João","Maria","José","Pedro","Julieta"), 2))
+```
+
+* Vetores sequenciais pulando de acordo com o intervalo desejado.
+
+Muito útil também é gerar valores sequencias pulando uma determinada quantia de valores, para isso, usamos a função **seq**, onde queremos gerar valores de 1 a 10, pulando de 0.5 em 0.5 sequencialmente.
+
+```{r,eval=FALSE}
+seq(1,10,0.5)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", seq(1,10,0.5))
+```
+
+* Criando uma semente para os valores aleátorios.
+
+Em muitas situações queremos replicar estudos de simulação com valores aleatórios, para isso, podemos criar uma semente, e dessa maneira os números aleatórios iram se repetir até mesmo em outro computador. O comando que faz isso é o **set.seed**, onde o parâmetro dentro da função tem que ser o mesmo nas replicações.
+
+```{r,eval=FALSE}
+set.seed(57)
+```
+
+* Operações com vetores
+
+Podemos realizar operações com vetores, como somar, subtrair, multiplicar e dividir.
+
+```{r,eval=FALSE}
+vet_1 + vet_4
+vet_1 - vet_4
+vet_1 * vet_4
+vet_1 / vet_4
+4 * vet_1
+```
+
 ### 5.2. Matrizes
 
+Matrizes seguem a mesma lógica de vetores, porém, com mais dimensões, nós trabalharemos sempre com matrizes de duas dimensões, para criar a matriz, elas também são Semelhante ao data.frame, exceto que cada elemento deve ser o mesmo tipo e mais comumente todos sendo números. As funções que funcionam com data.frame também devem funcionar com a matriz. Eu particularmente utilizo matrizes apenas em funções como for, while, para ir preenchendo, em geral utilizo mais data.frames
+
+* Sintaxe para criação de matrizes
+
+Para criar matrizes é simples e tem diversas maneiras. A primeira é no primeiro parâmetro adicionar o vetor de valores, o segundo parâmetro o número de linhas e o terceiro parâmetro o número de colunas.
+
+```{r}
+matrix1 = matrix(c(1,2,3,4,5,6,7,8,9),nrow = 3,ncol = 3)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+matrix1
+```
+
+O segundo jeito é especificar somente o vetor de valores e o segundo parâmetro que é o número de linhas de cada coluna, dessa forma, os valores vão se alocando sozinhos na primeira coluna até o quinto elemento por exemplo e depois vão para a segunda.
+
+```{r}
+matrix2 <- matrix(1:10, nrow = 5)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+matrix2
+```
+
+Geralmente nos looping criamos inicialmente uma matriz de NA, para isso, basta deixarmos o primeiro parâmetro vazio
+
+```{r,echo=FALSE}
+matrix3 <- matrix(,nrow = 3,ncol = 3)
+```
+
+```{r}
+cat("Saída exibida:")
+matrix3
+```
+
+Como vimos por padão o R vai adicionando os elementos por linha, podemos alterar isso para colunas adicionando o parâmetro **byrow**
+
+```{r}
+matrix4 <- matrix(1:10, nrow = 5, byrow = TRUE)
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida:")
+matrix4
+```
+
+* Multiplicando de matrizes
+
+Para multiplicar matrizes utilizamos o operador %*%.
+
+```{r, eval=FALSE}
+matrix1 %*% matrix1
+```
+
+* Transpor matrizes
+
+Para transpor uma matriz basta usar a função **t()**
+
+```{r,eval=FALSE}
+t(matrix1)
+```
+
+* Acessando elementos de uma matriz
+
+Para acessar elementos de uma matriz é muito simples, assim como vetor, usamos operador **[]**, porém em uma matríz temos linhas e colunas e para separar isso, vamos utilizar uma vírgula, ficando o operador dessa forma **[,]**. Antes da vírgula é o acesso a linha e depois da vírgula é o acesso a coluna.
+
+Dessa forma, para acessar a primeira linha de uma matriz utilizamos **[1,]**.
+
+```{r, eval=FALSE}
+matrix1[1,]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", matrix1[1,])
+```
+
+Para acessar a primeira coluna de uma matriz utilizamos **[,1]**
+
+```{r,eval=FALSE}
+matrix1[,1]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", matrix1[,1])
+```
+
+Para acessar um elemento da matriz passamos as coordenadas, por exemplo, queremos o elemento que está na primeira linha da segunda coluna, fazemos então **[1,2]**.
+
+```{r,eval=FALSE}
+matrix1[1,2]
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", matrix1[1,2])
+```
+
+Esses conceitos de acesso são muito importantes e você vai utilizar o tempo todo no R, para vetores, matrizes, data.frames e listas.
+
+[Volte ao topo](#abcd)
+
 ### 5.3. Data Frames
+
+[Volte ao topo](#abcd)
 
 ### 5.4. Listas
 
 [Volte ao topo](#abcd)
+
+### 5.5. Operações matemáticas básicas com vetores
+
+Temos abaixo as mais funções matemáticas/estatísticas básicas mais utilizadas, tais como: **log na base e**, **exponencial**, **máximo**, **mínimo**, **soma**, **média**, **mediana**, **variância**, **desvio padrão** e **correlação**, respectivamente:
+
+```{r,eval=FALSE}
+log(1)
+exp(1)
+```
+
+O máximo e mínimo pode ser calculado entre mais de um vetor
+```{r,eval=FALSE}
+max(vet_1)
+max(vet_1,vet_4)
+
+min(vet_1)
+min(vet_1,vet_4)
+```
+
+```{r,eval=FALSE}
+sum(vet_1)
+mean(vet_1)
+median(vet_1)
+var(vet_1)
+sd(vet_1)
+```
+
+Para a correlação pode ser especificada qual metodologia para calcular, **pearson**, **kendall** ou **spearman**.
+```{r,eval=FALSE}
+cor(vet_1,vet_4, method = "pearson")
+cor(vet_1,vet_4, method = "kendall")
+cor(vet_1,vet_4, method = "spearman")
+```
+
+[Volte ao topo](#abcd)
+
+### Tipos de objetos
+
+PAREI AQUI
+
+```{r}
+class(vet_1)
+class(vet_2)
+class(vet_3)
+class(vet_4)
+```
+
+```{r}
+class(data.frame())
+class(list())
+```
+
+Transformando valores de um vetor em fator, numeros e caracteres
+
+```{r,eval=FALSE}
+as.factor(vet_1)
+as.numeric(vet_2)
+as.character(vet_3)
+```
 

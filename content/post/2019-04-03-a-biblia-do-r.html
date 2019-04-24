@@ -33,6 +33,8 @@ output:
 <li><a href="#matrizes">5.2. Matrizes</a></li>
 <li><a href="#data-frames">5.3. Data Frames</a></li>
 <li><a href="#listas">5.4. Listas</a></li>
+<li><a href="#operacoes-matematicas-basicas-com-vetores">5.5. Operações matemáticas básicas com vetores</a></li>
+<li><a href="#tipos-de-objetos">Tipos de objetos</a></li>
 </ul></li>
 </ul>
 </div>
@@ -219,7 +221,8 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 <p>Para criar um vetor utilizamos a função <strong>c()</strong>:</p>
 <pre class="r"><code>vet_1 = c(7,2,5,9,7)
 vet_2 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
-vet_3 = c(1,&quot;a&quot;,5)</code></pre>
+vet_3 = c(1,&quot;a&quot;,5)
+vet_4 = c(17,12,15,19,17)</code></pre>
 <p>Para acessar os elementos de um vetor é simples, basta utilizar o comando <strong>[]</strong> sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 <strong>vet_1</strong>, fazemos <strong>vet_1[2]</strong>.</p>
 <p>Eu leio esse comando como se fosse <strong>onde</strong>, isso me ajuda muito na parte de filtragem e seleção de dados que veremos mais para frente. Meu conselho então é sempre que ver o símbolo <strong>[]</strong> ler <strong>onde</strong>. Por exemplo <strong>vet_1[2]</strong> leia <strong>vet_1 onde a posição é 2</strong>.</p>
 <pre class="r"><code>vet_1[2]</code></pre>
@@ -257,15 +260,183 @@ vet_3 = c(1,&quot;a&quot;,5)</code></pre>
 <p>Outra verificação que podemos fazer é o tamanho do vetor, através da função <strong>length</strong>, ou seja, quantos elementos tem dentro daquele objeto vetor.</p>
 <pre class="r"><code>length(vet_1)</code></pre>
 <pre><code>## Saída exibida:  5</code></pre>
+<p>Algumas funções facilitam bastante nossa vida na hora de criar vetores, por exemplo, <strong>vetores de repetição</strong>, <strong>aleatórios</strong> e <strong>sequenciais</strong></p>
+<ul>
+<li>Vetores de repetição</li>
+</ul>
+<p>Repetindo a sequencia de 1 a 5 duas vezes</p>
+<pre class="r"><code>rep(1:5, 2)</code></pre>
+<pre><code>## Saída exibida:  1 2 3 4 5 1 2 3 4 5</code></pre>
+<p>Repetindo os números de 1 a 5 duas vezes</p>
+<pre class="r"><code>rep(1:5, each=2)</code></pre>
+<pre><code>## Saída exibida:  1 1 2 2 3 3 4 4 5 5</code></pre>
+<ul>
+<li>Gerando números aleatorios de acordo com algumas distribuições.</li>
+</ul>
+<p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
+<pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
+<pre><code>##  [1]  0.3724983  0.5722943  0.0217113 -1.5643722 -0.1795698  0.4853844
+##  [7]  1.2096726  0.0260596 -1.4178264 -0.6794178</code></pre>
+<p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
+<pre class="r"><code>rpois(10,3) #poisson</code></pre>
+<pre><code>##  [1] 3 7 3 1 2 2 1 3 2 4</code></pre>
+<p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
+<pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
+<pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
+<pre><code>## [1] 4.93</code></pre>
+<p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
+<pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
+<pre><code>## Saída exibida:  8</code></pre>
+<pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
+<pre><code>## Saída exibida:  2</code></pre>
+<p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
+<pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
+<pre><code>##  [1] 2.70977 3.91275 5.17758 6.93446 8.48670 8.84381 5.05376 8.36054
+##  [9] 8.75979 3.09696</code></pre>
+<pre><code>## Saída exibida:  3.52428 3.06808 7.38198 1.31106 5.7559 2.03062 6.36858 4.59045 7.24996 1.75131</code></pre>
+<p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
+<pre class="r"><code>sample(-10:10, 10)</code></pre>
+<pre><code>## Saída exibida:  3 -5 5 0 9 6 -9 2 8 -4</code></pre>
+<p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
+<pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
+<pre><code>## Saída exibida:  6 6 9 10 0 4 6 7 7 4</code></pre>
+<p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
+<pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
+<pre><code>## Saída exibida:  João Pedro</code></pre>
+<ul>
+<li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
+</ul>
+<p>Muito útil também é gerar valores sequencias pulando uma determinada quantia de valores, para isso, usamos a função <strong>seq</strong>, onde queremos gerar valores de 1 a 10, pulando de 0.5 em 0.5 sequencialmente.</p>
+<pre class="r"><code>seq(1,10,0.5)</code></pre>
+<pre><code>## Saída exibida:  1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10</code></pre>
+<ul>
+<li>Criando uma semente para os valores aleátorios.</li>
+</ul>
+<p>Em muitas situações queremos replicar estudos de simulação com valores aleatórios, para isso, podemos criar uma semente, e dessa maneira os números aleatórios iram se repetir até mesmo em outro computador. O comando que faz isso é o <strong>set.seed</strong>, onde o parâmetro dentro da função tem que ser o mesmo nas replicações.</p>
+<pre class="r"><code>set.seed(57)</code></pre>
+<ul>
+<li>Operações com vetores</li>
+</ul>
+<p>Podemos realizar operações com vetores, como somar, subtrair, multiplicar e dividir.</p>
+<pre class="r"><code>vet_1 + vet_4
+vet_1 - vet_4
+vet_1 * vet_4
+vet_1 / vet_4
+4 * vet_1</code></pre>
 </div>
 <div id="matrizes" class="section level3">
 <h3>5.2. Matrizes</h3>
+<p>Matrizes seguem a mesma lógica de vetores, porém, com mais dimensões, nós trabalharemos sempre com matrizes de duas dimensões, para criar a matriz, elas também são Semelhante ao data.frame, exceto que cada elemento deve ser o mesmo tipo e mais comumente todos sendo números. As funções que funcionam com data.frame também devem funcionar com a matriz. Eu particularmente utilizo matrizes apenas em funções como for, while, para ir preenchendo, em geral utilizo mais data.frames</p>
+<ul>
+<li>Sintaxe para criação de matrizes</li>
+</ul>
+<p>Para criar matrizes é simples e tem diversas maneiras. A primeira é no primeiro parâmetro adicionar o vetor de valores, o segundo parâmetro o número de linhas e o terceiro parâmetro o número de colunas.</p>
+<pre class="r"><code>matrix1 = matrix(c(1,2,3,4,5,6,7,8,9),nrow = 3,ncol = 3)</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<p>O segundo jeito é especificar somente o vetor de valores e o segundo parâmetro que é o número de linhas de cada coluna, dessa forma, os valores vão se alocando sozinhos na primeira coluna até o quinto elemento por exemplo e depois vão para a segunda.</p>
+<pre class="r"><code>matrix2 &lt;- matrix(1:10, nrow = 5)</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10</code></pre>
+<p>Geralmente nos looping criamos inicialmente uma matriz de NA, para isso, basta deixarmos o primeiro parâmetro vazio</p>
+<pre class="r"><code>cat(&quot;Saída exibida:&quot;)</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre class="r"><code>matrix3</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   NA   NA   NA
+## [2,]   NA   NA   NA
+## [3,]   NA   NA   NA</code></pre>
+<p>Como vimos por padão o R vai adicionando os elementos por linha, podemos alterar isso para colunas adicionando o parâmetro <strong>byrow</strong></p>
+<pre class="r"><code>matrix4 &lt;- matrix(1:10, nrow = 5, byrow = TRUE)</code></pre>
+<pre><code>## Saída exibida:</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+## [4,]    7    8
+## [5,]    9   10</code></pre>
+<ul>
+<li>Multiplicando de matrizes</li>
+</ul>
+<p>Para multiplicar matrizes utilizamos o operador %*%.</p>
+<pre class="r"><code>matrix1 %*% matrix1</code></pre>
+<ul>
+<li>Transpor matrizes</li>
+</ul>
+<p>Para transpor uma matriz basta usar a função <strong>t()</strong></p>
+<pre class="r"><code>t(matrix1)</code></pre>
+<ul>
+<li>Acessando elementos de uma matriz</li>
+</ul>
+<p>Para acessar elementos de uma matriz é muito simples, assim como vetor, usamos operador <strong>[]</strong>, porém em uma matríz temos linhas e colunas e para separar isso, vamos utilizar uma vírgula, ficando o operador dessa forma <strong>[,]</strong>. Antes da vírgula é o acesso a linha e depois da vírgula é o acesso a coluna.</p>
+<p>Dessa forma, para acessar a primeira linha de uma matriz utilizamos <strong>[1,]</strong>.</p>
+<pre class="r"><code>matrix1[1,]</code></pre>
+<pre><code>## Saída exibida:  1 4 7</code></pre>
+<p>Para acessar a primeira coluna de uma matriz utilizamos <strong>[,1]</strong></p>
+<pre class="r"><code>matrix1[,1]</code></pre>
+<pre><code>## Saída exibida:  1 2 3</code></pre>
+<p>Para acessar um elemento da matriz passamos as coordenadas, por exemplo, queremos o elemento que está na primeira linha da segunda coluna, fazemos então <strong>[1,2]</strong>.</p>
+<pre class="r"><code>matrix1[1,2]</code></pre>
+<pre><code>## Saída exibida:  4</code></pre>
+<p>Esses conceitos de acesso são muito importantes e você vai utilizar o tempo todo no R, para vetores, matrizes, data.frames e listas.</p>
+<p><a href="#abcd">Volte ao topo</a></p>
 </div>
 <div id="data-frames" class="section level3">
 <h3>5.3. Data Frames</h3>
+<p><a href="#abcd">Volte ao topo</a></p>
 </div>
 <div id="listas" class="section level3">
 <h3>5.4. Listas</h3>
 <p><a href="#abcd">Volte ao topo</a></p>
+</div>
+<div id="operacoes-matematicas-basicas-com-vetores" class="section level3">
+<h3>5.5. Operações matemáticas básicas com vetores</h3>
+<p>Temos abaixo as mais funções matemáticas/estatísticas básicas mais utilizadas, tais como: <strong>log na base e</strong>, <strong>exponencial</strong>, <strong>máximo</strong>, <strong>mínimo</strong>, <strong>soma</strong>, <strong>média</strong>, <strong>mediana</strong>, <strong>variância</strong>, <strong>desvio padrão</strong> e <strong>correlação</strong>, respectivamente:</p>
+<pre class="r"><code>log(1)
+exp(1)</code></pre>
+<p>O máximo e mínimo pode ser calculado entre mais de um vetor</p>
+<pre class="r"><code>max(vet_1)
+max(vet_1,vet_4)
+
+min(vet_1)
+min(vet_1,vet_4)</code></pre>
+<pre class="r"><code>sum(vet_1)
+mean(vet_1)
+median(vet_1)
+var(vet_1)
+sd(vet_1)</code></pre>
+<p>Para a correlação pode ser especificada qual metodologia para calcular, <strong>pearson</strong>, <strong>kendall</strong> ou <strong>spearman</strong>.</p>
+<pre class="r"><code>cor(vet_1,vet_4, method = &quot;pearson&quot;)
+cor(vet_1,vet_4, method = &quot;kendall&quot;)
+cor(vet_1,vet_4, method = &quot;spearman&quot;)</code></pre>
+<p><a href="#abcd">Volte ao topo</a></p>
+</div>
+<div id="tipos-de-objetos" class="section level3">
+<h3>Tipos de objetos</h3>
+<p>PAREI AQUI</p>
+<pre class="r"><code>class(vet_1)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>class(vet_2)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>class(vet_3)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>class(vet_4)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>class(data.frame())</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>class(list())</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>Transformando valores de um vetor em fator, numeros e caracteres</p>
+<pre class="r"><code>as.factor(vet_1)
+as.numeric(vet_2)
+as.character(vet_3)</code></pre>
 </div>
 </div>
