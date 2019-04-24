@@ -622,7 +622,7 @@ cor(vet_1,vet_4, method = "spearman")
 
 [Volte ao topo](#abcd)
 
-## 6. Tipos de objetos
+## 7. Tipos de objetos
 
 PAREI AQUI
 
