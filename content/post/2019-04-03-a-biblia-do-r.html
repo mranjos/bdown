@@ -33,9 +33,9 @@ output:
 <li><a href="#matrizes">5.2. Matrizes</a></li>
 <li><a href="#data-frames">5.3. Data Frames</a></li>
 <li><a href="#listas">5.4. Listas</a></li>
-<li><a href="#operacoes-matematicas-basicas-com-vetores">5.5. Operações matemáticas básicas com vetores</a></li>
-<li><a href="#tipos-de-objetos">Tipos de objetos</a></li>
 </ul></li>
+<li><a href="#operacoes-matematicas-basicas">6. Operações matemáticas básicas</a></li>
+<li><a href="#tipos-de-objetos">6. Tipos de objetos</a></li>
 </ul>
 </div>
 
@@ -275,34 +275,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1]  0.3724983  0.5722943  0.0217113 -1.5643722 -0.1795698  0.4853844
-##  [7]  1.2096726  0.0260596 -1.4178264 -0.6794178</code></pre>
+<pre><code>##  [1] -0.712530 -0.153140 -0.020817 -0.961306  1.030361  0.124759  1.516033
+##  [8]  0.867334  0.686049 -0.160346</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 3 7 3 1 2 2 1 3 2 4</code></pre>
+<pre><code>##  [1] 2 1 2 6 4 1 4 2 3 4</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 4.93</code></pre>
+<pre><code>## [1] 4.9425</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  8</code></pre>
+<pre><code>## Saída exibida:  4</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  2</code></pre>
+<pre><code>## Saída exibida:  5</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 2.70977 3.91275 5.17758 6.93446 8.48670 8.84381 5.05376 8.36054
-##  [9] 8.75979 3.09696</code></pre>
-<pre><code>## Saída exibida:  3.52428 3.06808 7.38198 1.31106 5.7559 2.03062 6.36858 4.59045 7.24996 1.75131</code></pre>
+<pre><code>##  [1] 4.42732 1.81115 7.87924 6.94475 5.77641 9.82789 6.14621 5.63936
+##  [9] 1.43233 5.92124</code></pre>
+<pre><code>## Saída exibida:  9.01651 6.14098 8.91186 7.28568 7.59792 5.05817 1.33384 8.21995 5.66644 1.86002</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  3 -5 5 0 9 6 -9 2 8 -4</code></pre>
+<pre><code>## Saída exibida:  -4 -3 -7 8 10 2 3 9 -10 6</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  6 6 9 10 0 4 6 7 7 4</code></pre>
+<pre><code>## Saída exibida:  10 1 0 3 9 1 7 9 8 9</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  João Pedro</code></pre>
+<pre><code>## Saída exibida:  Maria Julieta</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -397,8 +397,9 @@ vet_1 / vet_4
 <h3>5.4. Listas</h3>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
-<div id="operacoes-matematicas-basicas-com-vetores" class="section level3">
-<h3>5.5. Operações matemáticas básicas com vetores</h3>
+</div>
+<div id="operacoes-matematicas-basicas" class="section level2">
+<h2>6. Operações matemáticas básicas</h2>
 <p>Temos abaixo as mais funções matemáticas/estatísticas básicas mais utilizadas, tais como: <strong>log na base e</strong>, <strong>exponencial</strong>, <strong>máximo</strong>, <strong>mínimo</strong>, <strong>soma</strong>, <strong>média</strong>, <strong>mediana</strong>, <strong>variância</strong>, <strong>desvio padrão</strong> e <strong>correlação</strong>, respectivamente:</p>
 <pre class="r"><code>log(1)
 exp(1)</code></pre>
@@ -419,8 +420,8 @@ cor(vet_1,vet_4, method = &quot;kendall&quot;)
 cor(vet_1,vet_4, method = &quot;spearman&quot;)</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
-<div id="tipos-de-objetos" class="section level3">
-<h3>Tipos de objetos</h3>
+<div id="tipos-de-objetos" class="section level2">
+<h2>6. Tipos de objetos</h2>
 <p>PAREI AQUI</p>
 <pre class="r"><code>class(vet_1)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
@@ -438,5 +439,4 @@ cor(vet_1,vet_4, method = &quot;spearman&quot;)</code></pre>
 <pre class="r"><code>as.factor(vet_1)
 as.numeric(vet_2)
 as.character(vet_3)</code></pre>
-</div>
 </div>
