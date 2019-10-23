@@ -1,23 +1,3 @@
----
-title: A Bíblia do R
-author: Michelangelo R. dos Anjos
-date: '2019-04-07'
-slug: a-biblia-do-r
-categories:
-  - R
-  - Turoriais
-tags:
-  - R
-  - Code
-  - Basic
-  - Tutorial
-editor_options: 
-  chunk_output_type: console
-output:
-  blogdown::html_page:
-    toc: true
----
-
 
 <div id="TOC">
 <ul>
@@ -275,34 +255,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1]  0.1107964 -1.1156167 -0.6726119 -0.4492131 -1.0998565 -1.4668623
-##  [7]  0.0579489 -0.2761618  0.5456025  0.2124657</code></pre>
+<pre><code>##  [1] -0.0397764 -0.7359368 -1.1503735  0.2710862 -1.6045189  0.1439382
+##  [7]  0.4292044 -0.3210273 -1.6344351  1.3227009</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 3 1 3 2 4 8 2 4 1 3</code></pre>
+<pre><code>##  [1] 4 3 3 1 5 3 3 5 2 5</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 5.0725</code></pre>
+<pre><code>## [1] 5.095</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  7</code></pre>
+<pre><code>## Saída exibida:  4</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  6</code></pre>
+<pre><code>## Saída exibida:  4</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 2.96117 7.21725 2.85885 8.35961 5.61394 6.96786 8.58924 5.32112
-##  [9] 1.27453 6.77016</code></pre>
-<pre><code>## Saída exibida:  6.34909 3.26882 3.40353 1.2553 5.36381 6.18334 8.67116 5.81795 9.17865 4.96022</code></pre>
+<pre><code>##  [1] 1.90412 8.83614 5.55953 2.61328 7.69954 5.48193 1.57075 3.03560
+##  [9] 9.85494 8.01452</code></pre>
+<pre><code>## Saída exibida:  5.39043 5.00765 9.42795 5.85668 8.27928 1.59297 6.40329 5.17033 1.3725 8.47417</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  6 -10 5 2 0 1 -4 9 10 -7</code></pre>
+<pre><code>## Saída exibida:  7 6 1 -8 -5 -3 0 -9 9 -10</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  4 7 10 1 6 1 6 0 8 9</code></pre>
+<pre><code>## Saída exibida:  5 2 0 1 7 4 9 2 0 5</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  Julieta Pedro</code></pre>
+<pre><code>## Saída exibida:  João José</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
