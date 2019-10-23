@@ -647,3 +647,10 @@ as.character(vet_3)
 ```
 
 Teste
+
+```{r}
+as.factor(vet_1)
+as.numeric(vet_2)
+as.character(vet_3)
+```
+
