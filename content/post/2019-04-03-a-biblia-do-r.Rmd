@@ -1,7 +1,7 @@
 ---
 title: A Bíblia do R
 author: Michelangelo R. dos Anjos
-date: '2019-04-07'
+date: '2019-10-23'
 slug: a-biblia-do-r
 categories:
   - R
@@ -648,7 +648,7 @@ as.character(vet_3)
 
 Teste
 
-```{r}
+```{r,eval=FALSE}
 as.factor(vet_1)
 as.numeric(vet_2)
 as.character(vet_3)
