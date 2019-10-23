@@ -646,3 +646,4 @@ as.numeric(vet_2)
 as.character(vet_3)
 ```
 
+Teste
