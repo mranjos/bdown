@@ -1,7 +1,7 @@
 ---
 title: A Bíblia do R
 author: Michelangelo R. dos Anjos
-date: '2019-10-23'
+date: '2019-10-29'
 slug: a-biblia-do-r
 categories:
   - R
@@ -579,11 +579,147 @@ Esses conceitos de acesso são muito importantes e você vai utilizar o tempo to
 
 [Volte ao topo](#abcd)
 
-### 5.3. Data Frames
+### 5.3. Tipos de objetos
+
+Ja vimos alguns tipos de objetos que o R possui, vetores e matrizes. Dentre os vetores podemos ter 3 tipos principais, **numeric**, **character** e **factor**. Temos as matrizes que basicamente são conjuntos de vetores e alguns principais que veremos mais para frente que são **data.frames** e **lists**. Mas como saber que tipo de objeto estamos trabalhando? Para isso o R possui uma função chamada **class**. Observe:
+
+* Vetor numérico
+
+```{r,eval=FALSE}
+class(c(1,2,3,4,5))
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(c(1,2,3,4,5)))
+```
+
+Podemos arredondar valores numéricos utilizando algumas funções no R, as mais comuns são:
+
+* **round** (Arrendondamento tradicional)
+
+Podemos especificar no segundo argumento o número de casa decimais que queremos e onde ele irá arredondar.
+
+```{r}
+round(1.5757, 2)
+```
+
+* **trunc** (Corta as casas decimais)
+
+```{r}
+trunc(1.5757)
+```
+
+* **ceiling** (Arredonda o valor pra cima)
+
+```{r}
+ceiling(1.5757)
+```
+
+* **floor** (Arredonda o valor pra baixo)
+
+```{r}
+floor(1.5757)
+```
+
+* Vetor character
+
+Quando misturamos numeros com letras, o R entende como vetor de caracteres. Caso o vetor seja convertido para numeric, os caracteres assumirão valores nulos.
+
+```{r,eval=FALSE}
+class(c("a","b","1","3"))
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(c("a","b","1","3")))
+```
+
+* Vetor factor
+
+É um tipo de vetor para lidar com variáveis categóricas. Ele facilita a ordenação de vetores de textos e são muito utilizados em modelagens, criação de gráficos, etc.
+
+```{r,eval=FALSE}
+class(factor(c("a","b","1","3")))
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(factor(c("a","b","1","3"))))
+```
+
+Para sabemos quantos níveis/levels tem um vetor de fator, usamos a função **nlevels** que seria basicamente o mesmo do que contar os valores únicos de um vetor de caracteres. Observe abaixo que temos 4 elementos no vetor mas apenas 3 níveis.
+
+```{r}
+nlevels(factor(c("a","a","1","3")))
+```
+
+
+* Matrizes
+
+```{r,eval=FALSE}
+class(matrix())
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(matrix()))
+```
+
+* Data frames
+
+Data frames nada mais são do que tabelas, com linhas e colunas. é praticamente uma matriz com rótulos de colunas. Também são conjunto de vetores, mas diferente de matrizes, cada coluna pode ser um tipo, por exemplo, a coluna 1 pode ser numérica, a coluna 2 pode ser character e a coluna 3 pode ser fator, na matriz ou são numericos ou são caracteres, não temos essa mistura e convenhamos, essa mistura é o que mais ocorre na vida real, pois temois informações como UF, Sexo, Idade, Peso, tudo junto em uma mesma tabela.
+
+```{r,eval=FALSE}
+class(data.frame())
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(data.frame()))
+```
+
+Poré, em um data.frame quando temos muitas colunas, fica praticamente inviável ficar dando um **class** uma por uma, pensando nisso o R possui uma função chamada **str** que nos mostra os tipos de de cada coluna.
+
+```{r}
+df_class = data.frame(col1 = c(7,2,7,56), col2 = c("a","b","c","d"))
+```
+
+```{r}
+str(df_class,list.len=ncol(df_class))
+```
+
+Porém essa não é uma forma muito apresentavel de se ver, podemos fazer uso de outras funções para verificarmos o tipo de cada coluna, caso queiramos filtrar e verificar quais são numéricas, coisas do tipo.
+
+```{r}
+Class_DF = data.frame(Variavel = names(sapply(df_class, class)),
+                      Classe  = sapply(df_class, class))
+
+row.names(Class_DF) = NULL
+
+```
+
+```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+library(knitr)
+library(kableExtra)
+
+kable(Class_DF, align = "c") %>% kable_styling(bootstrap_options = "striped", full_width = F,position = "center")
+```
+
+* Listas
+
+As listas, é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.
+
+```{r,eval=FALSE}
+class(list())
+```
+
+```{r,echo=FALSE}
+cat("Saída exibida: ", class(list()))
+```
+
+Veremos listas e data.frames de forma mais detalhada, pois são os tipos de objetos mais trabalhados, pelo menos comigo.
+
+### 5.4. Data Frames
 
 [Volte ao topo](#abcd)
 
-### 5.4. Listas
+### 5.5. Listas
 
 [Volte ao topo](#abcd)
 
@@ -622,20 +758,11 @@ cor(vet_1,vet_4, method = "spearman")
 
 [Volte ao topo](#abcd)
 
-## 7. Tipos de objetos
-
-PAREI AQUI
-
 ```{r}
 class(vet_1)
 class(vet_2)
 class(vet_3)
 class(vet_4)
-```
-
-```{r}
-class(data.frame())
-class(list())
 ```
 
 Transformando valores de um vetor em fator, numeros e caracteres
