@@ -3,7 +3,7 @@ title: "Sobre mim"
 date: "2016-05-05T21:48:51-07:00"
 ---
 
-![Michelangelo](/about/Michelangelo.png)
+![Michelangelo](/about/Michelangelo_v2.png)
 
 Meu nome é Michelangelo, mais conhecido como Mika, sou de São Carlos-SP, formado em Estatística pela UFSCar. Me formei depois de 7 anos na graduação mas não me arrependo de um ano a mais que tenha ficado além do tempo regular. Alguns anos foram árduos, alguns colonia de férias, mas cada um deles me agregou alguma experiência e me ajudou a me tornar quem eu sou hoje.
 
