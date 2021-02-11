@@ -75,29 +75,32 @@
 
     <div class="article-content">
       
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 <div id="TOC">
 <ul>
-<li><a href="#introducao">1. Introdução</a></li>
-<li><a href="#funcoes-de-configuracao-e-ajuda.">2. Funções de configuração e ajuda.</a><ul>
-<li><a href="#alterando-o-formato-que-as-saidas-sao-exibidas.">2.1. Alterando o formato que as saídas são exibidas.</a></li>
-<li><a href="#funcoes-de-ajuda.">2.2. Funções de ajuda.</a></li>
+<li><a href="#introdução">1. Introdução</a></li>
+<li><a href="#funções-de-configuração-e-ajuda.">2. Funções de configuração e ajuda.</a>
+<ul>
+<li><a href="#alterando-o-formato-que-as-saídas-são-exibidas.">2.1. Alterando o formato que as saídas são exibidas.</a></li>
+<li><a href="#funções-de-ajuda.">2.2. Funções de ajuda.</a></li>
 </ul></li>
-<li><a href="#atalhos-uteis">3. Atalhos úteis</a></li>
-<li><a href="#comandos-base-uteis.">4. Comandos base úteis.</a></li>
-<li><a href="#estrutura-e-criacao-de-objetos.">5. Estrutura e criação de objetos.</a><ul>
+<li><a href="#atalhos-úteis">3. Atalhos úteis</a></li>
+<li><a href="#comandos-base-úteis.">4. Comandos base úteis.</a></li>
+<li><a href="#estrutura-e-criação-de-objetos.">5. Estrutura e criação de objetos.</a>
+<ul>
 <li><a href="#vetores">5.1. Vetores</a></li>
 <li><a href="#matrizes">5.2. Matrizes</a></li>
 <li><a href="#tipos-de-objetos">5.3. Tipos de objetos</a></li>
 <li><a href="#data-frames">5.4. Data Frames</a></li>
 <li><a href="#listas">5.5. Listas</a></li>
 </ul></li>
-<li><a href="#operacoes-matematicas-basicas">6. Operações matemáticas básicas</a></li>
+<li><a href="#operações-matemáticas-básicas">6. Operações matemáticas básicas</a></li>
 </ul>
 </div>
 
-<div id="introducao" class="section level2">
+<div id="introdução" class="section level2">
 <h2>1. Introdução</h2>
 <p><a name="abcd"> Esse </a> é o primeiro post e o que eu considero o principal e mais importante, pois a ideia de criação do site surgiu por causa de um backup de códigos que eu criei conforme as necessidades iam aparecendo e carregava ele comigo para todo lado para consultar quando precisava. Dessa forma, decidi organizá-lo melhor, upar na internet para facilitar o acesso e compartilhar com mais pessoas que tenham interesse e espero que possa ser útil para mais alguém como é muito importante para mim (já que minha memória não é das melhores 😆).</p>
 <p>O post estará em constante atualização, pois sempre surge algo novo para aprendermos e a ideia é passar a linguagem R para frente sempre de maneira simples e didática, talvez a organização não fique a das melhores, mas vou procurar me esforçar ao máximo, caso o sumário não fique muito claro, recomendo utilizar o <strong>“Ctrl F”</strong> que sempre me salvou e pode ajudar vocês também.</p>
@@ -105,10 +108,10 @@
 <p><a href="#abcd">Volte ao topo</a></p>
 <hr />
 </div>
-<div id="funcoes-de-configuracao-e-ajuda." class="section level2">
+<div id="funções-de-configuração-e-ajuda." class="section level2">
 <h2>2. Funções de configuração e ajuda.</h2>
 <p>Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções de configuração e ajuda no R que também são muito importantes e costumo utilizar bastante no dia a dia.</p>
-<div id="alterando-o-formato-que-as-saidas-sao-exibidas." class="section level3">
+<div id="alterando-o-formato-que-as-saídas-são-exibidas." class="section level3">
 <h3>2.1. Alterando o formato que as saídas são exibidas.</h3>
 <p><em>Parametros:</em></p>
 <ul>
@@ -136,7 +139,7 @@
 <pre class="r"><code>options(scipen = 1111, digits = 6)</code></pre>
 <pre><code>## Saída exibida:  2.57576</code></pre>
 </div>
-<div id="funcoes-de-ajuda." class="section level3">
+<div id="funções-de-ajuda." class="section level3">
 <h3>2.2. Funções de ajuda.</h3>
 <p>Quando queremos saber informações sobre determinada função no R podemos utilizar o comando <strong>help</strong> ou a abreviação <strong>?</strong>.</p>
 <pre class="r"><code>help(mean)
@@ -163,7 +166,7 @@
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
-<div id="atalhos-uteis" class="section level2">
+<div id="atalhos-úteis" class="section level2">
 <h2>3. Atalhos úteis</h2>
 <ul>
 <li>Seleção vertical.
@@ -188,7 +191,7 @@
 </ul>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
-<div id="comandos-base-uteis." class="section level2">
+<div id="comandos-base-úteis." class="section level2">
 <h2>4. Comandos base úteis.</h2>
 <ul>
 <li>Limpando a memória do R.
@@ -271,7 +274,7 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 </ul></li>
 </ul>
 </div>
-<div id="estrutura-e-criacao-de-objetos." class="section level2">
+<div id="estrutura-e-criação-de-objetos." class="section level2">
 <h2>5. Estrutura e criação de objetos.</h2>
 <p>Os objetos mais utilizados no R por mim pelo menos são vetores, matrizes, data frames e listas, irei mostrar a estrutura de cada um deles e como acessar seus elementos. Para atribuir uma variável a um objeto utilizamos as teclas <strong>&lt;-</strong> ou <strong>=</strong> fica a sua escolha.</p>
 <div id="vetores" class="section level3">
@@ -333,34 +336,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1]  1.632190 -1.604704 -0.584982 -2.379587 -2.052059  0.900820  0.498666
-##  [8] -0.844972  0.971806  0.970813</code></pre>
+<pre><code>##  [1]  0.898260 -0.135268  0.237004  1.928214  0.892631  1.362287 -0.351786
+##  [8] -1.588050 -0.266522  0.470095</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 4 6 1 1 2 1 3 3 2 3</code></pre>
+<pre><code>##  [1] 2 3 3 1 4 5 4 2 4 1</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 5.11</code></pre>
+<pre><code>## [1] 4.9975</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  4</code></pre>
+<pre><code>## Saída exibida:  6</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  4</code></pre>
+<pre><code>## Saída exibida:  7</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 9.89228 6.41082 4.06193 5.71783 7.81363 5.47646 9.43738 7.10937
-##  [9] 3.33662 4.61527</code></pre>
-<pre><code>## Saída exibida:  7.59013 6.74759 9.9701 4.1552 7.76413 1.55521 9.98763 8.252 8.8928 3.25812</code></pre>
+<pre><code>##  [1] 7.99756 1.78690 4.72180 4.74171 8.90881 3.22290 4.57591 4.25238 5.81887
+## [10] 8.73330</code></pre>
+<pre><code>## Saída exibida:  8.57591 8.96771 2.31758 9.40306 8.28004 1.42416 4.0981 7.66782 7.29813 4.75694</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  -4 -6 7 -1 1 4 -3 8 -5 5</code></pre>
+<pre><code>## Saída exibida:  -2 6 3 5 -3 -1 -4 0 2 -5</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  8 0 2 6 9 2 6 3 10 10</code></pre>
+<pre><code>## Saída exibida:  10 7 5 3 8 4 6 3 8 10</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  Maria Pedro</code></pre>
+<pre><code>## Saída exibida:  Julieta José</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -496,7 +499,7 @@ vet_1 / vet_4
 <li>Matrizes</li>
 </ul>
 <pre class="r"><code>class(matrix())</code></pre>
-<pre><code>## Saída exibida:  matrix</code></pre>
+<pre><code>## Saída exibida:  matrix array</code></pre>
 <ul>
 <li>Data frames</li>
 </ul>
@@ -508,7 +511,7 @@ vet_1 / vet_4
 <pre class="r"><code>str(df_class,list.len=ncol(df_class))</code></pre>
 <pre><code>## &#39;data.frame&#39;:    4 obs. of  2 variables:
 ##  $ col1: num  7 2 7 56
-##  $ col2: Factor w/ 4 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;: 1 2 3 4</code></pre>
+##  $ col2: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
 <p>Porém essa não é uma forma muito apresentavel de se ver, podemos fazer uso de outras funções para verificarmos o tipo de cada coluna, caso queiramos filtrar e verificar quais são numéricas, coisas do tipo.</p>
 <pre class="r"><code>Class_DF = data.frame(Variavel = names(sapply(df_class, class)),
                       Classe  = sapply(df_class, class))
@@ -539,7 +542,7 @@ numeric
 col2
 </td>
 <td style="text-align:center;">
-factor
+character
 </td>
 </tr>
 </tbody>
@@ -561,7 +564,7 @@ factor
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
-<div id="operacoes-matematicas-basicas" class="section level2">
+<div id="operações-matemáticas-básicas" class="section level2">
 <h2>6. Operações matemáticas básicas</h2>
 <p>Temos abaixo as mais funções matemáticas/estatísticas básicas mais utilizadas, tais como: <strong>log na base e</strong>, <strong>exponencial</strong>, <strong>máximo</strong>, <strong>mínimo</strong>, <strong>soma</strong>, <strong>média</strong>, <strong>mediana</strong>, <strong>variância</strong>, <strong>desvio padrão</strong> e <strong>correlação</strong>, respectivamente:</p>
 <pre class="r"><code>log(1)
