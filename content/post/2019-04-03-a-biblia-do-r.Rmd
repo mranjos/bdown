@@ -62,13 +62,20 @@ options(scipen = -9999, digits = 3)
 cat("Saída exibida: ",2.575757575757)
 ```
 
-
 ```{r}
 options(scipen = 1111, digits = 6)
 ```
 
 ```{r,echo=FALSE}
 cat("Saída exibida: ",2.575757575757)
+```
+
+```{r}
+options(datatable.integer64="numeric")
+```
+
+```{r,echo=FALSE}
+cat("Para que na leitura dos dados não entenda valores numéricos como integer64 e sim numeric")
 ```
 
 ### 2.2. Funções de ajuda.
