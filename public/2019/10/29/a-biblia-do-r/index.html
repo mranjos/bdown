@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">17 min read</span>
+    <span class="article-duration">18 min read</span>
     
 
     <h1 class="article-title">A Bíblia do R</h1>
@@ -93,10 +93,14 @@
 <li><a href="#vetores">5.1. Vetores</a></li>
 <li><a href="#matrizes">5.2. Matrizes</a></li>
 <li><a href="#tipos-de-objetos">5.3. Tipos de objetos</a></li>
-<li><a href="#data-frames">5.4. Data Frames</a></li>
-<li><a href="#listas">5.5. Listas</a></li>
 </ul></li>
 <li><a href="#operações-matemáticas-básicas">6. Operações matemáticas básicas</a></li>
+<li><a href="#exibindo-valores-e-textos-na-tela">7. Exibindo valores e textos na tela</a></li>
+<li><a href="#data-frames">8. Data Frames</a></li>
+<li><a href="#listas">9. Listas</a>
+<ul>
+<li><a href="#criando-uma-lista">9.1. Criando uma lista</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -124,20 +128,21 @@
 </ul>
 <p>OBS: O número no parâmetro não importa para o <strong>scipen</strong>, apenas o sinal.</p>
 <ul>
-<li>scipen.
-<ul>
-<li>Negativo: Linguagem ciêntifica é exibida.</li>
-<li>Positivo: O número é exibido inteiro.</li>
-</ul></li>
-<li>digits.
-<ul>
-<li>Número de digitos.</li>
-</ul></li>
+<li><p>scipen.</p></li>
+<li><p>Negativo: Linguagem ciêntifica é exibida.</p></li>
+<li><p>Positivo: O número é exibido inteiro.</p></li>
+<li><p>digits.</p></li>
+<li><p>Número de digitos.</p></li>
 </ul>
 <pre class="r"><code>options(scipen = -9999, digits = 3)</code></pre>
 <pre><code>## Saída exibida:  2.58e+00</code></pre>
 <pre class="r"><code>options(scipen = 1111, digits = 6)</code></pre>
 <pre><code>## Saída exibida:  2.57576</code></pre>
+<ul>
+<li>datatable.integer64.</li>
+</ul>
+<pre class="r"><code>options(datatable.integer64=&quot;numeric&quot;)</code></pre>
+<p>Para que na leitura dos dados utilizando o pacote data.table, o R não entenda valores numéricos como integer64 e sim como numeric.</p>
 </div>
 <div id="funções-de-ajuda." class="section level3">
 <h3>2.2. Funções de ajuda.</h3>
@@ -169,35 +174,27 @@
 <div id="atalhos-úteis" class="section level2">
 <h2>3. Atalhos úteis</h2>
 <ul>
-<li>Seleção vertical.
-<ul>
-<li>Para realizar esse tipo de seleção segure <strong>alt</strong> apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.</li>
-<li>Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o <strong>alt</strong>, apertando <strong>shift + end</strong> o cursor vai para o fim de todas as linhas selecionadas, ou <strong>shift + home</strong> para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo <strong>shift + -&gt; ou &lt;- </strong>.</li>
-</ul></li>
-<li>Substituindo palavras no R.
-<ul>
-<li>Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez</li>
-</ul></li>
+<li><p>Seleção vertical.</p></li>
+<li><p>Para realizar esse tipo de seleção segure <strong>alt</strong> apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.</p></li>
+<li><p>Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o <strong>alt</strong>, apertando <strong>shift + end</strong> o cursor vai para o fim de todas as linhas selecionadas, ou <strong>shift + home</strong> para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo <strong>shift + -&gt; ou &lt;- </strong>.</p></li>
+<li><p>Substituindo palavras no R.</p></li>
+<li><p>Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez</p></li>
 </ul>
 <p><em>Parametros:</em></p>
 <p>1 - <strong>In selection:</strong> substitui apenas no local selecionado</p>
 <p>2 - <strong>Match case:</strong> diferencia maiuscula de minuscula</p>
 <p>3 - <strong>Regex:</strong> entende o comando <strong>|</strong> como se fosse <strong>ou</strong>, ou seja operador lógico.</p>
 <ul>
-<li>Refazendo uma ação.
-<ul>
+<li>Refazendo uma ação.</li>
 <li>Muitos sabem que o <strong>ctrl + z</strong> desfaz uma ação no R, mas em alguns casos acabamos desfazendo mais do que queriamos, para <strong>refazer</strong> algo desfeito existe o comando <strong>ctrl + shift + z</strong> que você pode alterar em <strong>Tools - Modify Keyboard Shortcuts</strong>, o mais utilizado em geral para refazer caso queira alterar é o <strong>ctrl + i</strong>. Outros atalhos também podem ser configurados nessa janela.</li>
-</ul></li>
 </ul>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 <div id="comandos-base-úteis." class="section level2">
 <h2>4. Comandos base úteis.</h2>
 <ul>
-<li>Limpando a memória do R.
-<ul>
+<li>Limpando a memória do R.</li>
 <li>Quando trabalhamos com <strong>loop</strong> ou um código muito grande que vai gerando bases temporrárias pesadas, isso vai sobrecarregando a memória do R, tempos alguns comandos que podem nos ajudar nisso, são eles: <strong>objects</strong>, <strong>ls</strong> e <strong>rm</strong>, .</li>
-</ul></li>
 </ul>
 <p>O comando <strong>objects</strong> e <strong>ls</strong> lista os objetos criados até o momento no R.</p>
 <pre class="r"><code>objects()
@@ -209,21 +206,17 @@ ls()</code></pre>
 objeto2 = c()
 rm(objeto1, objeto2)</code></pre>
 <ul>
-<li>Verificando e alterando diretórios.
-<ul>
+<li>Verificando e alterando diretórios.</li>
 <li>Para verificiar o diretório que estamos trabalhando no R, onde serão salvos os arquivos, as bases entre outras coisas, utilizamos o comando <strong>getwd</strong>.</li>
 <li>Para alterar o caminho de um diretório para uma pasta de um projeto específico por exemplo, utilizamos o <strong>setwd</strong>. Outro detalhe é que para especificarmos um caminho no R não utilizamos as barras padrão do windows <strong>C:\</strong> mas sim as barras duplas, como mostra o exemplo abaixo, ou até mesmo a barra invertida <strong>C:/</strong></li>
-</ul></li>
 </ul>
 <pre class="r"><code>getwd()
 setwd(&quot;C:\\Users&quot;)</code></pre>
 <ul>
-<li>Salvando e carregando arquivos do tipo RData.
-<ul>
+<li>Salvando e carregando arquivos do tipo RData.</li>
 <li>Os objetos no R podem ser salvos utilizando o comando <strong>save</strong> e carregados utilizando o comando <strong>load</strong>.</li>
 <li><strong>save</strong> - O primeiro parâmetro é o nome do objeto a ser salvo (pode ser mais do que um) e o segundo o diretório que ele será salvo (se não especificar salvará no que já esta configurado) seguido do nome do objeto e sua extenção do r <strong>RData</strong>.</li>
 <li><strong>load</strong> - O parâmetro necessário é o diretório que o objeto está salvo seguido do seu nome e sua extenção <strong>RData</strong>.</li>
-</ul></li>
 </ul>
 <pre class="r"><code>objeto1 = c()
 objeto2 = c()
@@ -231,12 +224,10 @@ objeto2 = c()
 save(objeto1,objeto2, file = &quot;C:\\Users\\objeto1.RData&quot;)
 load(file = &quot;C:\\Users\\objeto1.RData&quot;)</code></pre>
 <ul>
-<li>Instalando, carregando e descarregando pacotes
-<ul>
+<li>Instalando, carregando e descarregando pacotes</li>
 <li>Para instalar um pacote usamos o <strong>install.packages</strong></li>
 <li>Para carregar um pacote usamos o <strong>library</strong>.</li>
 <li>Para descarregar um pacote usamos o <strong>detach</strong> ele apenas descarrega o pacote caso o mesmo tenha sido carregado com o <strong>library</strong>.</li>
-</ul></li>
 </ul>
 <pre class="r"><code>install.packages(&quot;pacote&quot;)
 library(pacote)
@@ -251,7 +242,7 @@ detach(package:pacote)</code></pre>
 <p>É muito útil quando criamos funções na qual possui pacotes depententes, nesse caso, verificamos se o pacote está instalado, caso não esteja, instalamos.</p>
 <pre class="r"><code>if(&quot;pacote&quot; %in% rownames(installed.packages()) == FALSE){
   install.packages(&quot;pacote&quot;)
-  }</code></pre>
+}</code></pre>
 <p>Outra utilidade é quando vamos atualizar o R ou mudar de computador e acabamos perdendo todos os pacotes. Antes de fazer essa alteração de versão ou de computador, podemos rodar o seguinte comando no computador/versão antiga:</p>
 <pre class="r"><code>packages = c(&quot;gdata&quot;,rownames(installed.packages()))
 save(packages, file=&quot;C:/Temp/Rpackages&quot;)</code></pre>
@@ -262,8 +253,7 @@ for (p in setdiff(packages, rownames(installed.packages()))){
   install.packages(p)
 }</code></pre>
 <ul>
-<li><a name="condicionais">Condicionais no R.</a>
-<ul>
+<li><a name="condicionais">Condicionais no R.</a></li>
 <li><strong>=</strong> (recebe)</li>
 <li><strong>==</strong> (igual)</li>
 <li><strong>!=</strong> (diferente)</li>
@@ -271,7 +261,6 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 <li><strong>&lt;</strong> (menor)</li>
 <li><strong>&gt;=</strong> (maior igual)</li>
 <li><strong>&lt;=</strong> (menor igual)</li>
-</ul></li>
 </ul>
 </div>
 <div id="estrutura-e-criação-de-objetos." class="section level2">
@@ -336,34 +325,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1]  0.898260 -0.135268  0.237004  1.928214  0.892631  1.362287 -0.351786
-##  [8] -1.588050 -0.266522  0.470095</code></pre>
+<pre><code>##  [1] -0.1613108  0.6953944 -1.3284360 -0.7750325  0.3298394  1.4377893
+##  [7] -0.0875681 -1.9817017  2.4590844  0.2239552</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 2 3 3 1 4 5 4 2 4 1</code></pre>
+<pre><code>##  [1] 1 2 4 2 2 4 2 2 6 2</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 4.9975</code></pre>
+<pre><code>## [1] 5.0025</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  6</code></pre>
+<pre><code>## Saída exibida:  5</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  7</code></pre>
+<pre><code>## Saída exibida:  6</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 7.99756 1.78690 4.72180 4.74171 8.90881 3.22290 4.57591 4.25238 5.81887
-## [10] 8.73330</code></pre>
-<pre><code>## Saída exibida:  8.57591 8.96771 2.31758 9.40306 8.28004 1.42416 4.0981 7.66782 7.29813 4.75694</code></pre>
+<pre><code>##  [1] 3.63826 4.85100 3.19699 9.83368 8.17989 7.34589 9.07659 3.66180 7.46105
+## [10] 7.98011</code></pre>
+<pre><code>## Saída exibida:  6.50085 2.78136 4.37473 3.64237 2.13456 6.26305 7.60617 6.13949 9.95504 4.50672</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  -2 6 3 5 -3 -1 -4 0 2 -5</code></pre>
+<pre><code>## Saída exibida:  -1 7 3 4 0 5 -2 -4 -7 9</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  10 7 5 3 8 4 6 3 8 10</code></pre>
+<pre><code>## Saída exibida:  10 7 10 6 9 0 5 10 4 8</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  Julieta José</code></pre>
+<pre><code>## Saída exibida:  João Julieta</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -550,18 +539,10 @@ character
 <ul>
 <li>Listas</li>
 </ul>
-<p>As listas, é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.</p>
+<p>A lista, é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.</p>
 <pre class="r"><code>class(list())</code></pre>
 <pre><code>## Saída exibida:  list</code></pre>
-<p>Veremos listas e data.frames de forma mais detalhada, pois são os tipos de objetos mais trabalhados, pelo menos comigo.</p>
-</div>
-<div id="data-frames" class="section level3">
-<h3>5.4. Data Frames</h3>
-<p><a href="#abcd">Volte ao topo</a></p>
-</div>
-<div id="listas" class="section level3">
-<h3>5.5. Listas</h3>
-<p><a href="#abcd">Volte ao topo</a></p>
+<p>Veremos listas e data.frames de forma mais detalhada em capitulos específicos, pois são os tipos de objetos mais trabalhados, pelo menos comigo.</p>
 </div>
 </div>
 <div id="operações-matemáticas-básicas" class="section level2">
@@ -593,14 +574,72 @@ cor(vet_1,vet_4, method = &quot;spearman&quot;)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <pre class="r"><code>class(vet_4)</code></pre>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<p>Transformando valores de um vetor em fator, numeros e caracteres</p>
+<p>Transformando valores de um vetor em factor, numeros e caracteres</p>
 <pre class="r"><code>as.factor(vet_1)
 as.numeric(vet_2)
 as.character(vet_3)</code></pre>
-<p>Teste</p>
-<pre class="r"><code>as.factor(vet_1)
-as.numeric(vet_2)
-as.character(vet_3)</code></pre>
+</div>
+<div id="exibindo-valores-e-textos-na-tela" class="section level2">
+<h2>7. Exibindo valores e textos na tela</h2>
+<p>Temos algumas opções, as que eu mais utilizo são:</p>
+<ul>
+<li>CAT.</li>
+</ul>
+<pre class="r"><code>cat(&quot;Hello World \nLinha de baixo&quot;)</code></pre>
+<pre><code>## Hello World 
+## Linha de baixo</code></pre>
+<p>OBS: O comando pula linha</p>
+<ul>
+<li>PRINT.</li>
+</ul>
+<pre class="r"><code>print(&quot;Hello World&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
+<ul>
+<li>WARNING.</li>
+</ul>
+<pre class="r"><code>warning(&quot;Hello World&quot;)</code></pre>
+<pre><code>## Warning: Hello World</code></pre>
+</div>
+<div id="data-frames" class="section level2">
+<h2>8. Data Frames</h2>
+<p><a href="#abcd">Volte ao topo</a></p>
+</div>
+<div id="listas" class="section level2">
+<h2>9. Listas</h2>
+<p>Como já falado anteriormente, uma lista é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.</p>
+<div id="criando-uma-lista" class="section level3">
+<h3>9.1. Criando uma lista</h3>
+<p>Podemos criar uma lista já preenchendo os elementos, nesse caso o primeiro item é uma matriz e o segundo é um vetor</p>
+<pre class="r"><code>list(matriz = matrix(1:10, nrow = 5), 
+     vetor = c(1,2,3,4,5))</code></pre>
+<pre><code>## $matriz
+##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10
+## 
+## $vetor
+## [1] 1 2 3 4 5</code></pre>
+<p>Podemos criar uma lista vazia e ir preenchendo ela aos poucos</p>
+<pre class="r"><code>empty_list = list()
+empty_list[[1]] = matrix(1:10, nrow = 5)
+empty_list[[2]] = c(1,2,3,4,5)</code></pre>
+<p>Em seguida podemos nomear os itens dessa lista</p>
+<pre class="r"><code>names(empty_list) = c(&#39;matriz&#39;,&#39;vetor&#39;)</code></pre>
+<pre><code>## $matriz
+##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10
+## 
+## $vetor
+## [1] 1 2 3 4 5</code></pre>
+<p><a href="#abcd">Volte ao topo</a></p>
+</div>
 </div>
 
     </div>

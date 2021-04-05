@@ -42,18 +42,18 @@ Antes de começar de fato a entrar na linguagem R, vou deixar algumas funções 
 
 Esses dois parâmetros são os que mais utilizo nas configurações do R, antes mesmo de começar a programar. 
 
-  + O primeiro **scipen** especifica qual saída queremos exibir para os números, se a ciêntifica $e^{10}$ ou os números completos.
-  + O segundo **digits** especifica a quantidade de digitos que queremos exibir.
-  
++ O primeiro **scipen** especifica qual saída queremos exibir para os números, se a ciêntifica $e^{10}$ ou os números completos.
++ O segundo **digits** especifica a quantidade de digitos que queremos exibir.
+
 OBS: O número no parâmetro não importa para o **scipen**, apenas o sinal.
 
 * scipen.
-  + Negativo: Linguagem ciêntifica é exibida.
-  + Positivo: O número é exibido inteiro.
++ Negativo: Linguagem ciêntifica é exibida.
++ Positivo: O número é exibido inteiro.
 
 * digits.
-  + Número de digitos.
-  
++ Número de digitos.
+
 ```{r}
 options(scipen = -9999, digits = 3)
 ```
@@ -70,13 +70,13 @@ options(scipen = 1111, digits = 6)
 cat("Saída exibida: ",2.575757575757)
 ```
 
+* datatable.integer64.
+
 ```{r}
 options(datatable.integer64="numeric")
 ```
 
-```{r,echo=FALSE}
-cat("Para que na leitura dos dados não entenda valores numéricos como integer64 e sim numeric")
-```
+Para que na leitura dos dados utilizando o pacote data.table, o R não entenda valores numéricos como integer64 e sim como numeric.
 
 ### 2.2. Funções de ajuda.
 
@@ -118,11 +118,11 @@ x %/% y")
 ## 3. Atalhos úteis
 
 * Seleção vertical.
-  + Para realizar esse tipo de seleção segure **alt** apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.
-  + Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o **alt**, apertando **shift + end** o cursor vai para o fim de todas as linhas selecionadas, ou **shift + home** para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo **shift + -> ou <- **.
-  
++ Para realizar esse tipo de seleção segure **alt** apertado e selecionando com o mouse, fazemos seleção vertical e podemos alterar tudo de uma vez.
++ Além disso combinamos algumas teclas para facilitar. Ao selecionar verticalmente com o **alt**, apertando **shift + end** o cursor vai para o fim de todas as linhas selecionadas, ou **shift + home** para o cursor ir para o início da linha. Outra possibilidade é utilizar as setas para o lado para selecionar, na maioria das vezes é isso que eu utilizo **shift + -> ou <- **.
+
 * Substituindo palavras no R.
-  + Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez
++ Apertando ctrl F assim como no excel, conseguimos substituir todas palavras de uma vez
 
 *Parametros:*
 
@@ -133,14 +133,14 @@ x %/% y")
 3 - **Regex:** entende o comando **|** como se fosse **ou**, ou seja operador lógico.
 
 * Refazendo uma ação.
-  + Muitos sabem que o **ctrl + z** desfaz uma ação no R, mas em alguns casos acabamos desfazendo mais do que queriamos, para **refazer** algo desfeito existe o comando **ctrl + shift + z** que você pode alterar em **Tools - Modify Keyboard Shortcuts**, o mais utilizado em geral para refazer caso queira alterar é o **ctrl + i**. Outros atalhos também podem ser configurados nessa janela.
++ Muitos sabem que o **ctrl + z** desfaz uma ação no R, mas em alguns casos acabamos desfazendo mais do que queriamos, para **refazer** algo desfeito existe o comando **ctrl + shift + z** que você pode alterar em **Tools - Modify Keyboard Shortcuts**, o mais utilizado em geral para refazer caso queira alterar é o **ctrl + i**. Outros atalhos também podem ser configurados nessa janela.
 
 [Volte ao topo](#abcd)
 
 ## 4. Comandos base úteis.
 
 * Limpando a memória do R.
-  + Quando trabalhamos com **loop** ou um código muito grande que vai gerando bases temporrárias pesadas, isso vai sobrecarregando a memória do R, tempos alguns comandos que podem nos ajudar nisso, são eles: **objects**, **ls** e **rm**, .
++ Quando trabalhamos com **loop** ou um código muito grande que vai gerando bases temporrárias pesadas, isso vai sobrecarregando a memória do R, tempos alguns comandos que podem nos ajudar nisso, são eles: **objects**, **ls** e **rm**, .
 
 O comando **objects** e **ls** lista os objetos criados até o momento no R.
 
@@ -164,8 +164,8 @@ rm(objeto1, objeto2)
 ```
 
 * Verificando e alterando diretórios.
-  + Para verificiar o diretório que estamos trabalhando no R, onde serão salvos os arquivos, as bases entre outras coisas, utilizamos o comando **getwd**. 
-  + Para alterar o caminho de um diretório para uma pasta de um projeto específico por exemplo, utilizamos o **setwd**. Outro detalhe é que para especificarmos um caminho no R não utilizamos as barras padrão do windows **C:\\** mas sim as barras duplas, como mostra o exemplo abaixo, ou até mesmo a barra invertida **C:/**
++ Para verificiar o diretório que estamos trabalhando no R, onde serão salvos os arquivos, as bases entre outras coisas, utilizamos o comando **getwd**. 
++ Para alterar o caminho de um diretório para uma pasta de um projeto específico por exemplo, utilizamos o **setwd**. Outro detalhe é que para especificarmos um caminho no R não utilizamos as barras padrão do windows **C:\\** mas sim as barras duplas, como mostra o exemplo abaixo, ou até mesmo a barra invertida **C:/**
 
 ```{r, eval=FALSE}
 getwd()
@@ -173,9 +173,9 @@ setwd("C:\\Users")
 ```
 
 * Salvando e carregando arquivos do tipo RData.
-  + Os objetos no R podem ser salvos utilizando o comando **save** e carregados utilizando o comando **load**. 
-  + **save** - O primeiro parâmetro é o nome do objeto a ser salvo (pode ser mais do que um) e o segundo o diretório que ele será salvo (se não especificar salvará no que já esta configurado) seguido do nome do objeto e sua extenção do r **RData**.
-  + **load** - O parâmetro necessário é o diretório que o objeto está salvo seguido do seu nome e sua extenção **RData**.
++ Os objetos no R podem ser salvos utilizando o comando **save** e carregados utilizando o comando **load**. 
++ **save** - O primeiro parâmetro é o nome do objeto a ser salvo (pode ser mais do que um) e o segundo o diretório que ele será salvo (se não especificar salvará no que já esta configurado) seguido do nome do objeto e sua extenção do r **RData**.
++ **load** - O parâmetro necessário é o diretório que o objeto está salvo seguido do seu nome e sua extenção **RData**.
 
 ```{r, eval=FALSE}
 objeto1 = c()
@@ -187,9 +187,9 @@ load(file = "C:\\Users\\objeto1.RData")
 
 
 * Instalando, carregando e descarregando pacotes
-  + Para instalar um pacote usamos o **install.packages**
-  + Para carregar um pacote usamos o **library**. 
-  + Para descarregar um pacote usamos o **detach** ele apenas descarrega o pacote caso o mesmo tenha sido carregado com o **library**.
++ Para instalar um pacote usamos o **install.packages**
++ Para carregar um pacote usamos o **library**. 
++ Para descarregar um pacote usamos o **detach** ele apenas descarrega o pacote caso o mesmo tenha sido carregado com o **library**.
 
 ```{r,eval=FALSE}
 install.packages("pacote")
@@ -197,9 +197,9 @@ library(pacote)
 detach(package:pacote)
 ```
 
-  
+
 Não precisamos necessariamente carregar um pacote, basta chamá-lo pelo nome, seguido de **::** e em seguida a função que desejamos utilizar dele, por exemplo:
-  
+
 ```{r, eval=FALSE}
 dplyr::select()
 ```
@@ -217,7 +217,7 @@ rownames(installed.packages())
 ```{r,eval=FALSE}
 if("pacote" %in% rownames(installed.packages()) == FALSE){
   install.packages("pacote")
-  }
+}
 ```
 
 Outra utilidade é quando vamos atualizar o R ou mudar de computador e acabamos perdendo todos os pacotes. Antes de fazer essa alteração de versão ou de computador, podemos rodar o seguinte comando no computador/versão antiga:
@@ -239,13 +239,13 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 ```
 
 * <a name="condicionais">Condicionais no R.</a>
-  + **=**  (recebe)
-  + **==** (igual)
-  + **!=** (diferente)
-  + **>**  (maior)
-  + **<**  (menor)
-  + **>=** (maior igual)
-  + **<=** (menor igual)
++ **=**  (recebe)
++ **==** (igual)
++ **!=** (diferente)
++ **>**  (maior)
++ **<**  (menor)
++ **>=** (maior igual)
++ **<=** (menor igual)
 
 ## 5. Estrutura e criação de objetos.
 
@@ -710,7 +710,7 @@ kable(Class_DF, align = "c") %>% kable_styling(bootstrap_options = "striped", fu
 
 * Listas
 
-As listas, é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.
+A lista, é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.
 
 ```{r,eval=FALSE}
 class(list())
@@ -720,15 +720,7 @@ class(list())
 cat("Saída exibida: ", class(list()))
 ```
 
-Veremos listas e data.frames de forma mais detalhada, pois são os tipos de objetos mais trabalhados, pelo menos comigo.
-
-### 5.4. Data Frames
-
-[Volte ao topo](#abcd)
-
-### 5.5. Listas
-
-[Volte ao topo](#abcd)
+Veremos listas e data.frames de forma mais detalhada em capitulos específicos, pois são os tipos de objetos mais trabalhados, pelo menos comigo.
 
 ## 6. Operações matemáticas básicas
 
@@ -772,7 +764,7 @@ class(vet_3)
 class(vet_4)
 ```
 
-Transformando valores de um vetor em fator, numeros e caracteres
+Transformando valores de um vetor em factor, numeros e caracteres
 
 ```{r,eval=FALSE}
 as.factor(vet_1)
@@ -780,11 +772,63 @@ as.numeric(vet_2)
 as.character(vet_3)
 ```
 
-Teste
+## 7. Exibindo valores e textos na tela
 
-```{r,eval=FALSE}
-as.factor(vet_1)
-as.numeric(vet_2)
-as.character(vet_3)
+Temos algumas opções, as que eu mais utilizo são:
+
+* CAT.
+
+```{r}
+cat("Hello World \nLinha de baixo")
 ```
 
+OBS: O comando \n pula linha
+
+* PRINT.
+
+```{r}
+print("Hello World")
+```
+
+* WARNING.
+
+```{r}
+warning("Hello World")
+```
+
+## 8. Data Frames
+
+[Volte ao topo](#abcd)
+
+## 9. Listas
+
+Como já falado anteriormente, uma lista é um objeto que aceita diversos tipos de objetos dentro dela. Por exemplo, o primeio item de uma lista pode ser um vetor, o segundo pode ser um data.frame, o terceiro pode ser uma matriz e assim por diante.
+
+### 9.1. Criando uma lista
+
+Podemos criar uma lista já preenchendo os elementos, nesse caso o primeiro item é uma matriz e o segundo é um vetor
+
+```{r}
+list(matriz = matrix(1:10, nrow = 5), 
+     vetor = c(1,2,3,4,5))
+```
+
+Podemos criar uma lista vazia e ir preenchendo ela aos poucos
+
+```{r}
+empty_list = list()
+empty_list[[1]] = matrix(1:10, nrow = 5)
+empty_list[[2]] = c(1,2,3,4,5)
+```
+
+Em seguida podemos nomear os itens dessa lista
+
+```{r}
+names(empty_list) = c('matriz','vetor')
+```
+
+```{r, echo=FALSE}
+empty_list
+```
+
+[Volte ao topo](#abcd)
