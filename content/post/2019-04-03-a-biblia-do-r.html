@@ -39,9 +39,11 @@ output:
 </ul></li>
 <li><a href="#operações-matemáticas-básicas">6. Operações matemáticas básicas</a></li>
 <li><a href="#exibindo-valores-e-textos-na-tela">7. Exibindo valores e textos na tela</a></li>
-<li><a href="#data-frames">8. Data Frames</a></li>
+<li><a href="#data-frames">8. Data Frames</a>
+<ul>
 <li><a href="#criando-um-dataframe">8.1. Criando um Dataframe</a></li>
 <li><a href="#unindo-dataframes">8.2. Unindo dataframes</a></li>
+</ul></li>
 <li><a href="#listas">9. Listas</a>
 <ul>
 <li><a href="#criando-uma-lista">9.1. Criando uma lista</a></li>
@@ -300,34 +302,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1] -0.945604 -0.593450  0.202364 -0.217071  0.417253  0.506182 -0.440793
-##  [8] -0.260323  1.098412 -0.392092</code></pre>
+<pre><code>##  [1] -0.540890 -1.115331 -0.340138  0.140275  1.147604  0.112399  0.692171
+##  [8] -0.123753  0.716138  0.526602</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 1 2 0 0 3 3 3 4 4 5</code></pre>
+<pre><code>##  [1] 1 1 1 2 2 5 0 3 1 1</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 5.0025</code></pre>
+<pre><code>## [1] 4.94</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  3</code></pre>
+<pre><code>## Saída exibida:  6</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  2</code></pre>
+<pre><code>## Saída exibida:  4</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 5.95080 8.93890 2.46629 2.68392 1.07556 8.89388 9.58969 9.33750 7.49739
-## [10] 8.41286</code></pre>
-<pre><code>## Saída exibida:  4.91802 9.68392 1.95811 9.86161 1.80547 9.05174 9.11315 7.80576 4.80411 4.63214</code></pre>
+<pre><code>##  [1] 9.42741 6.39246 9.80994 5.09358 3.32354 6.50172 8.63611 7.07359 6.61091
+## [10] 8.73881</code></pre>
+<pre><code>## Saída exibida:  8.73835 6.16178 3.45245 1.54406 8.77823 2.38279 4.47407 4.73729 6.11959 5.36835</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  -3 -5 0 -4 9 8 3 6 10 4</code></pre>
+<pre><code>## Saída exibida:  1 -8 -10 -4 -2 -5 3 0 6 4</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  5 1 9 6 7 0 10 10 2 10</code></pre>
+<pre><code>## Saída exibida:  6 6 7 10 1 10 3 7 9 3</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  José Julieta</code></pre>
+<pre><code>## Saída exibida:  João Maria</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -577,9 +579,8 @@ as.character(vet_3)</code></pre>
 </div>
 <div id="data-frames" class="section level2">
 <h2>8. Data Frames</h2>
-</div>
-<div id="criando-um-dataframe" class="section level2">
-<h2>8.1. Criando um Dataframe</h2>
+<div id="criando-um-dataframe" class="section level3">
+<h3>8.1. Criando um Dataframe</h3>
 <p>Dataframes nada mais são do que um conjunto de vetores, basicamente é uma matriz de duas dimensões, porém de fácil manipulação. Para criar um dataframe, existe diversas maneiras, podemos criar a partir de vetores ja existentes:</p>
 <pre class="r"><code>v1 = c(7,2,7,56)
 v2 = c(4,5,6,7)
@@ -599,8 +600,8 @@ df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
 ## 3    7    3
 ## 4   56    4</code></pre>
 </div>
-<div id="unindo-dataframes" class="section level2">
-<h2>8.2. Unindo dataframes</h2>
+<div id="unindo-dataframes" class="section level3">
+<h3>8.2. Unindo dataframes</h3>
 <p>Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind</p>
 <pre class="r"><code>cbind(df1,df2)</code></pre>
 <pre><code>##   col1 col2 col3 col4
@@ -633,6 +634,7 @@ rbind(df2,df3)</code></pre>
 ## 7   NA   NA    7    3
 ## 8   NA   NA   56    4</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
+</div>
 </div>
 <div id="listas" class="section level2">
 <h2>9. Listas</h2>

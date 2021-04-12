@@ -841,7 +841,7 @@ warning("Hello World")
 
 ## 8. Data Frames
 
-## 8.1. Criando um Dataframe
+### 8.1. Criando um Dataframe
 
 Dataframes nada mais são do que um conjunto de vetores, basicamente é uma matriz de duas dimensões, porém de fácil manipulação. Para criar um dataframe, existe diversas maneiras, podemos criar a partir de vetores ja existentes:
 
@@ -867,7 +867,7 @@ df2 = data.frame(col3 = c(7,2,7,56),
 df2
 ```
 
-## 8.2. Unindo dataframes
+### 8.2. Unindo dataframes
 
 Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind
 
