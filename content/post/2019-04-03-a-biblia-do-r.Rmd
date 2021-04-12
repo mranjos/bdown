@@ -246,12 +246,15 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 + **<**  (menor)
 + **>=** (maior igual)
 + **<=** (menor igual)
++ **%in%** (contido)
 
 ## 5. Estrutura e criação de objetos.
 
 Os objetos mais utilizados no R por mim pelo menos são vetores, matrizes, data frames e listas, irei mostrar a estrutura de cada um deles e como acessar seus elementos. Para atribuir uma variável a um objeto utilizamos as teclas **<-** ou **=** fica a sua escolha.
 
 ### 5.1. Vetores
+
+* Criando um vetor
 
 Para criar um vetor utilizamos a função **c()**:
 
@@ -261,6 +264,8 @@ vet_2 = c("a","b","c")
 vet_3 = c(1,"a",5)
 vet_4 = c(17,12,15,19,17)
 ```
+
+* Acessando elementos de um vetor
 
 Para acessar os elementos de um vetor é simples, basta utilizar o comando **[]** sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 **vet_1**, fazemos **vet_1[2]**.
 
@@ -273,6 +278,8 @@ vet_1[2]
 ```{r,echo=FALSE}
 cat("Saída exibida: ",vet_1[2])
 ```
+
+* Nomeando elementos de um vetor
 
 Em alguns casos é útil nomear os elementos de um vetor, por exemplo
 
@@ -310,6 +317,8 @@ vet_1[[1]]
 cat("Saída exibida: ",vet_1[[1]])
 ```
 
+* Filtrando elementos de um vetor
+
 Para filtrar valores dentro de um vetor utilizamos as condicionais exemplificadas [AQUI](#condicionais), ou até mesmo para comparar e fazer verificações se um vetor é igual ao outro.
 
 * Retornando valores dentro do vetor que são iguais a 7
@@ -345,6 +354,40 @@ cat("Saída exibida: ", length(vet_1))
 ```
 
 Algumas funções facilitam bastante nossa vida na hora de criar vetores, por exemplo, **vetores de repetição**, **aleatórios** e **sequenciais**
+
+* Excluindo itens de um vetor
+
+Temos basicamente duas formas de fazer isso.
+
+A primeira é colocando o sinal de menos antes da posição do item no vetor que queremos excluir, no exemplo abaixo o item na posição 2, equivalente ao valor 12.
+
+```{r, eval=FALSE}
+vet_4[-2]
+```
+
+```{r, echo=FALSE}
+cat("Saída exibida: ", vet_4[-2])
+```
+
+A segunda é filtando o elemento que não queremos
+
+```{r, eval=FALSE}
+vet_4[vet_4 != "12"]
+```
+
+```{r, echo=FALSE}
+cat("Saída exibida: ", vet_4[vet_4 != "12"])
+```
+
+Ou se queremos excluir mais de um item usamos o condicional %in% com a exclamação antes do vetor, indicando que queremos os itens do vetor que não estão contidos naquele intervalo de valores
+
+```{r, eval=FALSE}
+vet_4[!vet_4 %in% c(12,17)]
+```
+
+```{r, echo=FALSE}
+cat("Saída exibida: ", vet_4[!vet_4 %in% c(12,17)])
+```
 
 * Vetores de repetição
 
@@ -798,6 +841,54 @@ warning("Hello World")
 
 ## 8. Data Frames
 
+## 8.1. Criando um Dataframe
+
+Dataframes nada mais são do que um conjunto de vetores, basicamente é uma matriz de duas dimensões, porém de fácil manipulação. Para criar um dataframe, existe diversas maneiras, podemos criar a partir de vetores ja existentes:
+
+```{r}
+v1 = c(7,2,7,56)
+v2 = c(4,5,6,7)
+
+df1 = data.frame(col1 = v1, col2 = v2)
+```
+
+```{r,echo=FALSE}
+df1
+```
+
+Ou especificar no próprio dataframe os valores
+
+```{r}
+df2 = data.frame(col3 = c(7,2,7,56), 
+                 col4 = c(1,2,3,4))
+```
+
+```{r,echo=FALSE}
+df2
+```
+
+## 8.2. Unindo dataframes
+
+Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind
+
+```{r}
+cbind(df1,df2)
+```
+
+Para colunas usamos a função rbind caso as colunas tenham o mesmo nome
+
+```{r}
+df3 = data.frame(col3 = c(7,2,7,56), 
+                 col4 = c(1,2,3,4))
+rbind(df2,df3)
+```
+
+Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr
+
+```{r}
+dplyr::bind_rows(df1,df2)
+```
+
 [Volte ao topo](#abcd)
 
 ## 9. Listas
@@ -821,7 +912,7 @@ empty_list[[1]] = matrix(1:10, nrow = 5)
 empty_list[[2]] = c(1,2,3,4,5)
 ```
 
-Em seguida podemos nomear os itens dessa lista
+Em seguida podemos nomear os itens dessa lista usando a função names, através de um vetor passamos os nomes que esses elementos vão ter.
 
 ```{r}
 names(empty_list) = c('matriz','vetor')
@@ -829,6 +920,122 @@ names(empty_list) = c('matriz','vetor')
 
 ```{r, echo=FALSE}
 empty_list
+```
+
+### 9.2. Acessando elementos de uma lista
+
+O primeiro colchete, é referente ao título da lista, o segundo colchete é referente ao conteúdo dela, por exemplo, acessando o primeiro elemento da lista, vemos que o nome é matriz.
+
+```{r}
+empty_list[1]
+```
+
+Acessando o conteúdo dessa lista, usando a notação de colchete, agora estamos acessando a matriz em si
+
+```{r}
+empty_list[[1]]
+```
+
+Podemos acessar também utilizando o nome, se estiver nome o conteúdo da lista
+
+```{r}
+empty_list$matriz
+```
+
+### 9.3. Unindo itens de uma lista
+
+É util as vezes unirmos os itens de uma lista, para isso vamos criar uma nova
+
+```{r}
+list_union = list(c(1,2,3,4,5),c(5,6,7,8,9)) 
+```
+
+Agora podemos unir tanto em linhas como em colunas, usando a function do.call
+
+* Unindo os itens da lista em um data frame, um embaixo do outro
+
+```{r}
+do.call("rbind",list_union)
+```
+
+* Unindo os itens da lista em um data frame, um do lado do outro
+
+```{r}
+do.call("cbind",list_union)
+```
+
+Podemos ainda unir em colunas, itens da lista cujos dataframes tem tamanhos diferentes de linha, observe
+
+```{r}
+reduce_merge = list(data.frame(Faixas = c("100 - 200",
+                                          "200 - 300",
+                                          "300 - 400",
+                                          "400 - 500",
+                                          "500 - 600",
+                                          "600 - 700",
+                                          "700 - 800",
+                                          "800 - 900",
+                                          "900 - 1000"),
+                               Score = c("0.002716428",
+                                         "0.020077950",
+                                         "0.134404157",
+                                         "0.307310736",
+                                         "0.287941420",
+                                         "0.164402976",
+                                         "0.061178694",
+                                         "0.017597732",
+                                         "0.003897484")),
+                    data.frame(Faixas = c("0 - 100",
+                                          "100 - 200",
+                                          "200 - 300",
+                                          "300 - 400",
+                                          "400 - 500",
+                                          "500 - 600",
+                                          "600 - 700",
+                                          "700 - 800",
+                                          "800 - 900",
+                                          "900 - 1000"),
+                               Score2 = c("0.005478997",
+                                         "0.002716428",
+                                         "0.020077950",
+                                         "0.134404157",
+                                         "0.307310736",
+                                         "0.287941420",
+                                         "0.164402976",
+                                         "0.061178694",
+                                         "0.017597732",
+                                         "0.003897484")))
+```
+
+* Usando a função reduce com dataframes de tamanhos distintos
+
+```{r}
+Reduce(function(x,y) merge(x, y, all =T),
+       reduce_merge)
+```
+
+* Unindo diferentes listas através da função append
+
+Basta usarmos a função *append* passando como argumentos nossa primeira e segunda lista.
+
+```{r}
+append(empty_list,reduce_merge)
+```
+
+### 9.4. Excluindo itens de uma lista
+
+Assim como em um dataframe, basta declararmos o valor null para o elemento da lista que queremos excluir, passando o nome do item da lista ou sua posição.
+
+```{r, eval=FALSE}
+reduce_merge[[2]] = NULL
+```
+
+### 9.5. Inserindo objetos em uma lista
+
+Se podemos excluir, também podemos adicionar elementos a uma lista, nesse caso, basta chamarmos a lista colocando dentro do colchete o nome do novo item, ou a posição.
+
+```{r}
+reduce_merge[['newDataFrame']] = data.frame(Coluna1 = c(7,7,7,7,7))
 ```
 
 [Volte ao topo](#abcd)

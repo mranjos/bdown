@@ -40,9 +40,15 @@ output:
 <li><a href="#operações-matemáticas-básicas">6. Operações matemáticas básicas</a></li>
 <li><a href="#exibindo-valores-e-textos-na-tela">7. Exibindo valores e textos na tela</a></li>
 <li><a href="#data-frames">8. Data Frames</a></li>
+<li><a href="#criando-um-dataframe">8.1. Criando um Dataframe</a></li>
+<li><a href="#unindo-dataframes">8.2. Unindo dataframes</a></li>
 <li><a href="#listas">9. Listas</a>
 <ul>
 <li><a href="#criando-uma-lista">9.1. Criando uma lista</a></li>
+<li><a href="#acessando-elementos-de-uma-lista">9.2. Acessando elementos de uma lista</a></li>
+<li><a href="#unindo-itens-de-uma-lista">9.3. Unindo itens de uma lista</a></li>
+<li><a href="#excluindo-itens-de-uma-lista">9.4. Excluindo itens de uma lista</a></li>
+<li><a href="#inserindo-objetos-em-uma-lista">9.5. Inserindo objetos em uma lista</a></li>
 </ul></li>
 </ul>
 </div>
@@ -204,6 +210,7 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 <li><strong>&lt;</strong> (menor)</li>
 <li><strong>&gt;=</strong> (maior igual)</li>
 <li><strong>&lt;=</strong> (menor igual)</li>
+<li><strong>%in%</strong> (contido)</li>
 </ul>
 </div>
 <div id="estrutura-e-criação-de-objetos." class="section level2">
@@ -211,15 +218,24 @@ for (p in setdiff(packages, rownames(installed.packages()))){
 <p>Os objetos mais utilizados no R por mim pelo menos são vetores, matrizes, data frames e listas, irei mostrar a estrutura de cada um deles e como acessar seus elementos. Para atribuir uma variável a um objeto utilizamos as teclas <strong>&lt;-</strong> ou <strong>=</strong> fica a sua escolha.</p>
 <div id="vetores" class="section level3">
 <h3>5.1. Vetores</h3>
+<ul>
+<li>Criando um vetor</li>
+</ul>
 <p>Para criar um vetor utilizamos a função <strong>c()</strong>:</p>
 <pre class="r"><code>vet_1 = c(7,2,5,9,7)
 vet_2 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)
 vet_3 = c(1,&quot;a&quot;,5)
 vet_4 = c(17,12,15,19,17)</code></pre>
+<ul>
+<li>Acessando elementos de um vetor</li>
+</ul>
 <p>Para acessar os elementos de um vetor é simples, basta utilizar o comando <strong>[]</strong> sendo que dentro dele especificamos qual o índice do vetor queremos acessar. Por exemplo, se queremos verificar qual o segundo elemento do vetor 1 <strong>vet_1</strong>, fazemos <strong>vet_1[2]</strong>.</p>
 <p>Eu leio esse comando como se fosse <strong>onde</strong>, isso me ajuda muito na parte de filtragem e seleção de dados que veremos mais para frente. Meu conselho então é sempre que ver o símbolo <strong>[]</strong> ler <strong>onde</strong>. Por exemplo <strong>vet_1[2]</strong> leia <strong>vet_1 onde a posição é 2</strong>.</p>
 <pre class="r"><code>vet_1[2]</code></pre>
 <pre><code>## Saída exibida:  2</code></pre>
+<ul>
+<li>Nomeando elementos de um vetor</li>
+</ul>
 <p>Em alguns casos é útil nomear os elementos de um vetor, por exemplo</p>
 <pre class="r"><code>names(vet_1) = c(&#39;um&#39;,&#39;dois&#39;, &#39;tres&#39;,&#39;quatro&#39;,&#39;cinco&#39;)</code></pre>
 <pre><code>## Saída exibida:</code></pre>
@@ -235,6 +251,9 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 <p>Acesso a segunda camada do primeiro elemento com o conteúdo:</p>
 <pre class="r"><code>vet_1[[1]]</code></pre>
 <pre><code>## Saída exibida:  7</code></pre>
+<ul>
+<li>Filtrando elementos de um vetor</li>
+</ul>
 <p>Para filtrar valores dentro de um vetor utilizamos as condicionais exemplificadas <a href="#condicionais">AQUI</a>, ou até mesmo para comparar e fazer verificações se um vetor é igual ao outro.</p>
 <ul>
 <li>Retornando valores dentro do vetor que são iguais a 7</li>
@@ -255,6 +274,19 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 <pre><code>## Saída exibida:  5</code></pre>
 <p>Algumas funções facilitam bastante nossa vida na hora de criar vetores, por exemplo, <strong>vetores de repetição</strong>, <strong>aleatórios</strong> e <strong>sequenciais</strong></p>
 <ul>
+<li>Excluindo itens de um vetor</li>
+</ul>
+<p>Temos basicamente duas formas de fazer isso.</p>
+<p>A primeira é colocando o sinal de menos antes da posição do item no vetor que queremos excluir, no exemplo abaixo o item na posição 2, equivalente ao valor 12.</p>
+<pre class="r"><code>vet_4[-2]</code></pre>
+<pre><code>## Saída exibida:  17 15 19 17</code></pre>
+<p>A segunda é filtando o elemento que não queremos</p>
+<pre class="r"><code>vet_4[vet_4 != &quot;12&quot;]</code></pre>
+<pre><code>## Saída exibida:  17 15 19 17</code></pre>
+<p>Ou se queremos excluir mais de um item usamos o condicional %in% com a exclamação antes do vetor, indicando que queremos os itens do vetor que não estão contidos naquele intervalo de valores</p>
+<pre class="r"><code>vet_4[!vet_4 %in% c(12,17)]</code></pre>
+<pre><code>## Saída exibida:  15 19</code></pre>
+<ul>
 <li>Vetores de repetição</li>
 </ul>
 <p>Repetindo a sequencia de 1 a 5 duas vezes</p>
@@ -268,34 +300,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1] -0.1613108  0.6953944 -1.3284360 -0.7750325  0.3298394  1.4377893
-##  [7] -0.0875681 -1.9817017  2.4590844  0.2239552</code></pre>
+<pre><code>##  [1] -0.945604 -0.593450  0.202364 -0.217071  0.417253  0.506182 -0.440793
+##  [8] -0.260323  1.098412 -0.392092</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 1 2 4 2 2 4 2 2 6 2</code></pre>
+<pre><code>##  [1] 1 2 0 0 3 3 3 4 4 5</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
 <pre><code>## [1] 5.0025</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  5</code></pre>
+<pre><code>## Saída exibida:  3</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
-<pre><code>## Saída exibida:  6</code></pre>
+<pre><code>## Saída exibida:  2</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 3.63826 4.85100 3.19699 9.83368 8.17989 7.34589 9.07659 3.66180 7.46105
-## [10] 7.98011</code></pre>
-<pre><code>## Saída exibida:  6.50085 2.78136 4.37473 3.64237 2.13456 6.26305 7.60617 6.13949 9.95504 4.50672</code></pre>
+<pre><code>##  [1] 5.95080 8.93890 2.46629 2.68392 1.07556 8.89388 9.58969 9.33750 7.49739
+## [10] 8.41286</code></pre>
+<pre><code>## Saída exibida:  4.91802 9.68392 1.95811 9.86161 1.80547 9.05174 9.11315 7.80576 4.80411 4.63214</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  -1 7 3 4 0 5 -2 -4 -7 9</code></pre>
+<pre><code>## Saída exibida:  -3 -5 0 -4 9 8 3 6 10 4</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  10 7 10 6 9 0 5 10 4 8</code></pre>
+<pre><code>## Saída exibida:  5 1 9 6 7 0 10 10 2 10</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  João Julieta</code></pre>
+<pre><code>## Saída exibida:  José Julieta</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -545,6 +577,61 @@ as.character(vet_3)</code></pre>
 </div>
 <div id="data-frames" class="section level2">
 <h2>8. Data Frames</h2>
+</div>
+<div id="criando-um-dataframe" class="section level2">
+<h2>8.1. Criando um Dataframe</h2>
+<p>Dataframes nada mais são do que um conjunto de vetores, basicamente é uma matriz de duas dimensões, porém de fácil manipulação. Para criar um dataframe, existe diversas maneiras, podemos criar a partir de vetores ja existentes:</p>
+<pre class="r"><code>v1 = c(7,2,7,56)
+v2 = c(4,5,6,7)
+
+df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
+<pre><code>##   col1 col2
+## 1    7    4
+## 2    2    5
+## 3    7    6
+## 4   56    7</code></pre>
+<p>Ou especificar no próprio dataframe os valores</p>
+<pre class="r"><code>df2 = data.frame(col3 = c(7,2,7,56), 
+                 col4 = c(1,2,3,4))</code></pre>
+<pre><code>##   col3 col4
+## 1    7    1
+## 2    2    2
+## 3    7    3
+## 4   56    4</code></pre>
+</div>
+<div id="unindo-dataframes" class="section level2">
+<h2>8.2. Unindo dataframes</h2>
+<p>Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind</p>
+<pre class="r"><code>cbind(df1,df2)</code></pre>
+<pre><code>##   col1 col2 col3 col4
+## 1    7    4    7    1
+## 2    2    5    2    2
+## 3    7    6    7    3
+## 4   56    7   56    4</code></pre>
+<p>Para colunas usamos a função rbind caso as colunas tenham o mesmo nome</p>
+<pre class="r"><code>df3 = data.frame(col3 = c(7,2,7,56), 
+                 col4 = c(1,2,3,4))
+rbind(df2,df3)</code></pre>
+<pre><code>##   col3 col4
+## 1    7    1
+## 2    2    2
+## 3    7    3
+## 4   56    4
+## 5    7    1
+## 6    2    2
+## 7    7    3
+## 8   56    4</code></pre>
+<p>Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr</p>
+<pre class="r"><code>dplyr::bind_rows(df1,df2)</code></pre>
+<pre><code>##   col1 col2 col3 col4
+## 1    7    4   NA   NA
+## 2    2    5   NA   NA
+## 3    7    6   NA   NA
+## 4   56    7   NA   NA
+## 5   NA   NA    7    1
+## 6   NA   NA    2    2
+## 7   NA   NA    7    3
+## 8   NA   NA   56    4</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 <div id="listas" class="section level2">
@@ -569,7 +656,7 @@ as.character(vet_3)</code></pre>
 <pre class="r"><code>empty_list = list()
 empty_list[[1]] = matrix(1:10, nrow = 5)
 empty_list[[2]] = c(1,2,3,4,5)</code></pre>
-<p>Em seguida podemos nomear os itens dessa lista</p>
+<p>Em seguida podemos nomear os itens dessa lista usando a função names, através de um vetor passamos os nomes que esses elementos vão ter.</p>
 <pre class="r"><code>names(empty_list) = c(&#39;matriz&#39;,&#39;vetor&#39;)</code></pre>
 <pre><code>## $matriz
 ##      [,1] [,2]
@@ -581,6 +668,162 @@ empty_list[[2]] = c(1,2,3,4,5)</code></pre>
 ## 
 ## $vetor
 ## [1] 1 2 3 4 5</code></pre>
+</div>
+<div id="acessando-elementos-de-uma-lista" class="section level3">
+<h3>9.2. Acessando elementos de uma lista</h3>
+<p>O primeiro colchete, é referente ao título da lista, o segundo colchete é referente ao conteúdo dela, por exemplo, acessando o primeiro elemento da lista, vemos que o nome é matriz.</p>
+<pre class="r"><code>empty_list[1]</code></pre>
+<pre><code>## $matriz
+##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10</code></pre>
+<p>Acessando o conteúdo dessa lista, usando a notação de colchete, agora estamos acessando a matriz em si</p>
+<pre class="r"><code>empty_list[[1]]</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10</code></pre>
+<p>Podemos acessar também utilizando o nome, se estiver nome o conteúdo da lista</p>
+<pre class="r"><code>empty_list$matriz</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10</code></pre>
+</div>
+<div id="unindo-itens-de-uma-lista" class="section level3">
+<h3>9.3. Unindo itens de uma lista</h3>
+<p>É util as vezes unirmos os itens de uma lista, para isso vamos criar uma nova</p>
+<pre class="r"><code>list_union = list(c(1,2,3,4,5),c(5,6,7,8,9)) </code></pre>
+<p>Agora podemos unir tanto em linhas como em colunas, usando a function do.call</p>
+<ul>
+<li>Unindo os itens da lista em um data frame, um embaixo do outro</li>
+</ul>
+<pre class="r"><code>do.call(&quot;rbind&quot;,list_union)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    2    3    4    5
+## [2,]    5    6    7    8    9</code></pre>
+<ul>
+<li>Unindo os itens da lista em um data frame, um do lado do outro</li>
+</ul>
+<pre class="r"><code>do.call(&quot;cbind&quot;,list_union)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## [3,]    3    7
+## [4,]    4    8
+## [5,]    5    9</code></pre>
+<p>Podemos ainda unir em colunas, itens da lista cujos dataframes tem tamanhos diferentes de linha, observe</p>
+<pre class="r"><code>reduce_merge = list(data.frame(Faixas = c(&quot;100 - 200&quot;,
+                                          &quot;200 - 300&quot;,
+                                          &quot;300 - 400&quot;,
+                                          &quot;400 - 500&quot;,
+                                          &quot;500 - 600&quot;,
+                                          &quot;600 - 700&quot;,
+                                          &quot;700 - 800&quot;,
+                                          &quot;800 - 900&quot;,
+                                          &quot;900 - 1000&quot;),
+                               Score = c(&quot;0.002716428&quot;,
+                                         &quot;0.020077950&quot;,
+                                         &quot;0.134404157&quot;,
+                                         &quot;0.307310736&quot;,
+                                         &quot;0.287941420&quot;,
+                                         &quot;0.164402976&quot;,
+                                         &quot;0.061178694&quot;,
+                                         &quot;0.017597732&quot;,
+                                         &quot;0.003897484&quot;)),
+                    data.frame(Faixas = c(&quot;0 - 100&quot;,
+                                          &quot;100 - 200&quot;,
+                                          &quot;200 - 300&quot;,
+                                          &quot;300 - 400&quot;,
+                                          &quot;400 - 500&quot;,
+                                          &quot;500 - 600&quot;,
+                                          &quot;600 - 700&quot;,
+                                          &quot;700 - 800&quot;,
+                                          &quot;800 - 900&quot;,
+                                          &quot;900 - 1000&quot;),
+                               Score2 = c(&quot;0.005478997&quot;,
+                                         &quot;0.002716428&quot;,
+                                         &quot;0.020077950&quot;,
+                                         &quot;0.134404157&quot;,
+                                         &quot;0.307310736&quot;,
+                                         &quot;0.287941420&quot;,
+                                         &quot;0.164402976&quot;,
+                                         &quot;0.061178694&quot;,
+                                         &quot;0.017597732&quot;,
+                                         &quot;0.003897484&quot;)))</code></pre>
+<ul>
+<li>Usando a função reduce com dataframes de tamanhos distintos</li>
+</ul>
+<pre class="r"><code>Reduce(function(x,y) merge(x, y, all =T),
+       reduce_merge)</code></pre>
+<pre><code>##        Faixas       Score      Score2
+## 1     0 - 100        &lt;NA&gt; 0.005478997
+## 2   100 - 200 0.002716428 0.002716428
+## 3   200 - 300 0.020077950 0.020077950
+## 4   300 - 400 0.134404157 0.134404157
+## 5   400 - 500 0.307310736 0.307310736
+## 6   500 - 600 0.287941420 0.287941420
+## 7   600 - 700 0.164402976 0.164402976
+## 8   700 - 800 0.061178694 0.061178694
+## 9   800 - 900 0.017597732 0.017597732
+## 10 900 - 1000 0.003897484 0.003897484</code></pre>
+<ul>
+<li>Unindo diferentes listas através da função append</li>
+</ul>
+<p>Basta usarmos a função <em>append</em> passando como argumentos nossa primeira e segunda lista.</p>
+<pre class="r"><code>append(empty_list,reduce_merge)</code></pre>
+<pre><code>## $matriz
+##      [,1] [,2]
+## [1,]    1    6
+## [2,]    2    7
+## [3,]    3    8
+## [4,]    4    9
+## [5,]    5   10
+## 
+## $vetor
+## [1] 1 2 3 4 5
+## 
+## [[3]]
+##       Faixas       Score
+## 1  100 - 200 0.002716428
+## 2  200 - 300 0.020077950
+## 3  300 - 400 0.134404157
+## 4  400 - 500 0.307310736
+## 5  500 - 600 0.287941420
+## 6  600 - 700 0.164402976
+## 7  700 - 800 0.061178694
+## 8  800 - 900 0.017597732
+## 9 900 - 1000 0.003897484
+## 
+## [[4]]
+##        Faixas      Score2
+## 1     0 - 100 0.005478997
+## 2   100 - 200 0.002716428
+## 3   200 - 300 0.020077950
+## 4   300 - 400 0.134404157
+## 5   400 - 500 0.307310736
+## 6   500 - 600 0.287941420
+## 7   600 - 700 0.164402976
+## 8   700 - 800 0.061178694
+## 9   800 - 900 0.017597732
+## 10 900 - 1000 0.003897484</code></pre>
+</div>
+<div id="excluindo-itens-de-uma-lista" class="section level3">
+<h3>9.4. Excluindo itens de uma lista</h3>
+<p>Assim como em um dataframe, basta declararmos o valor null para o elemento da lista que queremos excluir, passando o nome do item da lista ou sua posição.</p>
+<pre class="r"><code>reduce_merge[[2]] = NULL</code></pre>
+</div>
+<div id="inserindo-objetos-em-uma-lista" class="section level3">
+<h3>9.5. Inserindo objetos em uma lista</h3>
+<p>Se podemos excluir, também podemos adicionar elementos a uma lista, nesse caso, basta chamarmos a lista colocando dentro do colchete o nome do novo item, ou a posição.</p>
+<pre class="r"><code>reduce_merge[[&#39;newDataFrame&#39;]] = data.frame(Coluna1 = c(7,7,7,7,7))</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
