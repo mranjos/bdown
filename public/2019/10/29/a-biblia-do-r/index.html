@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">24 min read</span>
+    <span class="article-duration">30 min read</span>
     
 
     <h1 class="article-title">A Bíblia do R</h1>
@@ -99,7 +99,13 @@
 <li><a href="#data-frames">8. Data Frames</a>
 <ul>
 <li><a href="#criando-um-dataframe">8.1. Criando um Dataframe</a></li>
-<li><a href="#unindo-dataframes">8.2. Unindo dataframes</a></li>
+<li><a href="#acessando-elementos-de-um-dataframe">8.2. Acessando elementos de um dataframe</a></li>
+<li><a href="#exibindo-dataframes">8.3. Exibindo dataframes</a></li>
+<li><a href="#adicionando-colunas">8.4. Adicionando colunas</a></li>
+<li><a href="#adicionando-linhas">8.5. Adicionando linhas</a></li>
+<li><a href="#unindo-dataframes">8.6. Unindo dataframes</a></li>
+<li><a href="#excluindofiltrandoselecionando-colunas">8.7. Excluindo/Filtrando/Selecionando colunas</a></li>
+<li><a href="#excluindofiltrandoselecionando-linhas">8.8. Excluindo/Filtrando/Selecionando linhas</a></li>
 </ul></li>
 <li><a href="#listas">9. Listas</a>
 <ul>
@@ -359,34 +365,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1] -0.540890 -1.115331 -0.340138  0.140275  1.147604  0.112399  0.692171
-##  [8] -0.123753  0.716138  0.526602</code></pre>
+<pre><code>##  [1]  0.458997  1.697554  0.478527 -0.124723 -0.119775  0.159742 -1.649617
+##  [8] -0.782630 -0.469278 -0.220617</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 1 1 1 2 2 5 0 3 1 1</code></pre>
+<pre><code>##  [1] 5 2 5 4 5 4 5 2 4 3</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 4.94</code></pre>
+<pre><code>## [1] 4.9825</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  6</code></pre>
+<pre><code>## Saída exibida:  3</code></pre>
 <pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
 <pre><code>## Saída exibida:  4</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 9.42741 6.39246 9.80994 5.09358 3.32354 6.50172 8.63611 7.07359 6.61091
-## [10] 8.73881</code></pre>
-<pre><code>## Saída exibida:  8.73835 6.16178 3.45245 1.54406 8.77823 2.38279 4.47407 4.73729 6.11959 5.36835</code></pre>
+<pre><code>##  [1] 6.47256 5.07311 5.16664 9.90259 3.49947 7.66584 6.72531 6.51183 6.85079
+## [10] 7.00769</code></pre>
+<pre><code>## Saída exibida:  9.44712 8.03092 1.73738 2.34765 3.92006 2.21477 6.57435 6.19827 3.63518 2.09214</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  1 -8 -10 -4 -2 -5 3 0 6 4</code></pre>
+<pre><code>## Saída exibida:  -6 -7 8 -10 -2 -9 9 -3 5 2</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  6 6 7 10 1 10 3 7 9 3</code></pre>
+<pre><code>## Saída exibida:  6 4 10 5 9 3 5 3 2 6</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  João Maria</code></pre>
+<pre><code>## Saída exibida:  Pedro Julieta</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -657,19 +663,107 @@ df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
 ## 3    7    3
 ## 4   56    4</code></pre>
 </div>
+<div id="acessando-elementos-de-um-dataframe" class="section level3">
+<h3>8.2. Acessando elementos de um dataframe</h3>
+<p>A estrutura de um dataframe é no formato de linha e coluna, e agora, aquele conceito de <strong>onde</strong> baseado em colchetes que foi apresentado anteriormente fará muito sentido. Considere a estrutura <strong>[,]</strong> antes da vírgula temos acesso a linhas de um dataframe e depois da linha temos acesso a colunas. Irei mostrar algumas formas distintas de acessar os elementos com o mesmo resultado</p>
+<p>Vamos considerar o dataframe abaixo como exemplo</p>
+<pre><code>##   col3 col4
+## 1    7    1
+## 2    2    2
+## 3    7    3
+## 4   56    4</code></pre>
+<p>Vamos acessar a primeira coluna desse dataframe, podemos usar a esturutra de colchetes único, como usamos no vetor. Vale ressaltar que estamos acessando a <strong>COLUNA</strong> e não o <strong>CONTEÚDO</strong> dessa coluna</p>
+<pre class="r"><code>df2[1]</code></pre>
+<pre><code>##   col3
+## 1    7
+## 2    2
+## 3    7
+## 4   56</code></pre>
+<p>Se quisemos acessar o <strong>CONTEÚDO</strong> dessa coluna, podemos usar dois colchetes</p>
+<pre class="r"><code>df2[[1]]</code></pre>
+<pre><code>## [1]  7  2  7 56</code></pre>
+<p>Ou o mais usual, usamos a estrutura de colchetes de linha e coluna, passando o parâmetro <strong>APÓS</strong> a vírgula, que significa que vamos acessar todos as linhas da coluna 1</p>
+<pre class="r"><code>df2[,1]</code></pre>
+<pre><code>## [1]  7  2  7 56</code></pre>
+<p>Ou a estrutura de <strong>$</strong> chamando o nome da coluna</p>
+<pre class="r"><code>df2$col3</code></pre>
+<pre><code>## [1]  7  2  7 56</code></pre>
+<p>Podemos também acessar todas as colunas da linha 1, assim, basta fazermos o contrário, colocarmos o parâmetro <strong>ANTES</strong> da vírgula</p>
+<pre class="r"><code>df2[1,]</code></pre>
+<pre><code>##   col3 col4
+## 1    7    1</code></pre>
+<p>E ai vamos usando as combinações, podemos acessar a segunda linha da segunda coluna desse dataframe e assim por diante</p>
+<pre class="r"><code>df2[2,2]</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Isso é muito importante ficar gravado para trabalhar com dataframes</p>
+</div>
+<div id="exibindo-dataframes" class="section level3">
+<h3>8.3. Exibindo dataframes</h3>
+<p>Temos algumas formas de visualizar os dataframes, para isso vamos usar como exemplo a tabela <strong>mtcars</strong> nativa do R.</p>
+<p>Podemos visualizar a tabela usando o <strong>View</strong>, no R abrira uma aba exibindo o dataframe.</p>
+<pre class="r"><code>View(mtcars)</code></pre>
+<p>As vezes é interessante ver apenas as primeiras linhas de um dataframe, nesse caso usamos a função <strong>head</strong></p>
+<pre class="r"><code>head(mtcars)</code></pre>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Ou queremos ver as últimas linhas de um dataframe, então usamos a função <strong>tail</strong></p>
+<pre class="r"><code>tail(mtcars)</code></pre>
+<pre><code>##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
+</div>
+<div id="adicionando-colunas" class="section level3">
+<h3>8.4. Adicionando colunas</h3>
+<p>Para adicionar colunas podemos usar a estrutura de <strong>$</strong> na qual ja passamos o nome da nova coluna, nesse caso <strong>col5</strong></p>
+<pre class="r"><code>df2$col5 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;)</code></pre>
+<pre><code>##   col3 col4 col5
+## 1    7    1    a
+## 2    2    2    b
+## 3    7    3    c
+## 4   56    4    d</code></pre>
+<p>Ou usarmos a estrutura de colchetes único, que já vimos que representa <strong>COLUNA</strong> e passamos o <strong>CONTEÚDO</strong> dessa coluna, nesse caso como não damos um nome, por padrão será <strong>V</strong> acompanhado do número da coluna</p>
+<pre class="r"><code>df2[4] = c(3,2,1,2)</code></pre>
+<pre><code>##   col3 col4 col5 V4
+## 1    7    1    a  3
+## 2    2    2    b  2
+## 3    7    3    c  1
+## 4   56    4    d  2</code></pre>
+</div>
+<div id="adicionando-linhas" class="section level3">
+<h3>8.5. Adicionando linhas</h3>
+<p>Seguindo a mesma lógica das colunas, podemos adicionar linhas, mas indicando o parâmetro após a vírgula referente a posição da linha que deseja inserir e atribuindo o conteúdo a ela</p>
+<pre class="r"><code>df2[5,] = c(1,2,&quot;e&quot;,5)</code></pre>
+<pre><code>##   col3 col4 col5 V4
+## 1    7    1    a  3
+## 2    2    2    b  2
+## 3    7    3    c  1
+## 4   56    4    d  2
+## 5    1    2    e  5</code></pre>
+</div>
 <div id="unindo-dataframes" class="section level3">
-<h3>8.2. Unindo dataframes</h3>
+<h3>8.6. Unindo dataframes</h3>
 <p>Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind</p>
-<pre class="r"><code>cbind(df1,df2)</code></pre>
-<pre><code>##   col1 col2 col3 col4
-## 1    7    4    7    1
-## 2    2    5    2    2
-## 3    7    6    7    3
-## 4   56    7   56    4</code></pre>
-<p>Para colunas usamos a função rbind caso as colunas tenham o mesmo nome</p>
-<pre class="r"><code>df3 = data.frame(col3 = c(7,2,7,56), 
-                 col4 = c(1,2,3,4))
-rbind(df2,df3)</code></pre>
+<pre class="r"><code>cbind(df1,df2[-5,])</code></pre>
+<pre><code>##   col1 col2 col3 col4 col5 V4
+## 1    7    4    7    1    a  3
+## 2    2    5    2    2    b  2
+## 3    7    6    7    3    c  1
+## 4   56    7   56    4    d  2</code></pre>
+<p>Para colunas usamos a função rbind, caso as colunas tenham o mesmo nome</p>
+<pre class="r"><code>union_df1 = data.frame(col3 = c(7,2,7,56), 
+                       col4 = c(1,2,3,4))
+union_df2 = data.frame(col3 = c(7,2,7,56), 
+                       col4 = c(1,2,3,4))
+rbind(union_df1,union_df2)</code></pre>
 <pre><code>##   col3 col4
 ## 1    7    1
 ## 2    2    2
@@ -679,17 +773,101 @@ rbind(df2,df3)</code></pre>
 ## 6    2    2
 ## 7    7    3
 ## 8   56    4</code></pre>
-<p>Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr</p>
+<p>Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr, ela preenche com NA os valores que não tem no outro dataframe</p>
 <pre class="r"><code>dplyr::bind_rows(df1,df2)</code></pre>
-<pre><code>##   col1 col2 col3 col4
-## 1    7    4   NA   NA
-## 2    2    5   NA   NA
-## 3    7    6   NA   NA
-## 4   56    7   NA   NA
-## 5   NA   NA    7    1
-## 6   NA   NA    2    2
-## 7   NA   NA    7    3
-## 8   NA   NA   56    4</code></pre>
+<pre><code>##   col1 col2 col3 col4 col5   V4
+## 1    7    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 2    2    5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 3    7    6 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 4   56    7 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 5   NA   NA    7    1    a    3
+## 6   NA   NA    2    2    b    2
+## 7   NA   NA    7    3    c    1
+## 8   NA   NA   56    4    d    2
+## 9   NA   NA    1    2    e    5</code></pre>
+</div>
+<div id="excluindofiltrandoselecionando-colunas" class="section level3">
+<h3>8.7. Excluindo/Filtrando/Selecionando colunas</h3>
+<p>Temos diversas formas de fazer isso, vamos criar um dataframe com o que foi aprendido até agora para usarmos como base para os exempos</p>
+<pre class="r"><code>del_fil_sel_col = data.frame(Coluna1 = seq(1,100,1),
+                             Coluna2 = sample(500,100),
+                             Coluna3 = rnorm(100),
+                             Coluna4 = rpois(100,3),
+                             Coluna5 = runif(100),
+                             Coluna6 = rep(1:5, 20))</code></pre>
+<p>Vamos ver as primeiras linhas desse dataframe gerado</p>
+<pre class="r"><code>head(del_fil_sel_col)</code></pre>
+<pre><code>##   Coluna1 Coluna2   Coluna3 Coluna4  Coluna5 Coluna6
+## 1       1     114 -0.828217       1 0.544132       1
+## 2       2     337  0.326118       5 0.374374       2
+## 3       3     484  0.656769       2 0.845580       3
+## 4       4     139  1.341015       1 0.895469       4
+## 5       5     436 -1.910155       3 0.898643       5
+## 6       6     430 -0.708027       2 0.554179       1</code></pre>
+<p>A primeira forma que vamos ver aqui é a mais simples, basta atribuirmos o valor <strong>NULL</strong> para a coluna e ela será excluida do dataframe, simples, objetivo, útil e prático.</p>
+<pre class="r"><code>del_fil_sel_col$Coluna6 = NULL</code></pre>
+<p>Observe que a Coluna6 não está mais no dataframe, essa forma é um caminho sem volta, pois uma vez atribuido o valor <strong>NULL</strong> para a coluna, ela já está deletada</p>
+<pre><code>##   Coluna1 Coluna2   Coluna3 Coluna4  Coluna5
+## 1       1     114 -0.828217       1 0.544132
+## 2       2     337  0.326118       5 0.374374
+## 3       3     484  0.656769       2 0.845580
+## 4       4     139  1.341015       1 0.895469
+## 5       5     436 -1.910155       3 0.898643
+## 6       6     430 -0.708027       2 0.554179</code></pre>
+<p>As demais formas, para que a coluna seja realmente excluída, é necessário salvá-la em cima do mesmo dataframe ou em um novo como preferir</p>
+<p>A próxima forma é utilizar a sintaxe de colchetes linhas e colunas, para excluir a coluna desejada basta adicionar o sinal de menos antes da posição da coluna</p>
+<pre class="r"><code>del_fil_sel_col[,-5]</code></pre>
+<pre><code>##   Coluna1 Coluna2   Coluna3 Coluna4
+## 1       1     114 -0.828217       1
+## 2       2     337  0.326118       5
+## 3       3     484  0.656769       2
+## 4       4     139  1.341015       1
+## 5       5     436 -1.910155       3
+## 6       6     430 -0.708027       2</code></pre>
+<p>Uma outra forma é usar a função <strong>subset</strong> selecionando ou apenas as colunas que deseja ficar, ou adicionando o sinal de menos antes do vetor, as que deseja excluir. Nessa forma você pode passar tanto o nome da coluna como a sua posição, o resultado é o mesmo</p>
+<p>No caso abaixo, queremos excluir a primeira e a segunda coluna, passando o nome delas</p>
+<pre class="r"><code>subset(del_fil_sel_col, select = -c(Coluna1,Coluna2))</code></pre>
+<pre><code>##     Coluna3 Coluna4  Coluna5
+## 1 -0.828217       1 0.544132
+## 2  0.326118       5 0.374374
+## 3  0.656769       2 0.845580
+## 4  1.341015       1 0.895469
+## 5 -1.910155       3 0.898643
+## 6 -0.708027       2 0.554179</code></pre>
+<p>Agora podemos passar a posição delas</p>
+<pre class="r"><code>subset(del_fil_sel_col, select = -c(1,2))</code></pre>
+<pre class="r"><code>head(subset(del_fil_sel_col, select = -c(1,2)))</code></pre>
+<pre><code>##     Coluna3 Coluna4  Coluna5
+## 1 -0.828217       1 0.544132
+## 2  0.326118       5 0.374374
+## 3  0.656769       2 0.845580
+## 4  1.341015       1 0.895469
+## 5 -1.910155       3 0.898643
+## 6 -0.708027       2 0.554179</code></pre>
+<p>Na linha de seleciona as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.</p>
+<p>Nos exemplos abaixo, queremos manter a Coluna1 e Coluna2, primeiro passando o nome das colunas</p>
+<pre class="r"><code>subset(del_fil_sel_col, select = c(Coluna1,Coluna2))</code></pre>
+<pre class="r"><code>head(subset(del_fil_sel_col, select = c(Coluna1,Coluna2)))</code></pre>
+<pre><code>##   Coluna1 Coluna2
+## 1       1     114
+## 2       2     337
+## 3       3     484
+## 4       4     139
+## 5       5     436
+## 6       6     430</code></pre>
+<p>Ou novamente passando a posição</p>
+<pre class="r"><code>subset(del_fil_sel_col, select = c(1,2))</code></pre>
+<pre class="r"><code>head(subset(del_fil_sel_col, select = c(1,2)))</code></pre>
+<pre><code>##   Coluna1 Coluna2
+## 1       1     114
+## 2       2     337
+## 3       3     484
+## 4       4     139
+## 5       5     436
+## 6       6     430</code></pre>
+</div>
+<div id="excluindofiltrandoselecionando-linhas" class="section level3">
+<h3>8.8. Excluindo/Filtrando/Selecionando linhas</h3>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
@@ -808,15 +986,15 @@ empty_list[[2]] = c(1,2,3,4,5)</code></pre>
                                           &quot;800 - 900&quot;,
                                           &quot;900 - 1000&quot;),
                                Score2 = c(&quot;0.005478997&quot;,
-                                         &quot;0.002716428&quot;,
-                                         &quot;0.020077950&quot;,
-                                         &quot;0.134404157&quot;,
-                                         &quot;0.307310736&quot;,
-                                         &quot;0.287941420&quot;,
-                                         &quot;0.164402976&quot;,
-                                         &quot;0.061178694&quot;,
-                                         &quot;0.017597732&quot;,
-                                         &quot;0.003897484&quot;)))</code></pre>
+                                          &quot;0.002716428&quot;,
+                                          &quot;0.020077950&quot;,
+                                          &quot;0.134404157&quot;,
+                                          &quot;0.307310736&quot;,
+                                          &quot;0.287941420&quot;,
+                                          &quot;0.164402976&quot;,
+                                          &quot;0.061178694&quot;,
+                                          &quot;0.017597732&quot;,
+                                          &quot;0.003897484&quot;)))</code></pre>
 <ul>
 <li>Usando a função reduce com dataframes de tamanhos distintos</li>
 </ul>

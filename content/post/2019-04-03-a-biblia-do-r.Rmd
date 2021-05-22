@@ -509,7 +509,7 @@ cat("Saída exibida: ", seq(1,10,0.5))
 
 Em muitas situações queremos replicar estudos de simulação com valores aleatórios, para isso, podemos criar uma semente, e dessa maneira os números aleatórios iram se repetir até mesmo em outro computador. O comando que faz isso é o **set.seed**, onde o parâmetro dentro da função tem que ser o mesmo nas replicações.
 
-```{r,eval=FALSE}
+```{r}
 set.seed(57)
 ```
 
@@ -867,27 +867,222 @@ df2 = data.frame(col3 = c(7,2,7,56),
 df2
 ```
 
-### 8.2. Unindo dataframes
+### 8.2. Acessando elementos de um dataframe
+
+A estrutura de um dataframe é no formato de linha e coluna, e agora, aquele conceito de **onde** baseado em colchetes que foi apresentado anteriormente fará muito sentido. Considere a estrutura **[,]** antes da vírgula temos acesso a linhas de um dataframe e depois da linha temos acesso a colunas. Irei mostrar algumas formas distintas de acessar os elementos com o mesmo resultado
+
+Vamos considerar o dataframe abaixo como exemplo
+
+```{r,echo=FALSE}
+df2
+```
+
+Vamos acessar a primeira coluna desse dataframe, podemos usar a esturutra de colchetes único, como usamos no vetor. Vale ressaltar que estamos acessando a **COLUNA** e não o **CONTEÚDO** dessa coluna
+
+```{r}
+df2[1]
+```
+
+Se quisemos acessar o **CONTEÚDO** dessa coluna, podemos usar dois colchetes
+
+```{r}
+df2[[1]]
+```
+
+Ou o mais usual, usamos a estrutura de colchetes de linha e coluna, passando o parâmetro **APÓS** a vírgula, que significa que vamos acessar todos as linhas da coluna 1
+
+```{r}
+df2[,1]
+```
+
+Ou a estrutura de **$** chamando o nome da coluna
+
+```{r}
+df2$col3
+```
+
+Podemos também acessar todas as colunas da linha 1, assim, basta fazermos o contrário, colocarmos o parâmetro **ANTES** da vírgula
+
+```{r}
+df2[1,]
+```
+
+E ai vamos usando as combinações, podemos acessar a segunda linha da segunda coluna desse dataframe e assim por diante
+
+```{r}
+df2[2,2]
+```
+
+Isso é muito importante ficar gravado para trabalhar com dataframes
+
+### 8.3. Exibindo dataframes
+
+Temos algumas formas de visualizar os dataframes, para isso vamos usar como exemplo a tabela **mtcars** nativa do R.
+
+Podemos visualizar a tabela usando o **View**, no R abrira uma aba exibindo o dataframe.
+
+```{r,eval=FALSE}
+View(mtcars)
+```
+
+As vezes é interessante ver apenas as primeiras linhas de um dataframe, nesse caso usamos a função **head**
+
+```{r}
+head(mtcars)
+```
+
+Ou queremos ver as últimas linhas de um dataframe, então usamos a função **tail**
+
+```{r}
+tail(mtcars)
+```
+
+### 8.4. Adicionando colunas
+
+Para adicionar colunas podemos usar a estrutura de **$** na qual ja passamos o nome da nova coluna, nesse caso **col5**
+
+```{r}
+df2$col5 = c("a","b","c","d")
+```
+
+```{r,echo=FALSE}
+df2
+```
+
+Ou usarmos a estrutura de colchetes único, que já vimos que representa **COLUNA** e passamos o **CONTEÚDO** dessa coluna, nesse caso como não damos um nome, por padrão será **V** acompanhado do número da coluna
+
+```{r}
+df2[4] = c(3,2,1,2)
+```
+
+```{r,echo=FALSE}
+df2
+```
+
+### 8.5. Adicionando linhas
+
+Seguindo a mesma lógica das colunas, podemos adicionar linhas, mas indicando o parâmetro após a vírgula referente a posição da linha que deseja inserir e atribuindo o conteúdo a ela
+
+```{r}
+df2[5,] = c(1,2,"e",5)
+```
+
+```{r, echo=FALSE}
+df2
+```
+
+### 8.6. Unindo dataframes
 
 Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind
 
 ```{r}
-cbind(df1,df2)
+cbind(df1,df2[-5,])
 ```
 
-Para colunas usamos a função rbind caso as colunas tenham o mesmo nome
+Para colunas usamos a função rbind, caso as colunas tenham o mesmo nome
 
 ```{r}
-df3 = data.frame(col3 = c(7,2,7,56), 
-                 col4 = c(1,2,3,4))
-rbind(df2,df3)
+union_df1 = data.frame(col3 = c(7,2,7,56), 
+                       col4 = c(1,2,3,4))
+union_df2 = data.frame(col3 = c(7,2,7,56), 
+                       col4 = c(1,2,3,4))
+rbind(union_df1,union_df2)
 ```
 
-Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr
+Caso as colunas tenham nomes distintos podemos usar a função bind_rows do pacote dplyr, ela preenche com NA os valores que não tem no outro dataframe
 
 ```{r}
 dplyr::bind_rows(df1,df2)
 ```
+
+### 8.7. Excluindo/Filtrando/Selecionando colunas
+
+Temos diversas formas de fazer isso, vamos criar um dataframe com o que foi aprendido até agora para usarmos como base para os exempos
+
+```{r}
+del_fil_sel_col = data.frame(Coluna1 = seq(1,100,1),
+                             Coluna2 = sample(500,100),
+                             Coluna3 = rnorm(100),
+                             Coluna4 = rpois(100,3),
+                             Coluna5 = runif(100),
+                             Coluna6 = rep(1:5, 20))
+```
+
+Vamos ver as primeiras linhas desse dataframe gerado
+
+```{r}
+head(del_fil_sel_col)
+```
+
+A primeira forma que vamos ver aqui é a mais simples, basta atribuirmos o valor **NULL** para a coluna e ela será excluida do dataframe, simples, objetivo, útil e prático.
+
+```{r}
+del_fil_sel_col$Coluna6 = NULL
+```
+
+Observe que a Coluna6 não está mais no dataframe, essa forma é um caminho sem volta, pois uma vez atribuido o valor **NULL** para a coluna, ela já está deletada
+
+```{r,echo=FALSE}
+head(del_fil_sel_col)
+```
+
+As demais formas, para que a coluna seja realmente excluída, é necessário salvá-la em cima do mesmo dataframe ou em um novo como preferir
+
+A próxima forma é utilizar a sintaxe de colchetes linhas e colunas, para excluir a coluna desejada basta adicionar o sinal de menos antes da posição da coluna
+
+```{r,eval=FALSE}
+del_fil_sel_col[,-5]
+```
+
+```{r,echo=FALSE}
+head(del_fil_sel_col[,-5])
+```
+
+Uma outra forma é usar a função **subset** selecionando ou apenas as colunas que deseja ficar, ou adicionando o sinal de menos antes do vetor, as que deseja excluir. Nessa forma você pode passar tanto o nome da coluna como a sua posição, o resultado é o mesmo
+
+No caso abaixo, queremos excluir a primeira e a segunda coluna, passando o nome delas
+
+```{r, eval=FALSE}
+subset(del_fil_sel_col, select = -c(Coluna1,Coluna2))
+```
+
+```{r,echo=FALSE}
+head(subset(del_fil_sel_col, select = -c(Coluna1,Coluna2)))
+```
+
+Agora podemos passar a posição delas
+
+```{r, eval=FALSE}
+subset(del_fil_sel_col, select = -c(1,2))
+```
+
+```{r}
+head(subset(del_fil_sel_col, select = -c(1,2)))
+```
+
+Na linha de seleciona as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.
+
+Nos exemplos abaixo, queremos manter a Coluna1 e Coluna2, primeiro passando o nome das colunas
+
+```{r, eval=FALSE}
+subset(del_fil_sel_col, select = c(Coluna1,Coluna2))
+```
+
+```{r}
+head(subset(del_fil_sel_col, select = c(Coluna1,Coluna2)))
+```
+
+Ou novamente passando a posição
+
+```{r, eval=FALSE}
+subset(del_fil_sel_col, select = c(1,2))
+```
+
+```{r}
+head(subset(del_fil_sel_col, select = c(1,2)))
+```
+
+### 8.8. Excluindo/Filtrando/Selecionando linhas
 
 [Volte ao topo](#abcd)
 
@@ -996,15 +1191,15 @@ reduce_merge = list(data.frame(Faixas = c("100 - 200",
                                           "800 - 900",
                                           "900 - 1000"),
                                Score2 = c("0.005478997",
-                                         "0.002716428",
-                                         "0.020077950",
-                                         "0.134404157",
-                                         "0.307310736",
-                                         "0.287941420",
-                                         "0.164402976",
-                                         "0.061178694",
-                                         "0.017597732",
-                                         "0.003897484")))
+                                          "0.002716428",
+                                          "0.020077950",
+                                          "0.134404157",
+                                          "0.307310736",
+                                          "0.287941420",
+                                          "0.164402976",
+                                          "0.061178694",
+                                          "0.017597732",
+                                          "0.003897484")))
 ```
 
 * Usando a função reduce com dataframes de tamanhos distintos
