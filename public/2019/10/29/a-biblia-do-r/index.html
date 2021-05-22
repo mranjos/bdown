@@ -64,7 +64,7 @@
 
   <article class="article">
     
-    <span class="article-duration">30 min read</span>
+    <span class="article-duration">37 min read</span>
     
 
     <h1 class="article-title">A Bíblia do R</h1>
@@ -76,7 +76,6 @@
     <div class="article-content">
       
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 <div id="TOC">
 <ul>
@@ -101,11 +100,13 @@
 <li><a href="#criando-um-dataframe">8.1. Criando um Dataframe</a></li>
 <li><a href="#acessando-elementos-de-um-dataframe">8.2. Acessando elementos de um dataframe</a></li>
 <li><a href="#exibindo-dataframes">8.3. Exibindo dataframes</a></li>
-<li><a href="#adicionando-colunas">8.4. Adicionando colunas</a></li>
-<li><a href="#adicionando-linhas">8.5. Adicionando linhas</a></li>
-<li><a href="#unindo-dataframes">8.6. Unindo dataframes</a></li>
-<li><a href="#excluindofiltrandoselecionando-colunas">8.7. Excluindo/Filtrando/Selecionando colunas</a></li>
-<li><a href="#excluindofiltrandoselecionando-linhas">8.8. Excluindo/Filtrando/Selecionando linhas</a></li>
+<li><a href="#informações-de-um-dataframe">8.4. Informações de um dataframe</a></li>
+<li><a href="#adicionando-colunas">8.5. Adicionando colunas</a></li>
+<li><a href="#adicionando-linhas">8.6. Adicionando linhas</a></li>
+<li><a href="#unindo-dataframes">8.7. Unindo dataframes</a></li>
+<li><a href="#excluindofiltrandoselecionando-colunas">8.8. Excluindo/Filtrando/Selecionando colunas</a></li>
+<li><a href="#excluindofiltrandoselecionando-linhas">8.9. Excluindo/Filtrando/Selecionando linhas</a></li>
+<li><a href="#levels-das-variáveis-de-um-dataframe">8.10. Levels das variáveis de um dataframe</a></li>
 </ul></li>
 <li><a href="#listas">9. Listas</a>
 <ul>
@@ -365,34 +366,34 @@ vet_4 = c(17,12,15,19,17)</code></pre>
 </ul>
 <p>10 números aleatórios normais com média 0 e desvio padrão 1.</p>
 <pre class="r"><code>rnorm(10, mean = 0, sd = 1)</code></pre>
-<pre><code>##  [1]  0.458997  1.697554  0.478527 -0.124723 -0.119775  0.159742 -1.649617
-##  [8] -0.782630 -0.469278 -0.220617</code></pre>
+<pre><code>##  [1] -0.1459282 -0.4603394 -1.7908309 -0.5528748 -1.1889118 -0.7869200
+##  [7] -0.0241061 -0.0288417  0.5473144  0.9793549</code></pre>
 <p>10 números aleatórios com distribuição poisson com número esperado de ocorrências e variância iguais a 3.</p>
 <pre class="r"><code>rpois(10,3) #poisson</code></pre>
-<pre><code>##  [1] 5 2 5 4 5 4 5 2 4 3</code></pre>
+<pre><code>##  [1] 2 1 5 3 7 5 3 2 4 5</code></pre>
 <p>Para a binomial temos algumas situações, primeiros podemos querer realizar 400 jogos, onde cada jogo tem 10 lançamentos de moeda, cuja probabilidade de sucesso é 0.5. Nesse caso esperamos que em média, o número de sucessos seja aproximadamente 5, como modemos ver abaixo:</p>
 <pre class="r"><code>rbinom(400, 10, 0.5)</code></pre>
 <pre class="r"><code>mean(rbinom(400, 10, 0.5))</code></pre>
-<pre><code>## [1] 4.9825</code></pre>
+<pre><code>## [1] 5.015</code></pre>
 <p>Dessa forma se fizemos uma rodada de lançamento de moedas, onde cada rodada tem 10 jogos e somamos o número de sucessos com probabilidade 0.5 cada, tem o mesmo valor esperado do que somar 10 rodadas com 1 lançamento cada, cuja resposta é 0 para fracasso e 1 para sucesso e com probabilidade 0.5 de sucesso em cada lançamento.</p>
 <pre class="r"><code>rbinom(1, 10, 0.5)</code></pre>
-<pre><code>## Saída exibida:  3</code></pre>
-<pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
 <pre><code>## Saída exibida:  4</code></pre>
+<pre class="r"><code>sum(rbinom(10, 1, 0.5))</code></pre>
+<pre><code>## Saída exibida:  8</code></pre>
 <p>Mais usual é gerar números aleatórios com a mesma probabilidade de sucesso utilizando a distribuição uniforme, nesse casos podemos gerar 10 números na qual o mínimo é 1 e o máximo é 10.</p>
 <pre class="r"><code>runif(10,min = 1, max = 10) #uniforme </code></pre>
-<pre><code>##  [1] 6.47256 5.07311 5.16664 9.90259 3.49947 7.66584 6.72531 6.51183 6.85079
-## [10] 7.00769</code></pre>
-<pre><code>## Saída exibida:  9.44712 8.03092 1.73738 2.34765 3.92006 2.21477 6.57435 6.19827 3.63518 2.09214</code></pre>
+<pre><code>##  [1] 5.68990 8.39520 4.68579 8.68578 8.27701 5.08838 8.51827 5.65140 1.17855
+## [10] 3.55917</code></pre>
+<pre><code>## Saída exibida:  8.61481 1.18603 4.70026 6.90436 5.05813 2.46561 7.68231 8.95363 2.23508 4.35896</code></pre>
 <p>A mesma lógica pode ser usada mas agora gerando apenas números inteiros através da função sample, gerando 10 números de -10 a 10.</p>
 <pre class="r"><code>sample(-10:10, 10)</code></pre>
-<pre><code>## Saída exibida:  -6 -7 8 -10 -2 -9 9 -3 5 2</code></pre>
+<pre><code>## Saída exibida:  7 9 8 0 10 -8 4 2 5 -1</code></pre>
 <p>Além disso, utilizando o parâmetro <strong>replace</strong> podemos repetir números</p>
 <pre class="r"><code>sample(0:10, 10,replace = T)</code></pre>
-<pre><code>## Saída exibida:  6 4 10 5 9 3 5 3 2 6</code></pre>
+<pre><code>## Saída exibida:  8 2 1 3 6 10 6 1 2 5</code></pre>
 <p>Com esse comando podemos sortear nomes também. Para isso, basta criarmos um vetor de nomes, fora ou dentro do comando, e especificar quantos nomes queremos que seja sorteados.</p>
 <pre class="r"><code>sample(c(&quot;João&quot;,&quot;Maria&quot;,&quot;José&quot;,&quot;Pedro&quot;,&quot;Julieta&quot;), 2)</code></pre>
-<pre><code>## Saída exibida:  Pedro Julieta</code></pre>
+<pre><code>## Saída exibida:  João Pedro</code></pre>
 <ul>
 <li>Vetores sequenciais pulando de acordo com o intervalo desejado.</li>
 </ul>
@@ -535,7 +536,7 @@ vet_1 / vet_4
 <p>Data frames nada mais são do que tabelas, com linhas e colunas. é praticamente uma matriz com rótulos de colunas. Também são conjunto de vetores, mas diferente de matrizes, cada coluna pode ser um tipo, por exemplo, a coluna 1 pode ser numérica, a coluna 2 pode ser character e a coluna 3 pode ser fator, na matriz ou são numericos ou são caracteres, não temos essa mistura e convenhamos, essa mistura é o que mais ocorre na vida real, pois temois informações como UF, Sexo, Idade, Peso, tudo junto em uma mesma tabela.</p>
 <pre class="r"><code>class(data.frame())</code></pre>
 <pre><code>## Saída exibida:  data.frame</code></pre>
-<p>Poré, em um data.frame quando temos muitas colunas, fica praticamente inviável ficar dando um <strong>class</strong> uma por uma, pensando nisso o R possui uma função chamada <strong>str</strong> que nos mostra os tipos de de cada coluna.</p>
+<p>Porém, em um data.frame quando temos muitas colunas, fica praticamente inviável ficar dando um <strong>class</strong> uma por uma, pensando nisso o R possui uma função chamada <strong>str</strong> que nos mostra os tipos de de cada coluna.</p>
 <pre class="r"><code>df_class = data.frame(col1 = c(7,2,7,56), col2 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;))</code></pre>
 <pre class="r"><code>str(df_class,list.len=ncol(df_class))</code></pre>
 <pre><code>## &#39;data.frame&#39;:    4 obs. of  2 variables:
@@ -546,36 +547,9 @@ vet_1 / vet_4
                       Classe  = sapply(df_class, class))
 
 row.names(Class_DF) = NULL</code></pre>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:center;">
-Variavel
-</th>
-<th style="text-align:center;">
-Classe
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-col1
-</td>
-<td style="text-align:center;">
-numeric
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-col2
-</td>
-<td style="text-align:center;">
-character
-</td>
-</tr>
-</tbody>
-</table>
+<pre><code>##   Variavel    Classe
+## 1     col1   numeric
+## 2     col2 character</code></pre>
 <ul>
 <li>Listas</li>
 </ul>
@@ -703,26 +677,111 @@ df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
 <p>Podemos visualizar a tabela usando o <strong>View</strong>, no R abrira uma aba exibindo o dataframe.</p>
 <pre class="r"><code>View(mtcars)</code></pre>
 <p>As vezes é interessante ver apenas as primeiras linhas de um dataframe, nesse caso usamos a função <strong>head</strong></p>
-<pre class="r"><code>head(mtcars)</code></pre>
+<pre class="r"><code>head(mtcars, n = 5)</code></pre>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
 ## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</code></pre>
 <p>Ou queremos ver as últimas linhas de um dataframe, então usamos a função <strong>tail</strong></p>
-<pre class="r"><code>tail(mtcars)</code></pre>
-<pre><code>##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
-## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
-## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
-## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
-## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
-## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
-## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
+<pre class="r"><code>tail(mtcars, n = 3)</code></pre>
+<pre><code>##                mpg cyl disp  hp drat   wt qsec vs am gear carb
+## Ferrari Dino  19.7   6  145 175 3.62 2.77 15.5  0  1    5    6
+## Maserati Bora 15.0   8  301 335 3.54 3.57 14.6  0  1    5    8
+## Volvo 142E    21.4   4  121 109 4.11 2.78 18.6  1  1    4    2</code></pre>
+</div>
+<div id="informações-de-um-dataframe" class="section level3">
+<h3>8.4. Informações de um dataframe</h3>
+<ul>
+<li>Número de linhas</li>
+</ul>
+<pre class="r"><code>nrow(mtcars)</code></pre>
+<pre><code>## [1] 32</code></pre>
+<ul>
+<li>Número de colunas</li>
+</ul>
+<pre class="r"><code>ncol(mtcars)</code></pre>
+<pre><code>## [1] 11</code></pre>
+<ul>
+<li>Dimensão</li>
+</ul>
+<pre class="r"><code>dim(mtcars)</code></pre>
+<pre><code>## [1] 32 11</code></pre>
+<ul>
+<li>Tamanho de uma coluna específica</li>
+</ul>
+<pre class="r"><code>length(mtcars[,2])</code></pre>
+<pre><code>## [1] 32</code></pre>
+<ul>
+<li>Estatísticas básicas</li>
+</ul>
+<pre class="r"><code>summary(mtcars)</code></pre>
+<pre><code>##       mpg            cyl            disp             hp             drat     
+##  Min.   :10.4   Min.   :4.00   Min.   : 71.1   Min.   : 52.0   Min.   :2.76  
+##  1st Qu.:15.4   1st Qu.:4.00   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.08  
+##  Median :19.2   Median :6.00   Median :196.3   Median :123.0   Median :3.69  
+##  Mean   :20.1   Mean   :6.19   Mean   :230.7   Mean   :146.7   Mean   :3.60  
+##  3rd Qu.:22.8   3rd Qu.:8.00   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.92  
+##  Max.   :33.9   Max.   :8.00   Max.   :472.0   Max.   :335.0   Max.   :4.93  
+##        wt            qsec            vs              am             gear     
+##  Min.   :1.51   Min.   :14.5   Min.   :0.000   Min.   :0.000   Min.   :3.00  
+##  1st Qu.:2.58   1st Qu.:16.9   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:3.00  
+##  Median :3.33   Median :17.7   Median :0.000   Median :0.000   Median :4.00  
+##  Mean   :3.22   Mean   :17.8   Mean   :0.438   Mean   :0.406   Mean   :3.69  
+##  3rd Qu.:3.61   3rd Qu.:18.9   3rd Qu.:1.000   3rd Qu.:1.000   3rd Qu.:4.00  
+##  Max.   :5.42   Max.   :22.9   Max.   :1.000   Max.   :1.000   Max.   :5.00  
+##       carb     
+##  Min.   :1.00  
+##  1st Qu.:2.00  
+##  Median :2.00  
+##  Mean   :2.81  
+##  3rd Qu.:4.00  
+##  Max.   :8.00</code></pre>
+<ul>
+<li>Tipo de variáveis de um dataframe</li>
+</ul>
+<p>Já vimos anteriormente alguns métodos. Para verificar os tipos de variáveis de um dataframe, podememos usar a function <strong>str</strong>, porém se o banco de dados é muito grande, ela será truncada, para visualizar o banco todo, usamos o parâmentro <strong>list.len</strong></p>
+<pre class="r"><code>str(iris,list.len=ncol(iris))</code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>Caso queira apenas os tipos das variaveis mesmo, podemos usar a seguinte lógica</p>
+<pre class="r"><code>data.frame(Class = sapply(iris, class))</code></pre>
+<pre><code>##                Class
+## Sepal.Length numeric
+## Sepal.Width  numeric
+## Petal.Length numeric
+## Petal.Width  numeric
+## Species       factor</code></pre>
+<ul>
+<li>Nome das colunas</li>
+</ul>
+<pre class="r"><code>colnames(iris)</code></pre>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>Podemos usar isso para alterar o nome de uma coluna especifica</p>
+<pre class="r"><code>colnames(iris)[2] = &quot;novo_nome&quot;
+colnames(iris)</code></pre>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;novo_nome&quot;    &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>Ou de todas as colunas</p>
+<pre class="r"><code>colnames(iris) = c(&quot;col1&quot;,&quot;col2&quot;,&quot;col3&quot;,&quot;col4&quot;,&quot;col5&quot;)
+colnames(iris)</code></pre>
+<pre><code>## [1] &quot;col1&quot; &quot;col2&quot; &quot;col3&quot; &quot;col4&quot; &quot;col5&quot;</code></pre>
+<ul>
+<li>Nome das linhas</li>
+</ul>
+<pre class="r"><code>rownames(head(iris))</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</code></pre>
+<p>Também podemos alterar o nome das linhas usando a mesma lógica</p>
+<pre class="r"><code>rownames(iris)[1] = &quot;linha_1&quot;
+rownames(head(iris))</code></pre>
+<pre><code>## [1] &quot;linha_1&quot; &quot;2&quot;       &quot;3&quot;       &quot;4&quot;       &quot;5&quot;       &quot;6&quot;</code></pre>
 </div>
 <div id="adicionando-colunas" class="section level3">
-<h3>8.4. Adicionando colunas</h3>
+<h3>8.5. Adicionando colunas</h3>
 <p>Para adicionar colunas podemos usar a estrutura de <strong>$</strong> na qual ja passamos o nome da nova coluna, nesse caso <strong>col5</strong></p>
 <pre class="r"><code>df2$col5 = c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;)</code></pre>
 <pre><code>##   col3 col4 col5
@@ -737,9 +796,20 @@ df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
 ## 2    2    2    b  2
 ## 3    7    3    c  1
 ## 4   56    4    d  2</code></pre>
+<p>Podemos transformar o nome das linhas do nosso dataframe em uma coluna do mesmo</p>
+<pre class="r"><code>head(cbind(linhas = rownames(iris), iris))</code></pre>
+<pre><code>##          linhas col1 col2 col3 col4   col5
+## linha_1 linha_1  5.1  3.5  1.4  0.2 setosa
+## 2             2  4.9  3.0  1.4  0.2 setosa
+## 3             3  4.7  3.2  1.3  0.2 setosa
+## 4             4  4.6  3.1  1.5  0.2 setosa
+## 5             5  5.0  3.6  1.4  0.2 setosa
+## 6             6  5.4  3.9  1.7  0.4 setosa</code></pre>
+<p>O contrário também é valido, podemos transformar uma coluna especifica em nosso rownames, desde que não seja duplicada</p>
+<pre class="r"><code>rownames(dataframe) = dataframe[,5]</code></pre>
 </div>
 <div id="adicionando-linhas" class="section level3">
-<h3>8.5. Adicionando linhas</h3>
+<h3>8.6. Adicionando linhas</h3>
 <p>Seguindo a mesma lógica das colunas, podemos adicionar linhas, mas indicando o parâmetro após a vírgula referente a posição da linha que deseja inserir e atribuindo o conteúdo a ela</p>
 <pre class="r"><code>df2[5,] = c(1,2,&quot;e&quot;,5)</code></pre>
 <pre><code>##   col3 col4 col5 V4
@@ -750,7 +820,7 @@ df1 = data.frame(col1 = v1, col2 = v2)</code></pre>
 ## 5    1    2    e  5</code></pre>
 </div>
 <div id="unindo-dataframes" class="section level3">
-<h3>8.6. Unindo dataframes</h3>
+<h3>8.7. Unindo dataframes</h3>
 <p>Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind</p>
 <pre class="r"><code>cbind(df1,df2[-5,])</code></pre>
 <pre><code>##   col1 col2 col3 col4 col5 V4
@@ -787,7 +857,7 @@ rbind(union_df1,union_df2)</code></pre>
 ## 9   NA   NA    1    2    e    5</code></pre>
 </div>
 <div id="excluindofiltrandoselecionando-colunas" class="section level3">
-<h3>8.7. Excluindo/Filtrando/Selecionando colunas</h3>
+<h3>8.8. Excluindo/Filtrando/Selecionando colunas</h3>
 <p>Temos diversas formas de fazer isso, vamos criar um dataframe com o que foi aprendido até agora para usarmos como base para os exempos</p>
 <pre class="r"><code>del_fil_sel_col = data.frame(Coluna1 = seq(1,100,1),
                              Coluna2 = sample(500,100),
@@ -844,7 +914,7 @@ rbind(union_df1,union_df2)</code></pre>
 ## 4  1.341015       1 0.895469
 ## 5 -1.910155       3 0.898643
 ## 6 -0.708027       2 0.554179</code></pre>
-<p>Na linha de seleciona as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.</p>
+<p>Podemos selecionar as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.</p>
 <p>Nos exemplos abaixo, queremos manter a Coluna1 e Coluna2, primeiro passando o nome das colunas</p>
 <pre class="r"><code>subset(del_fil_sel_col, select = c(Coluna1,Coluna2))</code></pre>
 <pre class="r"><code>head(subset(del_fil_sel_col, select = c(Coluna1,Coluna2)))</code></pre>
@@ -865,9 +935,146 @@ rbind(union_df1,union_df2)</code></pre>
 ## 4       4     139
 ## 5       5     436
 ## 6       6     430</code></pre>
+<p>Isso também pode ser feito utilizando o pacote <strong>dplyr</strong> passando a posição</p>
+<pre class="r"><code>library(dplyr)
+
+head(del_fil_sel_col %&gt;% select(1,2))</code></pre>
+<pre><code>##   Coluna1 Coluna2
+## 1       1     114
+## 2       2     337
+## 3       3     484
+## 4       4     139
+## 5       5     436
+## 6       6     430</code></pre>
+<p>Ou passando o nome das colunas</p>
+<pre class="r"><code>library(dplyr)
+
+head(del_fil_sel_col %&gt;% select(Coluna1,Coluna2))</code></pre>
+<pre><code>##   Coluna1 Coluna2
+## 1       1     114
+## 2       2     337
+## 3       3     484
+## 4       4     139
+## 5       5     436
+## 6       6     430</code></pre>
+<ul>
+<li>Selecionando colunas de acordo com o tipo da variável</li>
+</ul>
+<p>Podemos fazer isso com o auxílo do pacote <strong>dplyr</strong>
+Como base vamos utilizar o dataframe iris como exemplo, note que temos 4 colunas numéricas e uma factor</p>
+<pre><code>##         col1 col2 col3 col4   col5
+## linha_1  5.1  3.5  1.4  0.2 setosa
+## 2        4.9  3.0  1.4  0.2 setosa
+## 3        4.7  3.2  1.3  0.2 setosa
+## 4        4.6  3.1  1.5  0.2 setosa
+## 5        5.0  3.6  1.4  0.2 setosa
+## 6        5.4  3.9  1.7  0.4 setosa</code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ col1: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ col2: num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ col3: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ col4: num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ col5: Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<ul>
+<li>Selecionando colunas que são numéricas apenas</li>
+</ul>
+<p>Note que a coluna Species não aparece, pois ela não é numerica e estamos selecionando apenas as que são numéricas</p>
+<pre class="r"><code>library(dplyr)
+
+head(iris) %&gt;% 
+  select_if(is.numeric)</code></pre>
+<pre><code>##         col1 col2 col3 col4
+## linha_1  5.1  3.5  1.4  0.2
+## 2        4.9  3.0  1.4  0.2
+## 3        4.7  3.2  1.3  0.2
+## 4        4.6  3.1  1.5  0.2
+## 5        5.0  3.6  1.4  0.2
+## 6        5.4  3.9  1.7  0.4</code></pre>
+<p>Caso não queira usar nenhum pacote, também conseguimos fazer a operação usando o R Raiz</p>
+<pre class="r"><code>Filter(is.numeric,head(iris))</code></pre>
+<pre><code>##         col1 col2 col3 col4
+## linha_1  5.1  3.5  1.4  0.2
+## 2        4.9  3.0  1.4  0.2
+## 3        4.7  3.2  1.3  0.2
+## 4        4.6  3.1  1.5  0.2
+## 5        5.0  3.6  1.4  0.2
+## 6        5.4  3.9  1.7  0.4</code></pre>
+<p>Se ainda não fucou satisfeito, podemos usar o R Raiz com a function sapply</p>
+<pre class="r"><code>head(iris[,sapply(iris, is.numeric)])</code></pre>
+<pre><code>##         col1 col2 col3 col4
+## linha_1  5.1  3.5  1.4  0.2
+## 2        4.9  3.0  1.4  0.2
+## 3        4.7  3.2  1.3  0.2
+## 4        4.6  3.1  1.5  0.2
+## 5        5.0  3.6  1.4  0.2
+## 6        5.4  3.9  1.7  0.4</code></pre>
+<p>Podemos chegar no mesmo objetivo mas ao invés de selecionar as numéricas, podemos selecionar as que NÃO são factor, acrescentando a function <strong>negate</strong> do pacote <strong>purrr</strong></p>
+<pre class="r"><code>library(dplyr)
+library(purrr)
+
+head(iris) %&gt;% 
+  select_if(negate(is.factor))</code></pre>
+<pre><code>##         col1 col2 col3 col4
+## linha_1  5.1  3.5  1.4  0.2
+## 2        4.9  3.0  1.4  0.2
+## 3        4.7  3.2  1.3  0.2
+## 4        4.6  3.1  1.5  0.2
+## 5        5.0  3.6  1.4  0.2
+## 6        5.4  3.9  1.7  0.4</code></pre>
+<ul>
+<li>Selecionando colunas com mais de um tipo</li>
+</ul>
+<p>Nesse caso precisamos criar uma function dentro do select_if</p>
+<pre class="r"><code>library(dplyr)
+
+head(iris) %&gt;% 
+  select_if(function(col) is.numeric(col) |
+              is.factor(col))</code></pre>
+<pre><code>##         col1 col2 col3 col4   col5
+## linha_1  5.1  3.5  1.4  0.2 setosa
+## 2        4.9  3.0  1.4  0.2 setosa
+## 3        4.7  3.2  1.3  0.2 setosa
+## 4        4.6  3.1  1.5  0.2 setosa
+## 5        5.0  3.6  1.4  0.2 setosa
+## 6        5.4  3.9  1.7  0.4 setosa</code></pre>
+<p>Ou novamente sem utilizar nenhum pacote</p>
+<pre class="r"><code>Filter(function(col) is.numeric(col) |
+         is.factor(col),head(iris))</code></pre>
+<pre><code>##         col1 col2 col3 col4   col5
+## linha_1  5.1  3.5  1.4  0.2 setosa
+## 2        4.9  3.0  1.4  0.2 setosa
+## 3        4.7  3.2  1.3  0.2 setosa
+## 4        4.6  3.1  1.5  0.2 setosa
+## 5        5.0  3.6  1.4  0.2 setosa
+## 6        5.4  3.9  1.7  0.4 setosa</code></pre>
+<p>E utilizando a function sapply</p>
+<pre class="r"><code>head(iris[,sapply(iris, function(col) is.numeric(col) |
+                    is.factor(col))])</code></pre>
+<pre><code>##         col1 col2 col3 col4   col5
+## linha_1  5.1  3.5  1.4  0.2 setosa
+## 2        4.9  3.0  1.4  0.2 setosa
+## 3        4.7  3.2  1.3  0.2 setosa
+## 4        4.6  3.1  1.5  0.2 setosa
+## 5        5.0  3.6  1.4  0.2 setosa
+## 6        5.4  3.9  1.7  0.4 setosa</code></pre>
+<p>Cabe a você escolher o jeito que quer usar e a forma mais eficiente para o seu caso!</p>
 </div>
 <div id="excluindofiltrandoselecionando-linhas" class="section level3">
-<h3>8.8. Excluindo/Filtrando/Selecionando linhas</h3>
+<h3>8.9. Excluindo/Filtrando/Selecionando linhas</h3>
+</div>
+<div id="levels-das-variáveis-de-um-dataframe" class="section level3">
+<h3>8.10. Levels das variáveis de um dataframe</h3>
+<p>Novamente podemos utilizar a function <strong>sapply</strong> para esse objetivo, junto com a function <strong>nlevels</strong></p>
+<pre class="r"><code>data.frame(Level = sapply(iris, nlevels))</code></pre>
+<pre><code>##      Level
+## col1     0
+## col2     0
+## col3     0
+## col4     0
+## col5     3</code></pre>
+<p>Com isso podemos ir mais além, por exemplo, pegar os nomes das variáveis que tem mais de um level no factor</p>
+<pre class="r"><code>colnames(iris)[sapply(iris, nlevels) &gt; 1]</code></pre>
+<pre><code>## [1] &quot;col5&quot;</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>
@@ -996,7 +1203,7 @@ empty_list[[2]] = c(1,2,3,4,5)</code></pre>
                                           &quot;0.017597732&quot;,
                                           &quot;0.003897484&quot;)))</code></pre>
 <ul>
-<li>Usando a função reduce com dataframes de tamanhos distintos</li>
+<li>Usando a função reduce com dataframes de tamanhos distintos, como se fosse um left join</li>
 </ul>
 <pre class="r"><code>Reduce(function(x,y) merge(x, y, all =T),
        reduce_merge)</code></pre>
@@ -1061,6 +1268,14 @@ empty_list[[2]] = c(1,2,3,4,5)</code></pre>
 <h3>9.5. Inserindo objetos em uma lista</h3>
 <p>Se podemos excluir, também podemos adicionar elementos a uma lista, nesse caso, basta chamarmos a lista colocando dentro do colchete o nome do novo item, ou a posição.</p>
 <pre class="r"><code>reduce_merge[[&#39;newDataFrame&#39;]] = data.frame(Coluna1 = c(7,7,7,7,7))</code></pre>
+<pre><code>##   Coluna1
+## 1       7
+## 2       7
+## 3       7
+## 4       7
+## 5       7</code></pre>
+<pre class="r"><code>reduce_merge[[4]] = c(1,2,3,4,5)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
 <p><a href="#abcd">Volte ao topo</a></p>
 </div>
 </div>

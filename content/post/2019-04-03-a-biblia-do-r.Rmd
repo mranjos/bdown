@@ -701,7 +701,6 @@ Para sabemos quantos níveis/levels tem um vetor de fator, usamos a função **n
 nlevels(factor(c("a","a","1","3")))
 ```
 
-
 * Matrizes
 
 ```{r,eval=FALSE}
@@ -724,7 +723,7 @@ class(data.frame())
 cat("Saída exibida: ", class(data.frame()))
 ```
 
-Poré, em um data.frame quando temos muitas colunas, fica praticamente inviável ficar dando um **class** uma por uma, pensando nisso o R possui uma função chamada **str** que nos mostra os tipos de de cada coluna.
+Porém, em um data.frame quando temos muitas colunas, fica praticamente inviável ficar dando um **class** uma por uma, pensando nisso o R possui uma função chamada **str** que nos mostra os tipos de de cada coluna.
 
 ```{r}
 df_class = data.frame(col1 = c(7,2,7,56), col2 = c("a","b","c","d"))
@@ -745,10 +744,7 @@ row.names(Class_DF) = NULL
 ```
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
-library(knitr)
-library(kableExtra)
-
-kable(Class_DF, align = "c") %>% kable_styling(bootstrap_options = "striped", full_width = F,position = "center")
+Class_DF
 ```
 
 * Listas
@@ -928,16 +924,95 @@ View(mtcars)
 As vezes é interessante ver apenas as primeiras linhas de um dataframe, nesse caso usamos a função **head**
 
 ```{r}
-head(mtcars)
+head(mtcars, n = 5)
 ```
 
 Ou queremos ver as últimas linhas de um dataframe, então usamos a função **tail**
 
 ```{r}
-tail(mtcars)
+tail(mtcars, n = 3)
 ```
 
-### 8.4. Adicionando colunas
+### 8.4. Informações de um dataframe
+
+* Número de linhas
+
+```{r}
+nrow(mtcars)
+```
+
+* Número de colunas
+
+```{r}
+ncol(mtcars)
+```
+
+* Dimensão
+
+```{r}
+dim(mtcars)
+```
+
+* Tamanho de uma coluna específica
+
+```{r}
+length(mtcars[,2])
+```
+
+* Estatísticas básicas
+
+```{r}
+summary(mtcars)
+```
+
+* Tipo de variáveis de um dataframe
+
+Já vimos anteriormente alguns métodos. Para verificar os tipos de variáveis de um dataframe, podememos usar a function **str**, porém se o banco de dados é muito grande, ela será truncada, para visualizar o banco todo, usamos o parâmentro **list.len**
+
+```{r}
+str(iris,list.len=ncol(iris))
+```
+
+Caso queira apenas os tipos das variaveis mesmo, podemos usar a seguinte lógica
+
+```{r}
+data.frame(Class = sapply(iris, class))
+```
+
+* Nome das colunas
+
+```{r}
+colnames(iris)
+```
+
+Podemos usar isso para alterar o nome de uma coluna especifica
+
+```{r}
+colnames(iris)[2] = "novo_nome"
+colnames(iris)
+```
+
+Ou de todas as colunas
+
+```{r}
+colnames(iris) = c("col1","col2","col3","col4","col5")
+colnames(iris)
+```
+
+* Nome das linhas
+
+```{r}
+rownames(head(iris))
+```
+
+Também podemos alterar o nome das linhas usando a mesma lógica
+
+```{r}
+rownames(iris)[1] = "linha_1"
+rownames(head(iris))
+```
+
+### 8.5. Adicionando colunas
 
 Para adicionar colunas podemos usar a estrutura de **$** na qual ja passamos o nome da nova coluna, nesse caso **col5**
 
@@ -959,7 +1034,19 @@ df2[4] = c(3,2,1,2)
 df2
 ```
 
-### 8.5. Adicionando linhas
+Podemos transformar o nome das linhas do nosso dataframe em uma coluna do mesmo
+
+```{r}
+head(cbind(linhas = rownames(iris), iris))
+```
+
+O contrário também é valido, podemos transformar uma coluna especifica em nosso rownames, desde que não seja duplicada
+
+```{r, eval=FALSE}
+rownames(dataframe) = dataframe[,5]
+```
+
+### 8.6. Adicionando linhas
 
 Seguindo a mesma lógica das colunas, podemos adicionar linhas, mas indicando o parâmetro após a vírgula referente a posição da linha que deseja inserir e atribuindo o conteúdo a ela
 
@@ -971,7 +1058,7 @@ df2[5,] = c(1,2,"e",5)
 df2
 ```
 
-### 8.6. Unindo dataframes
+### 8.7. Unindo dataframes
 
 Podemos também juntar dois dataframes, tanto em linhas quanto em colunas, para colunas usamos a funçao cbind
 
@@ -995,7 +1082,7 @@ Caso as colunas tenham nomes distintos podemos usar a função bind_rows do paco
 dplyr::bind_rows(df1,df2)
 ```
 
-### 8.7. Excluindo/Filtrando/Selecionando colunas
+### 8.8. Excluindo/Filtrando/Selecionando colunas
 
 Temos diversas formas de fazer isso, vamos criar um dataframe com o que foi aprendido até agora para usarmos como base para os exempos
 
@@ -1060,7 +1147,7 @@ subset(del_fil_sel_col, select = -c(1,2))
 head(subset(del_fil_sel_col, select = -c(1,2)))
 ```
 
-Na linha de seleciona as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.
+Podemos selecionar as colunas que queremos manter, basta retirarmos o sinal de menos antes do vetor.
 
 Nos exemplos abaixo, queremos manter a Coluna1 e Coluna2, primeiro passando o nome das colunas
 
@@ -1082,7 +1169,112 @@ subset(del_fil_sel_col, select = c(1,2))
 head(subset(del_fil_sel_col, select = c(1,2)))
 ```
 
-### 8.8. Excluindo/Filtrando/Selecionando linhas
+Isso também pode ser feito utilizando o pacote **dplyr** passando a posição
+
+```{r,eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+
+library(dplyr)
+
+head(del_fil_sel_col %>% select(1,2))
+```
+
+Ou passando o nome das colunas
+
+```{r}
+library(dplyr)
+
+head(del_fil_sel_col %>% select(Coluna1,Coluna2))
+```
+
+* Selecionando colunas de acordo com o tipo da variável
+
+Podemos fazer isso com o auxílo do pacote **dplyr**
+Como base vamos utilizar o dataframe iris como exemplo, note que temos 4 colunas numéricas e uma factor
+
+```{r, echo=FALSE}
+head(iris)
+str(iris)
+```
+
+* Selecionando colunas que são numéricas apenas
+
+Note que a coluna Species não aparece, pois ela não é numerica e estamos selecionando apenas as que são numéricas
+
+```{r,eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+
+library(dplyr)
+
+head(iris) %>% 
+  select_if(is.numeric)
+```
+
+Caso não queira usar nenhum pacote, também conseguimos fazer a operação usando o R Raiz
+
+```{r}
+Filter(is.numeric,head(iris))
+```
+
+Se ainda não fucou satisfeito, podemos usar o R Raiz com a function sapply
+
+```{r}
+head(iris[,sapply(iris, is.numeric)])
+```
+
+Podemos chegar no mesmo objetivo mas ao invés de selecionar as numéricas, podemos selecionar as que NÃO são factor, acrescentando a function **negate** do pacote **purrr**
+
+```{r,eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+
+library(dplyr)
+library(purrr)
+
+head(iris) %>% 
+  select_if(negate(is.factor))
+```
+
+* Selecionando colunas com mais de um tipo
+
+Nesse caso precisamos criar uma function dentro do select_if
+
+```{r,eval=TRUE, message=FALSE, warning=FALSE, include=TRUE}
+
+library(dplyr)
+
+head(iris) %>% 
+  select_if(function(col) is.numeric(col) |
+              is.factor(col))
+```
+
+Ou novamente sem utilizar nenhum pacote
+
+```{r}
+Filter(function(col) is.numeric(col) |
+         is.factor(col),head(iris))
+```
+
+E utilizando a function sapply
+
+```{r}
+head(iris[,sapply(iris, function(col) is.numeric(col) |
+                    is.factor(col))])
+```
+
+Cabe a você escolher o jeito que quer usar e a forma mais eficiente para o seu caso!
+
+### 8.9. Excluindo/Filtrando/Selecionando linhas
+
+### 8.10. Levels das variáveis de um dataframe
+
+Novamente podemos utilizar a function **sapply** para esse objetivo, junto com a function **nlevels**
+
+```{r}
+data.frame(Level = sapply(iris, nlevels))
+```
+
+Com isso podemos ir mais além, por exemplo, pegar os nomes das variáveis que tem mais de um level no factor
+
+```{r}
+colnames(iris)[sapply(iris, nlevels) > 1]
+```
 
 [Volte ao topo](#abcd)
 
@@ -1202,7 +1394,7 @@ reduce_merge = list(data.frame(Faixas = c("100 - 200",
                                           "0.003897484")))
 ```
 
-* Usando a função reduce com dataframes de tamanhos distintos
+* Usando a função reduce com dataframes de tamanhos distintos, como se fosse um left join
 
 ```{r}
 Reduce(function(x,y) merge(x, y, all =T),
@@ -1232,5 +1424,18 @@ Se podemos excluir, também podemos adicionar elementos a uma lista, nesse caso,
 ```{r}
 reduce_merge[['newDataFrame']] = data.frame(Coluna1 = c(7,7,7,7,7))
 ```
+
+```{r, echo=FALSE}
+reduce_merge$newDataFrame
+```
+
+```{r}
+reduce_merge[[4]] = c(1,2,3,4,5)
+```
+
+```{r, echo=FALSE}
+reduce_merge[[4]]
+```
+
 
 [Volte ao topo](#abcd)
